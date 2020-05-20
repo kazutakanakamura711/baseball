@@ -1,0 +1,45 @@
+.twitter {
+    margin-right: 5%;
+}
+
+.instagram {
+    margin-left: 5%;
+}
+
+/* .question_list {
+    width:500px;
+    font-size: 16px;
+    color:#333333;
+    background:#d6e5f5;
+    padding:20px;
+    }
+
+.quesution_list ul {
+    list-style: none;
+    padding:5px 10px;
+    border-bottom:1px solid white;    
+} */
+
+/* #sample li:first-child{
+    border-top:0px;
+    }
+    #sample li:last-child{
+    border-bottom:0px;
+    } */
+
+.question_list ul{
+    list-style: none;
+}
+
+.question_list li {
+    margin-top: 4%;
+    line-height: 200%;
+    border-bottom:1px solid #808080;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: left;
+    font-size: 1.6rem;
+}
+
+.question_title {
+    font-size: 1.9rem;
+}

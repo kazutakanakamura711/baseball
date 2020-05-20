@@ -1,0 +1,122 @@
+$direction: "";
+@mixin border-arround{
+    .border#{$direction}{
+        border: 1px solid currentColor !important;
+    }
+    .border-top#{$direction}{
+        border-top: 1px solid currentColor !important;
+    }
+    .border-right#{$direction}{
+        border-right: 1px solid currentColor !important;
+    }
+    .border-bottom#{$direction}{
+        border-bottom: 1px solid currentColor !important;
+    }
+    .border-left#{$direction}{
+        border-left: 1px solid currentColor !important;
+    }
+    .border-x#{$direction}{
+        border-left: 1px solid currentColor !important;
+        border-right: 1px solid currentColor !important;
+    }
+    .border-y#{$direction}{
+        border-top: 1px solid currentColor !important;
+        border-bottom: 1px solid currentColor !important;
+	}
+	.border-dashed#{$direction}{
+        border: 1px dashed currentColor !important;
+    }
+    .border-dashed-top#{$direction}{
+        border-top: 1px dashed currentColor !important;
+    }
+    .border-dashed-right#{$direction}{
+        border-right: 1px dashed currentColor !important;
+    }
+    .border-dashed-bottom#{$direction}{
+        border-bottom: 1px dashed currentColor !important;
+    }
+    .border-dashed-left#{$direction}{
+        border-left: 1px dashed currentColor !important;
+    }
+    .border-dashed-x#{$direction}{
+        border-left: 1px dashed currentColor !important;
+        border-right: 1px dashed currentColor !important;
+    }
+    .border-dashed-y#{$direction}{
+        border-top: 1px dashed currentColor !important;
+        border-bottom: 1px dashed currentColor !important;
+	}
+	.border#{$direction}-0{
+        border-width: 0 !important;
+    }
+    .border-top#{$direction}-0{
+        border-top-width: 0 !important;
+    }
+    .border-right#{$direction}-0{
+        border-right-width: 0 !important;
+    }
+    .border-bottom#{$direction}-0{
+        border-bottom-width: 0 !important;
+    }
+    .border-left#{$direction}-0{
+        border-left-width: 0 !important;
+    }
+    .border-x#{$direction}-0{
+        border-left-width: 0 !important;
+        border-right-width: 0 !important;
+    }
+    .border-y#{$direction}-0{
+        border-top-width: 0 !important;
+        border-bottom-width: 0 !important;
+	}
+}
+
+@include border-arround;
+
+.border-2x{
+    border-width: 2px !important;
+}
+
+
+$direction: -sm;
+@include mq($from: mobile) {
+    @include border-arround;
+}
+$direction: -md;
+@include mq($from: tablet) {
+    @include border-arround;
+}
+$direction: -lg;
+@include mq($from: desktop) {
+    @include border-arround;
+}
+$direction: -xl;
+@include mq($from: wide) {
+    @include border-arround;
+}
+
+
+
+/********************************
+    Responsive border radius
+********************************/
+$screen-slugs: (-sm: mobile, -md: tablet, -lg: desktop, -xl: wide);
+$amount-slugs: (0: "-0", $radius-primary: -primary, $radius-secondary: -secondary, $radius-capsule: -capsule, 100%: -round);
+$direction-slugs: (tr: -top-right, tl: -top-left, br: -bottom-right, bl: -bottom-left);
+
+@mixin radius-manipulation($screen-slug){
+    @each $index, $amount-slug in $amount-slugs{
+        @each $i, $direction-slug in $direction-slugs{
+            .radius-#{$i}#{$screen-slug}#{$amount-slug}{
+                border#{$direction-slug}-radius: $index !important;
+            }
+        }
+    }
+}
+
+@include radius-manipulation("");
+@each $key, $screen-slug in $screen-slugs{
+    @include mq($from: $screen-slug) {
+        @include radius-manipulation($key);
+    }
+}
