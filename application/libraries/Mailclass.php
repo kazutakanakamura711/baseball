@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 defined('BASEPATH') or exit('No direct script access allowed');
 class Mailclass
 {
-  public function php_mailer()
+  public function php_mailer($to,$bcc,$subject,$Body)
   {
     // PHPMailerオブジェクト生成
     $mail = new PHPMailer(true);
@@ -14,8 +14,8 @@ class Mailclass
     $mail->isSMTP();
     $mail->SMTPAuth = true; // SMTP認証を利用するか
     $mail->Host = 'smtp.gmail.com';
-    $mail->Username = 'hogehoge@gmail.com';
-    $mail->Password = 'hoge';
+    $mail->Username = '100304itmm@gmail.com';
+    $mail->Password = 'tmtm0101';
     $mail->SMTPSecure = 'tls'; // sslの場合はssl
     $mail->Port = 587; // sslの場合は465(普通は)
     // ここからがポイント
@@ -27,19 +27,18 @@ class Mailclass
       )
     );
     // ここまで
-  }
-  //githubにあげる時に役に立つ
-  // {
-  //   “smtp” : {
-  //   “host” : “”,
-  //   “Port”: 0,
-  //   “Angora”:”tsl”,
-  //   “Mail”:”hoge@gmail.com”,
-  //   “Account”:”hoge@gmail.com”,
-  //   “Password”:””,
-  //   :
-  //   },
-  //   “_expire”: 15
-  //   }
+    // 送信内容設定
+    $mail->CharSet = 'utf-8';
+    $mail->setFrom('noreply@yakyu.com', mb_encode_mimeheader('MBC User'));
+    $mail->addAddress($to);
+    if(isset($bcc)){
+      $mail->addBcc($bcc);
+    }
+    $mail->Subject = mb_encode_mimeheader($subject);
+    $mail->Body = strip_tags($Body); 
+    // 送信
+    $mail->send();
+    //redirect("main/teams");
     
+  }
 }
