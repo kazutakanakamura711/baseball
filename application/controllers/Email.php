@@ -13,9 +13,9 @@ class Email extends CI_Controller
 		$to=$_POST['battle_mail'];
 		$bcc=	$_POST['mail'];
 		$subject=	$_POST['team'] . "様との試合申し込み";
-		$Body=	$_POST['message'];
+		$body=	$_POST['message'];
 		$this->load->library('mailclass');
-		$this->mailclass->php_mailer($to,$bcc,$subject,$Body);
+		$this->mailclass->php_mailer($to,$bcc,$subject,$body);
 		exit(json_encode(['mailsend' => 'メール送信完了']));
 	}
 	//チーム仮登録
@@ -40,10 +40,10 @@ class Email extends CI_Controller
 			$key = md5(uniqid());
 			$to = $_POST['mail'];
 			$Subject = "仮登録完了しました。";
-			$Body = "メール登録ありがとうございます。";
-			$Body .=  "<'" . base_url() . "index.php/bms/check_signup_team/$key'>こちらをクリックして、本登録を完了してください。ただし、こちらのURLは15分過ぎると無効になりますのでご注意下さい。";
+			$body = "メール登録ありがとうございます。";
+			$body .=  "<'" . base_url() . "index.php/bms/check_signup_team/$key'>こちらをクリックして、本登録を完了してください。ただし、こちらのURLは15分過ぎると無効になりますのでご注意下さい。";
 			$this->load->library('mailclass');
-			$this->mailclass->php_mailer($to,NULL,$Subject,$Body);
+			$this->mailclass->php_mailer($to,NULL,$Subject,$body);
 			$this->load->model("model_temporary");
 			if ($this->model_temporary->add_team($key)) {
 				exit(json_encode(['mailsend' => 'メール送信完了']));

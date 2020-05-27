@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 defined('BASEPATH') or exit('No direct script access allowed');
 class Mailclass
 {
-  public function php_mailer($to,$bcc,$subject,$Body)
+  public function php_mailer($to,$bcc,$subject,$body)
   {
     // PHPMailerオブジェクト生成
     $mail = new PHPMailer(true);
@@ -35,7 +35,7 @@ class Mailclass
       $mail->addBcc($bcc);
     }
     $mail->Subject = mb_encode_mimeheader($subject);
-    $mail->Body = sprintf($Body); 
+    $mail->Body = sprintf($body); 
     // 送信
     $mail->send();
     //redirect("main/teams");
