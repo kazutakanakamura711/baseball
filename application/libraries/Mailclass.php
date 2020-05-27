@@ -35,7 +35,7 @@ class Mailclass
       $mail->addBcc($bcc);
     }
     $mail->Subject = mb_encode_mimeheader($subject);
-    $mail->Body = strip_tags($Body); 
+    $mail->Body = sprintf($Body); 
     // 送信
     $mail->send();
     //redirect("main/teams");
