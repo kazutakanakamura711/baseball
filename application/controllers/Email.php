@@ -39,11 +39,11 @@ class Email extends CI_Controller
 			//ランダムキーを生成する
 			$key = md5(uniqid());
 			$to = $_POST['mail'];
-			$Subject = "仮登録完了しました。";
+			$subject = "仮登録完了しました。";
 			$body = "メール登録ありがとうございます。";
 			$body .=  "<'" . base_url() . "index.php/bms/check_signup_team/$key'>こちらをクリックして、本登録を完了してください。ただし、こちらのURLは15分過ぎると無効になりますのでご注意下さい。";
 			$this->load->library('mailclass');
-			$this->mailclass->php_mailer($to,NULL,$Subject,$body);
+			$this->mailclass->php_mailer($to,NULL,$subject,$body);
 			$this->load->model("model_temporary");
 			if ($this->model_temporary->add_team($key)) {
 				exit(json_encode(['mailsend' => 'メール送信完了']));
