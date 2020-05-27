@@ -14,8 +14,8 @@ class Mailclass
     $mail->isSMTP();
     $mail->SMTPAuth = true; // SMTP認証を利用するか
     $mail->Host = 'smtp.gmail.com';
-    $mail->Username = '100304itmm@gmail.com';
-    $mail->Password = 'tmtm0101';
+    $mail->Username = 'hogehoge@gmail.com';
+    $mail->Password = 'hoge';
     $mail->SMTPSecure = 'tls'; // sslの場合はssl
     $mail->Port = 587; // sslの場合は465(普通は)
     // ここからがポイント
