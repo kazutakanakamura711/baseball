@@ -13,7 +13,11 @@ class Main extends CI_Controller
             $player['player_array'] = $this->model_players->getplayers();
             $this->load->view("admin", $player);
         } else {
-            $this->load->view('login');
+            $data['csrf'] = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->load->view('login', $data);
         }
         $this->session->sess_destroy();
     }
@@ -45,14 +49,13 @@ class Main extends CI_Controller
         if ($this->form_validation->run()) {
             $this->load->model("model_team");
             $rows = $this->model_team->login();
-            if (password_verify($this->input->post("pass"), $rows[0]["password"]) == true) {
+            if (password_verify($this->input->post("pass",true), $rows[0]["password"]) == true) {
                 $data = [
                     "id" => $rows[0]["id"],
-                    "name" => $rows[0]["team_name"],
+                    "team" => $rows[0]["team"],
                     "skipper" => $rows[0]["skipper"],
                     "tel" => $rows[0]["tel"],
                     "mail" => $this->input->post("mail"),
-                    "game" => $rows[0]["game"],
                     "is_logged_in" => 1
                 ];
                 $this->session->set_userdata($data);
@@ -70,6 +73,10 @@ class Main extends CI_Controller
     {
         $this->load->model("model_players");
         $player['player_array'] = $this->model_players->getplayers();
+        $player['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $this->load->view("admin", $player);
     }
     //登録チーム全て

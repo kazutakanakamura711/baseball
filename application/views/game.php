@@ -25,27 +25,41 @@
     $(function() {
       $("#game").on('click', function(event) {
         event.preventDefault();
+        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+        var postdata = {
+          'battle_team': $('[name="battle_team"]').val(),
+          'battle_skipper': $('[name="battle_skipper"]').val(),
+          'battle_mail': $('[name="battle_mail"]').val(),
+          'team': $('[name="team"]').val(),
+          'skipper': $('[name="skipper"]').val(),
+          'mail': $('[name="mail"]').val(),
+          'message': $('[name="message"]').val()
+        };
+        postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
           url: "/email/index",
-          data: {
-            'battle_team': $('[name="battle_team"]').val(),
-            'battle_skipper': $('[name="battle_skipper"]').val(),
-            'battle_mail': $('[name="battle_mail"]').val(),
-            'team': $('[name="team"]').val(),
-            'skipper': $('[name="skipper"]').val(),
-            'mail': $('[name="mail"]').val(),
-            'message': $('[name="message"]').val()
-          },
+          data: postdata,
           crossDomain: false,
           dataType: "json",
           scriptCharset: 'utf-8'
         }).done(function(data) {
-          alert("メール送信OK!");
-          window.location.href = "/main/teams";
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'メール送信OK!',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            window.location.href = "/main/teams";
+          });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("メール送信NG!");
-          window.location.href = "/match/game";
+          Swal.fire({
+            icon: 'error',
+            title: 'メール送信NG!',
+            text: '入力内容をご確認下さい。',
+          });
         });
         return false;
       });
@@ -60,9 +74,10 @@
     </div>
     <div class="card">
       <div class="card-body register-card-body">
-        <p class="login-box-msg">下記に入力し、申し込んでください。</p>
+        <p class="login-box-msg">入力確認し、申し込んでください。</p>
+        <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="battle_team" placeholder="チーム名" value="<?= $row_array['team_name'] ?>">
+          <input type="text" class="form-control" name="battle_team" placeholder="チーム名" value="<?= $row_array['team'] ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-baseball-ball"></span>
@@ -81,7 +96,7 @@
           <input type="hidden" class="form-control" name="battle_mail" placeholder="メールアドレス" value="<?= $row_array['mail'] ?>">
         </div>
         <div class="input-group">
-          <input type="hidden" class="form-control" name="team" placeholder="店番" value="<?= $_SESSION['name'] ?>">
+          <input type="hidden" class="form-control" name="team" placeholder="店番" value="<?= $_SESSION['team'] ?>">
         </div>
         <div class="input-group">
           <input type="hidden" class="form-control" name="skipper" placeholder="監督名" value="<?= $_SESSION['skipper'] ?>">
@@ -90,7 +105,7 @@
           <input type="hidden" class="form-control" name="mail" placeholder="店番" value="<?= $_SESSION['mail'] ?>">
         </div>
         <div class="form-group mb-3">
-          <textarea name="message" id="message" cols="42" rows="10"><?= $_SESSION['name'] ?>の<?= $_SESSION['skipper'] ?>さんより試合申し込みがありました。
+          <textarea name="message" id="message" cols="42" rows="10"><?= $_SESSION['team'] ?>の<?= $_SESSION['skipper'] ?>さんより試合申し込みがありました。
 「連絡する」ボタンから返信をお願いします。
           </textarea>
         </div>

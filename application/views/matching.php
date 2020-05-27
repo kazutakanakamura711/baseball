@@ -5,14 +5,7 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-10 col-xs-6">
-            <h1 class="m-0 text-dark">対戦チーム募集</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-2 col-xs-6">
-            <?= form_open("main/logout"); ?>
-            <button class="float-right btn-info" type="submit">ログアウト</button>
-            <?= form_close(); ?>
-          </div><!-- /.col -->
+          <h1 class="m-0 text-dark">対戦チーム募集</h1>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div><!-- /.content-header -->
@@ -123,25 +116,19 @@
                   </thead>
                   <tbody>
                     <?php foreach ($team_array as $values) {
-                      if ($values['flag'] === "0") {
+                      if ($values['withdrawal'] === "0") {
                         if ($values['id'] !== $_SESSION['id']) { ?>
                           <tr>
-                            <td><?= $values['game'] ?></td>
-                            <td><?= $values['team_name'] ?></td>
+                            <td></td>
+                            <td><?= $values['team'] ?></td>
                             <td><?= $values['skipper'] ?></td>
                             <td></td>
                             <td></td>
                             <td>
-                              <?= form_open("match/game"); ?>
-                              <input type="hidden" name="matching_id" value="<?= $values['id'] ?>">
-                              <button id="button1" type="submit" class="btn-primary">試合申し込み <i class="fas fa-baseball-ball"></i></button>
-                              <?= form_close(); ?>
+                              <button onclick="location.href='/match/game?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">試合申し込み <i class="fas fa-baseball-ball"></i></button>
                             </td>
                             <td>
-                              <?= form_open("match/contact"); ?>
-                              <input type="hidden" name="matching_id" value="<?= $values['id'] ?>">
-                              <button id="button2" type="submit" class="btn-success">連絡する <i class="fas fa-envelope"></i></button>
-                              <?= form_close(); ?>
+                              <button onclick="location.href='/match/contact?id=<?= $values['id'] ?>'" id="button2" type="submit" class="btn-success">連絡する <i class="fas fa-envelope"></i></button>
                             </td>
                           </tr>
                         <?php  } ?>

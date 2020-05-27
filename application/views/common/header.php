@@ -46,28 +46,43 @@
     $(function() {
       $("#register").on('click', function(event) {
         event.preventDefault();
+        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+        var postdata = {
+          'team_id': $('[name="team_id"]').val(),
+          'name': $('[name="name"]').val(),
+          'tel': $('[name="tel"]').val(),
+          'mail': $('[name="mail"]').val(),
+          'year': $('[name="year"]').val(),
+          'arm': $('[name="arm"]').val(),
+          'position': $('[name="position"]').val(),
+          'number': $('[name="number"]').val(),
+          'turn': $('[name="turn"]').val()
+        };
+        postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
           url: "/bms/register_validation",
-          data: {
-            'team_id': $('[name="team_id"]').val(),
-            'name': $('[name="name"]').val(),
-            'tel': $('[name="tel"]').val(),
-            'mail': $('[name="mail"]').val(),
-            'year': $('[name="year"]').val(),
-            'arm': $('[name="arm"]').val(),
-            'position': $('[name="position"]').val()
-            //'order': $('[name="order"]').val()
-          },
+          data: postdata,
           crossDomain: false,
           dataType: "json",
           scriptCharset: 'utf-8'
         }).done(function(data) {
-          alert("選手登録OK!");
-          window.location.href = "/main/players";
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: '選手登録OK!',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            window.location.href = "/main/players";
+          });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("選手登録NG!");
-          window.location.href = "/main/players";
+          Swal.fire({
+            icon: 'error',
+            title: '選手登録NG!',
+            text: '入力内容をご確認下さい。',
+          });
         });
         return false;
       });
@@ -75,20 +90,44 @@
     $(function() {
       $(".btn-danger").on('click', function(event) {
         event.preventDefault();
+        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+        var postdata = {
+          'delete_id': $(this).data('id')
+        };
+        postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
           url: "/bms/delete_bms",
-          data: {
-            'delete_id': $(this).data('id')
-          },
+          data: postdata,
           crossDomain: false,
           dataType: "json",
           scriptCharset: 'utf-8'
         }).done(function(data) {
-          alert("削除完了しました!");
-          window.location.href = "/main/players";
+          Swal.fire({
+            title: '本当に削除してもいいですか?',
+            text: "削除選手：名前",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'はい!',
+            cancelButtonText: 'いいえ！',
+          }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                '削除完了しました！',
+                'Your file has been deleted.',
+                'success'
+              )
+            }
+            window.location.href = "/main/players";
+          });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("削除出来ませんでした!");
+          Swal.fire({
+            icon: 'error',
+            title: '削除出来ませんでした!',
+          });
         });
         return false;
       });

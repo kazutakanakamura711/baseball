@@ -25,27 +25,43 @@
     $(function() {
       $("#update").on('click', function(event) {
         event.preventDefault();
+        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+        var postdata = {
+          'id': $('[name="id"]').val(),
+          'name': $('[name="name"]').val(),
+          'tel': $('[name="tel"]').val(),
+          'mail': $('[name="mail"]').val(),
+          'year': $('[name="year"]').val(),
+          'number': $('[name="number"]').val(),
+          'turn': $('[name="turn"]').val(),
+          'arm': $('[name="arm"]').val(),
+          'position': $('[name="position"]').val()
+        };
+        postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
           url: "/bms/update_bms",
-          data: {
-            'id': $('[name="id"]').val(),
-            'name': $('[name="name"]').val(),
-            'tel': $('[name="tel"]').val(),
-            'mail': $('[name="mail"]').val(),
-            'year': $('[name="year"]').val(),
-            'arm': $('[name="arm"]').val(),
-            'position': $('[name="position"]').val()
-          },
+          data: postdata,
           crossDomain: false,
           dataType: "json",
           scriptCharset: 'utf-8'
         }).done(function(data) {
-          alert("編集OK!");
-          window.location.href = "/main/players";
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: '編集OK!',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            window.location.href = "/main/players";
+          });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("編集NG!");
-          window.location.href = "/bms/update";
+          Swal.fire({
+            icon: 'error',
+            title: '編集NG!',
+            text: '入力内容をご確認下さい。',
+          });
         });
         return false;
       });
@@ -62,7 +78,8 @@
       <div class="card-body register-card-body">
         <p class="login-box-msg">入力してください</p>
         <div class="input-group mb-3">
-          <input type="hidden" class="form-control" name="id" value="<?= $row_array['team_id'] ?>">
+          <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
+          <input type="hidden" class="form-control" name="id" value="<?= $row_array['id'] ?>">
         </div>
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="name" value="<?= $row_array['name'] ?>">
@@ -89,7 +106,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-6">
+          <div class="col-4">
             <div class="form-group">
               <label for="year">生年</label>
               <select name="year" class="form-control" style="width: 100%;">
@@ -100,6 +117,32 @@
               </select>
             </div>
           </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="turn">打順</label>
+              <select name="turn" class="form-control" style="width: 100%;">
+                <option><?= $row_array['turn'] ?></option>
+                <option>H</option>
+                <option>P</option>
+                <?php for ($i = 1; $i < 10; $i++) { ?>
+                  <option><?= $i; ?></option>
+                <?php } ?>
+              </select>
+            </div><!-- /.form-group -->
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="number">背番号</label>
+              <select name="number" class="form-control" style="width: 100%;">
+                <option><?= $row_array['number'] ?></option>
+                <?php for ($i = 0; $i < 100; $i++) { ?>
+                  <option><?= $i; ?></option>
+                <?php } ?>
+              </select>
+            </div><!-- /.form-group -->
+          </div>
+        </div>
+        <div class="row">
           <div class="col-6">
             <div class="form-group">
               <label for="arm">投/打</label>
@@ -114,29 +157,16 @@
               </select>
             </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-6">
             <div class="form-group">
               <label for="position">守備</label>
               <select name="position" class="form-control" style="width: 100%;">
+                <option><?= $row_array['position'] ?></option>
                 <option>投手</option>
                 <option>捕手</option>
                 <option>内野手</option>
                 <option>外野手</option>
                 <option>指名打者</option>
-              </select>
-            </div><!-- /.form-group -->
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label for="order">打順</label>
-              <select name="order" class="form-control" style="width: 100%;">
-                <option>H</option>
-                <option>P</option>
-                <?php for ($i = 1; $i < 10; $i++) { ?>
-                  <option><?= $i; ?></option>
-                <?php } ?>
               </select>
             </div><!-- /.form-group -->
           </div>

@@ -2,6 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 class Email extends CI_Controller
 {
@@ -38,7 +39,7 @@ class Email extends CI_Controller
 		// 送信
 		$mail->send();
 		//redirect("main/teams");
-		exit(json_encode(['mailsend' =>'メール送信完了']));
+		exit(json_encode(['mailsend' => 'メール送信完了']));
 	}
 	//チーム仮登録
 	public function signup_validation()
@@ -46,30 +47,6 @@ class Email extends CI_Controller
 		header("Content-type: application/json; charset=UTF-8");
 		$this->load->library("form_validation");
 		$config = [
-			[
-				"field" => "team",
-				"label" => "チーム名",
-				"rules" => 'trim|required',
-				"errors" => ["required" => "事業所名は入力必須です。"]
-			],
-			[
-				"field" => "skipper",
-				"label" => "監督名",
-				"rules" => 'trim|required',
-				"errors" => [
-					"required" => "住所は入力必須です。",
-					"errors" => ["required" => "住所は入力必須です。"]
-				],
-			],
-			[
-				"field" => "tel",
-				"label" => "電話番号",
-				"rules" => "trim|required|regex_match[/^[0-9]+$/]",
-				"errors" => [
-					"required" => "電話番号は入力必須です。",
-					"regex_match" => "電話番号が不正です。"
-				]
-			],
 			[
 				"field" => "mail",
 				"label" => "メールアドレス",
@@ -84,6 +61,7 @@ class Email extends CI_Controller
 		if ($this->form_validation->run()) {
 			//ランダムキーを生成する
 			$key = md5(uniqid());
+		
 			// PHPMailerオブジェクト生成
 			$mail = new PHPMailer(true);
 			// 送信設定
@@ -108,14 +86,14 @@ class Email extends CI_Controller
 			$mail->CharSet = 'utf-8';
 			$mail->setFrom('noreply@gmail.com', mb_encode_mimeheader('送信元'));
 			$mail->addAddress($_POST['mail']);
-			$mail->Subject = $_POST['team']."の仮登録が完了しました。";
-			$mail->Body = $_POST['skipper']."様、チーム登録ありがとうございます。";
-			$mail->Body .=  "<'" . base_url() . "index.php/bms/check_signup_team/$key'>こちらをクリックして、パスワード登録を完了してください。";
-			$this->load->model("model_teams");
-			if ($this->model_teams->add_teams($key)) {
+			$mail->Subject = "仮登録完了しました。";
+			$mail->Body = "メール登録ありがとうございます。";
+			$mail->Body .=  "<'" . base_url() . "index.php/bms/check_signup_team/$key'>こちらをクリックして、本登録を完了してください。ただし、こちらのURLは15分過ぎると無効になりますのでご注意下さい。";
+			$this->load->model("model_temporary");
+			if ($this->model_temporary->add_team($key)) {
 				if ($mail->send()) {
-				//redirect("main/login");
-					exit(json_encode(['signup_id' =>'登録完了']));
+					//redirect("main/login");
+					exit(json_encode(['signup_id' => '登録完了']));
 				} else {
 					echo "メールを送信できませんでした。";
 				}
@@ -123,7 +101,7 @@ class Email extends CI_Controller
 				echo "チーム登録できませんでした。";
 			}
 		} else {
-			$this->load->view('register');
+			$this->load->view('signup');
 		}
 	}
 }

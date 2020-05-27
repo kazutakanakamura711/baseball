@@ -9,21 +9,11 @@
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="<?= base_url() ?>main/login" class="nav-link">Home</a>
+          <a href="<?= base_url() ?>main/login" class="nav-link text-primary">ホーム<i class="fas fa-home"></i></a>
+        <li class="nav-item d-none d-sm-inline-block">
+        <a id="logout" href="<?= base_url() ?>main/logout" class="nav-link text-danger">ログアウト<i class="fas fa-sign-out-alt"></i></a>
         </li>
       </ul>
-
-      <!-- SEARCH FORM -->
-      <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
     </nav>
     <!-- /.navbar -->
     <!-- Main Sidebar Container -->
@@ -74,19 +64,25 @@
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="<?= base_url() ?>match/game_result" class="nav-link">
+                <i class="nav-icon far fa-circle text-info"></i>
+                <p>試合結果登録</p>
+                <i class="right fas fa-angle-right"></i>
+              </a>
+            </li>
             <li class="nav-header">team management</li>
             <li class="nav-item has-treeview">
               <a href="<?= base_url() ?>main/players" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>
-                <p>選手名鑑・登録</p>
+                <p>チーム・選手名鑑</p>
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li>
             <li class="nav-item has-treeview">
               <a href="<?= base_url() ?>bms/scores" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>
-                <input type="hidden" value="<?= $_SESSION['game'] ?>">
-                <p>選手スコア</p>
+                <p>スコア・試合結果</p>
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li>

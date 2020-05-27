@@ -5,18 +5,43 @@ class Match extends CI_Controller
     //試合申し込みへ
     public function game()
     {
-        $id = $this->input->post('matching_id');
+        $id = $this->input->get('id');
         $this->load->model("model_teams");
         $player['row_array'] =$this->model_teams->getteam($id);
+        $player['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $this->load->view('game',$player);
     }
     //連絡フォームへ
     public function contact()
     {
-        $id = $this->input->post('matching_id');
+        $id = $this->input->get('id');
         $this->load->model("model_teams");
         $player['row_array'] =$this->model_teams->getteam($id);
+        $player['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $this->load->view('contact',$player);
+    }
+    public function game_result()
+    {
+        $data['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view('game_result',$data);
+    }
+    public function game_register()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $day = date("Y-m-d H:i:s");
+        $this->load->model("model_game");
+        $this->model_game->add_game($day);
+        //redirect("main/players");
+        exit(json_encode(['player' => '更新完了']));
     }
     public function ground()
     {

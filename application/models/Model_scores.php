@@ -20,7 +20,6 @@ class Model_scores extends CI_Model
       "er" => $this->input->post("er"),
       "strikeout" => $this->input->post("strikeout"),
       "h_walk" => $this->input->post("h_walk"),
-      "score_flag" => 0,
       "insert_time" => $day
     ];
     //$dataをDB内のplayerに挿入後に、$queryと紐づける
@@ -34,7 +33,7 @@ class Model_scores extends CI_Model
   public function getscores()
   {
 
-    $this->db->select('id,team_id,name,flag,player_id,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk)');
+    $this->db->select('id,team_id,name,delete_player,player_id,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk)');
     $this->db->from('score');
     $this->db->join('player', 'player.id = score.player_id');
     $this->db->group_by("player_id");   //選手別にスコアグループ分け
@@ -43,7 +42,7 @@ class Model_scores extends CI_Model
   }
   public function getteamscore()
   {
-    $this->db->select('id,team_id,flag,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk)');
+    $this->db->select('id,team_id,delete_player,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk)');
     $this->db->from('score');
     $this->db->join('player', 'player.id = score.player_id');
     $this->db->group_by("team_id");   //チームスコアにグループ分け

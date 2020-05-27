@@ -25,24 +25,35 @@
     $(function() {
       $("#signup").on('click', function(event) {
         event.preventDefault();
+        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+        var postdata = {
+          'mail': $('[name="mail"]').val()
+        };
+        postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
           url: "/email/signup_validation",
-          data: {
-            'team': $('[name="team"]').val(),
-            'skipper': $('[name="skipper"]').val(),
-            'tel': $('[name="tel"]').val(),
-            'mail': $('[name="mail"]').val(),
-          },
+          data: postdata,
           crossDomain: false,
           dataType: "json",
           scriptCharset: 'utf-8'
         }).done(function(data) {
-          alert("新規チーム登録OK!");
-          window.location.href = "/main/login";
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: '新規チーム仮登録OK',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            window.location.href = "/main/login";
+          });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("新規チーム登録NG!");
-          window.location.href = "/bms/signup";
+          Swal.fire({
+            icon: 'error',
+            title: '新規チーム仮登録NG!',
+            text: '入力内容をご確認下さい。',
+          });
         });
         return false;
       });
@@ -57,31 +68,8 @@
     </div>
     <div class="card">
       <div class="card-body register-card-body">
-        <p class="login-box-msg">下記に入力後、登録してください。</p>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="team" placeholder="チーム名">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-baseball-ball"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="skipper" placeholder="監督名">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="tel" class="form-control" name="tel" placeholder="電話番号">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-phone"></span>
-            </div>
-          </div>
-        </div>
+        <p class="login-box-msg">下記に入力後、送信してください。</p>
+        <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="mail" placeholder="メールアドレス">
           <div class="input-group-append">
@@ -92,7 +80,7 @@
         </div>
         <div class="container">
           <div class="row">
-            <button id="signup" type="submit" class="btn btn-primary btn-block">登録</button>
+            <button id="signup" type="submit" class="btn btn-primary btn-block">送信</button>
           </div>
           <br>
           <p><?= anchor('main/login/', 'ログインへ　>>'); ?></p>

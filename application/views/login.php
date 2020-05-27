@@ -25,13 +25,17 @@
     $(function() {
       $("#login").on('click', function(event) {
         event.preventDefault();
+        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+        var postdata = {
+          'mail': $('[name="mail"]').val(),
+          'pass': $('[name="pass"]').val()
+        };
+        postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
           url: "/main/login_validation",
-          data: {
-            'mail': $('[name="mail"]').val(),
-            'pass': $('[name="pass"]').val()
-          },
+          data: postdata,
           crossDomain: false,
           dataType: "json",
           scriptCharset: 'utf-8'
@@ -42,16 +46,15 @@
             title: 'ログイン認証OK!',
             showConfirmButton: false,
             timer: 1500
-          })
-          window.location.href = "/bms/scores";
+          }).then((result) => {
+            window.location.href = "/bms/scores";
+          });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
             icon: 'error',
             title: 'ログイン認証NG!',
             text: '入力内容をご確認下さい。',
-            timer: 1500
-          })
-          window.location.href = "/main/login";
+          });
         });
         return false;
       });
@@ -67,6 +70,7 @@
     <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg">ログインしてください。</p>
+        <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         <div class="input-group mb-3">
           <div class="error">
             <?= form_error("mail"); ?>

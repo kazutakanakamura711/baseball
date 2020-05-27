@@ -5,14 +5,7 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-10 col-xs-6">
-            <h1 class="m-0 text-dark">スコアボード</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-2 col-xs-6">
-            <?= form_open("main/logout"); ?>
-            <button class="float-right btn-info" type="submit">ログアウト</button>
-            <?= form_close(); ?>
-          </div><!-- /.col -->
+          <h1 class="m-0 text-dark">スコアボード</h1>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div><!-- /.content-header -->
@@ -30,28 +23,26 @@
                 <th>本塁打</th>
                 <th>得点</th>
                 <th>盗塁</th>
-                <th>防御率</th>              
+                <th>防御率</th>
+                <th>失点</th>
                 <th>奪三振</th>
                 <th>犠打</th>
-                <th>追加</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($teamscore_array as $value) {
                 if ($_SESSION['id'] === $value['team_id']) {
-                  if ($value['flag'] === "0") { ?>
+                  if ($value['delete_player'] === "0") { ?>
                     <tr>
-                      <td><?= $_SESSION['game'] ?></td>
+                      <td>0</td>
                       <td><?= number_format(round($value['sum(hit)'] / $value['sum(atbat)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
                       <td><?= $value['sum(homerun)'] ?></td>
                       <td><?= $value['sum(rbi)'] ?></td>
                       <td><?= $value['sum(steal)'] ?></td>
                       <td><?= number_format(round($value['sum(er)'] * 27 / $value['sum(inning)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
+                      <td><?= $value['sum(er)'] ?></td>
                       <td><?= $value['sum(strikeout)'] ?></td>
                       <td><?= $value['sum(sacrifice)'] ?></td>
-                      <td>
-                        <button id="button1" type="submit" class="btn-primary">試合数追加 <i class="fas fa-plus"></i></button>
-                      </td>
                     </tr>
                   <?php  } ?>
                 <?php  } ?>
@@ -84,7 +75,7 @@
             <tbody>
               <?php foreach ($score_array as $values) {
                 if ($_SESSION['id'] === $values['team_id']) {
-                  if ($values['flag'] === "0") { ?>
+                  if ($values['delete_player'] === "0") { ?>
                     <tr>
                       <td><?= $values['id'] ?></td>
                       <td><?= $values['name'] ?></td>
@@ -95,10 +86,7 @@
                       <td><?= $values['sum(walk)'] ?></td>
                       <td><?= $values['sum(sacrifice)'] ?></td>
                       <td>
-                        <?= form_open("bms/score_update"); ?>
-                        <input type="hidden" name="update_id" value="<?= $values['id'] ?>">
-                        <button id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
-                        <?= form_close(); ?>
+                        <button onclick="location.href='/bms/score_update?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
                       </td>
                     </tr>
                   <?php  } ?>
@@ -132,7 +120,7 @@
             <tbody>
               <?php foreach ($score_array as $values) {
                 if ($_SESSION['id'] === $values['team_id']) {
-                  if ($values['flag'] === "0") { ?>
+                  if ($values['delete_player'] === "0") { ?>
                     <tr>
                       <td><?= $values['id'] ?></td>
                       <td><?= $values['name'] ?></td>
@@ -143,10 +131,7 @@
                       <td><?= $values['sum(strikeout)'] ?></td>
                       <td><?= $values['sum(h_walk)'] ?></td>
                       <td>
-                        <?= form_open("bms/score_update"); ?>
-                        <input type="hidden" name="update_id" value="<?= $values['id'] ?>">
-                        <button id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
-                        <?= form_close(); ?>
+                        <button onclick="location.href='/bms/score_update?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
                       </td>
                     </tr>
                   <?php  } ?>
@@ -161,7 +146,7 @@
           </div>
           <div class="col-sm-3">
             <?= form_open("#"); ?>
-            <a href="#" class="float-sm-right nav-link">個人成績へ　
+            <a href="#" class="float-sm-right nav-link">試合結果入力へ　
               <span class="fa fa-chevron-right"></span><span class="fa fa-chevron-right"></span></a>
             <?= form_close(); ?>
           </div>

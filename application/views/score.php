@@ -25,34 +25,48 @@
     $(function() {
       $("#score").on('click', function(event) {
         event.preventDefault();
+        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+        var postdata = {
+          'id': $('[name="id"]').val(),
+          'atbat': $('[name="atbat"]').val(),
+          'hit': $('[name="hit"]').val(),
+          'homerun': $('[name="homerun"]').val(),
+          'rbi': $('[name="rbi"]').val(),
+          'steal': $('[name="steal"]').val(),
+          'walk': $('[name="walk"]').val(),
+          'sacrifice': $('[name="sacrifice"]').val(),
+          'inning': $('[name="inning"]').val(),
+          'h_hit': $('[name="h_hit"]').val(),
+          'strikeout': $('[name="strikeout"]').val(),
+          'h_homerun': $('[name="h_homerun"]').val(),
+          'er': $('[name="er"]').val(),
+          'h_walk': $('[name="h_walk"]').val()
+        };
+        postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
           url: "/bms/score_update_bms",
-          data: {
-            'id': $('[name="id"]').val(),
-            'atbat': $('[name="atbat"]').val(),
-            'hit': $('[name="hit"]').val(),
-            'homerun': $('[name="homerun"]').val(),
-            'rbi': $('[name="rbi"]').val(),
-            'steal': $('[name="steal"]').val(),
-            'walk': $('[name="walk"]').val(),
-            'sacrifice': $('[name="sacrifice"]').val(),
-            'inning': $('[name="inning"]').val(),
-            'h_hit': $('[name="h_hit"]').val(),
-            'strikeout': $('[name="strikeout"]').val(),
-            'h_homerun': $('[name="h_homerun"]').val(),
-            'er': $('[name="er"]').val(),
-            'h_walk': $('[name="h_walk"]').val()
-          },
+          data: postdata,
           crossDomain: false,
           dataType: "json",
           scriptCharset: 'utf-8'
         }).done(function(data) {
-          alert("スコア入力OK!");
-          window.location.href = "/bms/scores";
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'スコア入力OK!',
+            showConfirmButton: false,
+            timer: 1500
+          }).then((result) => {
+            window.location.href = "/bms/scores";
+          });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("スコア入力NG!");
-          window.location.href = "/bms/score_update_bms";
+          Swal.fire({
+            icon: 'error',
+            title: 'スコア入力NG',
+            text: '入力内容をご確認下さい。',
+          });
         });
         return false;
       });
@@ -69,6 +83,7 @@
       <div class="card-body register-card-body">
         <h5 class="text-center"><strong><?= $row_array['name'] ?></strong></h5>
         <div class="input-group mb-3">
+          <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
           <input type="hidden" class="form-control" name="id" value="<?= $row_array['id'] ?>">
         </div>
         <div class="form-group text-center">
@@ -155,12 +170,12 @@
               <label>投球イニング</label>
               <select name="inning" class="form-control select2" style="width: 100%;">
                 <?php $k = 0; ?>
-                  <?php for ($i = 0; $i < 10; $i++) { ?>
-                    <?php for ($j = 0; $j < 3; $j++) { ?>
-                      <option value=<?= $k ?>><?= $i . "回" . $j . "/ 3"; ?></option>
-                      <?php $k++; ?>
-                    <?php } ?>
+                <?php for ($i = 0; $i < 10; $i++) { ?>
+                  <?php for ($j = 0; $j < 3; $j++) { ?>
+                    <option value=<?= $k ?>><?= $i . "回" . $j . "/ 3"; ?></option>
+                    <?php $k++; ?>
                   <?php } ?>
+                <?php } ?>
               </select>
             </div><!-- /.form-group -->
           </div><!-- /.col -->
