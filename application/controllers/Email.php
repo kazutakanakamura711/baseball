@@ -41,7 +41,7 @@ class Email extends CI_Controller
 			$to = $_POST['mail'];
 			$subject = "仮登録完了しました。";
 			$body = "メール登録ありがとうございます。";
-			$body .=  "<'" . base_url() . "index.php/bms/check_signup_team/$key'>こちらをクリックして、本登録を完了してください。ただし、こちらのURLは15分過ぎると無効になりますのでご注意下さい。";
+			$body .= "<'" . base_url() . "index.php/bms/check_signup_team/$key'>こちらをクリックして、本登録を完了してください。ただし、こちらのURLは15分過ぎると無効になりますのでご注意下さい。";
 			$this->load->library('mailclass');
 			$this->mailclass->php_mailer($to,NULL,$subject,$body);
 			$this->load->model("model_temporary");

@@ -7,17 +7,18 @@ class Mailclass
 {
   public function php_mailer($to,$bcc,$subject,$body)
   {
+    $config = parse_ini_file('config.ini', true);
     // PHPMailerオブジェクト生成
     $mail = new PHPMailer(true);
     // 送信設定
     $mail->SMTPDebug = 0; // 0：デバッグOFF 1：デバッグON
     $mail->isSMTP();
     $mail->SMTPAuth = true; // SMTP認証を利用するか
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Username = 'hogehoge@gmail.com';
-    $mail->Password = 'hoge';
-    $mail->SMTPSecure = 'tls'; // sslの場合はssl
-    $mail->Port = 587; // sslの場合は465(普通は)
+    $mail->Host = $config['mail']['Host'];
+    $mail->Username = $config['mail']['Username'];
+    $mail->Password = $config['mail']['Password'];
+    $mail->SMTPSecure = $config['mail']['Secure']; // sslの場合はssl
+    $mail->Port = $config['mail']['Port']; // sslの場合は465(普通は)
     // ここからがポイント
     $mail->SMTPOptions = array(
       'ssl' => array(
@@ -38,7 +39,5 @@ class Mailclass
     $mail->Body = sprintf($body); 
     // 送信
     $mail->send();
-    //redirect("main/teams");
-    
   }
 }

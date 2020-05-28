@@ -1,0 +1,8 @@
+; メールの設定
+[mail]
+Host = 
+Username = 
+Password = 
+Secure = 
+Port = 
+
