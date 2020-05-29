@@ -46,7 +46,7 @@
         postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
-          url: "/bms/score_update_bms",
+          url: "/score/score_register",
           data: postdata,
           crossDomain: false,
           dataType: "json",
@@ -59,7 +59,7 @@
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
-            window.location.href = "/bms/scores";
+            window.location.href = "/score/scores";
           });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
@@ -237,7 +237,7 @@
           <br>
           <div class="row">
             <div class="col-6">
-              <p class="float-left"><?= anchor('bms/scores', 'スコア一覧へ　>>'); ?></p>
+              <p class="float-left"><?= anchor('score/scores', 'スコア一覧へ　>>'); ?></p>
             </div><!-- /.col -->
             <div class="col-6">
               <p class="float-right"><?= anchor('main/players', '選手一覧へ　>>'); ?></p>

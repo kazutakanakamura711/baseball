@@ -80,7 +80,7 @@
               </a>
             </li>
             <li class="nav-item has-treeview">
-              <a href="<?= base_url() ?>bms/scores" class="nav-link">
+              <a href="<?= base_url() ?>score/scores" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>
                 <p>スコア・試合結果</p>
                 <i class="right fas fa-angle-right"></i>

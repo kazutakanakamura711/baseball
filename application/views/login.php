@@ -47,7 +47,7 @@
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
-            window.location.href = "/bms/scores";
+            window.location.href = "/score/scores";
           });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({

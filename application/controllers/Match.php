@@ -38,8 +38,8 @@ class Match extends CI_Controller
     {
         header("Content-type: application/json; charset=UTF-8");
         $day = date("Y-m-d H:i:s");
-        $this->load->model("model_game");
-        $this->model_game->add_game($day);
+        $this->load->model("model_games");
+        $this->model_games->add_game($day);
         //redirect("main/players");
         exit(json_encode(['player' => '更新完了']));
     }

@@ -41,7 +41,7 @@
         postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
-          url: "/bms/update_bms",
+          url: "/change/update_bms",
           data: postdata,
           crossDomain: false,
           dataType: "json",

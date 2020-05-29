@@ -56,6 +56,15 @@ class Main extends CI_Controller
                     "skipper" => $rows[0]["skipper"],
                     "tel" => $rows[0]["tel"],
                     "mail" => $this->input->post("mail"),
+                    "slogan" => $rows[0]["slogan"],
+                    "year" => $rows[0]["year"],
+                    "job" => $rows[0]["job"],
+                    "age" => $rows[0]["age"],
+                    "job" => $rows[0]["job"],
+                    "experience" => $rows[0]["experience"],
+                    "policy" => $rows[0]["policy"],
+                    "practice" => $rows[0]["practice"],
+                    "pr" => $rows[0]["pr"],
                     "is_logged_in" => 1
                 ];
                 $this->session->set_userdata($data);
@@ -73,6 +82,7 @@ class Main extends CI_Controller
     {
         $this->load->model("model_players");
         $player['player_array'] = $this->model_players->getplayers();
+        
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

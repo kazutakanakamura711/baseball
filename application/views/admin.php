@@ -33,20 +33,19 @@
                   <p><strong>監督：</strong><?= $_SESSION['skipper'] ?></p>
                   <p><strong>電話番号：</strong><?= $_SESSION['tel'] ?></p>
                   <p><strong>メールアドレス：</strong><?= $_SESSION['mail'] ?></p>
-                  <p><strong>チームスローガン：</strong>とにかく楽しく</p>
-                  <p><strong>チーム結成：</strong>2020年4月</p>
-                  <p><strong>選手層：</strong>社会人多め</p>
+                  <p><strong>チームスローガン：</strong><?= $_SESSION['slogan'] ?></p>
+                  <p><strong>チーム結成：</strong><?= $_SESSION['year'] ?></p>
+                  <p><strong>選手層：</strong><?= $_SESSION['job'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-                  <p><strong>平均年齢：</strong>35才</p>
-                  <p><strong>野球経験者：</strong>経験者5割弱(未経験者も多数在籍)</p>
-                  <p><strong>活動方針：</strong>リアル優先でまったりと</p>
-                  <p><strong>練習頻度：</strong>週2日(火曜・木曜)</p>
-                  <p><strong>主な練習場所：</strong>垣生小学校・五色浜公園など</p>
+                  <p><strong>平均年齢：</strong><?= $_SESSION['age'] ?></p>
+                  <p><strong>野球経験者：</strong><?= $_SESSION['experience'] ?></p>
+                  <p><strong>活動方針：</strong><?= $_SESSION['policy'] ?></p>
+                  <p><strong>練習頻度：</strong><?= $_SESSION['practice'] ?></p>
                   <p><strong>年間試合数：</strong>約6試合</p>
-                  <p><strong>監督から一言：</strong>結果にこだわらず、楽しく体を動かしましょう。</p>
+                  <p><strong>監督から一言：</strong><?= $_SESSION['pr'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
             </div><!-- /.row -->
@@ -98,10 +97,10 @@
                             <td><?= $values['tel'] ?></td>
                             <td><?= $values['mail'] ?></td>
                             <td>
-                              <button onclick="location.href='/bms/score_update?id=<?= $values['id'] ?>'" type="submit" class="btn-primary">スコア入力 <i class="fas fa-pencil-alt"></i></button>
+                              <button onclick="location.href='/score/score_signup?id=<?= $values['id'] ?>'" type="submit" class="btn-primary">スコア入力 <i class="fas fa-pencil-alt"></i></button>
                             </td>
                             <td>
-                              <button onclick="location.href='/bms/update?id=<?= $values['id'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
+                              <button onclick="location.href='/change/update?id=<?= $values['id'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                             </td>
                             <td>
                               <button data-id="<?= $values['id'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>

@@ -184,7 +184,7 @@
         </div>
         <div class="form-group mb-3">
           <label for="pr">その他PR</label>
-          <textarea name="pr" id="pr" cols="42" rows="10"></textarea>
+          <textarea name="pr" id="pr" cols="42" rows="10"><?= $team_array['pr'] ?></textarea>
         </div>
         <div class="container">
           <div class="row">

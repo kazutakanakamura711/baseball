@@ -61,6 +61,7 @@
           <table class="table table-bordered table-hover text-nowrap">
             <thead class="table-primary">
               <tr>
+                <th>打順</th>
                 <th>背番号</th>
                 <th>名前</th>
                 <th>打率</th>
@@ -77,7 +78,8 @@
                 if ($_SESSION['id'] === $values['team_id']) {
                   if ($values['delete_player'] === "0") { ?>
                     <tr>
-                      <td><?= $values['id'] ?></td>
+                      <td><?= $values['turn'] ?></td>
+                      <td><?= $values['number'] ?></td>
                       <td><?= $values['name'] ?></td>
                       <td><?= number_format(round($values['sum(hit)'] / $values['sum(atbat)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
                       <td><?= $values['sum(homerun)'] ?></td>
@@ -86,7 +88,7 @@
                       <td><?= $values['sum(walk)'] ?></td>
                       <td><?= $values['sum(sacrifice)'] ?></td>
                       <td>
-                        <button onclick="location.href='/bms/score_update?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
+                        <button onclick="location.href='/score/score_signup?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
                       </td>
                     </tr>
                   <?php  } ?>
@@ -106,6 +108,7 @@
           <table class="table table-bordered table-hover text-nowrap">
             <thead class="table-primary">
               <tr>
+                <th>打順</th>
                 <th>背番号</th>
                 <th>名前</th>
                 <th>防御率</th>
@@ -120,9 +123,10 @@
             <tbody>
               <?php foreach ($score_array as $values) {
                 if ($_SESSION['id'] === $values['team_id']) {
-                  if ($values['delete_player'] === "0") { ?>
+                  if ($values['delete_player'] === "0" && $values['sum(inning)'] != "0") { ?>
                     <tr>
-                      <td><?= $values['id'] ?></td>
+                      <td><?= $values['turn'] ?></td>
+                      <td><?= $values['number'] ?></td>
                       <td><?= $values['name'] ?></td>
                       <td><?= number_format(round($values['sum(er)'] * 27 / $values['sum(inning)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
                       <td><?= $values['sum(h_hit)'] ?></td>
@@ -131,7 +135,7 @@
                       <td><?= $values['sum(strikeout)'] ?></td>
                       <td><?= $values['sum(h_walk)'] ?></td>
                       <td>
-                        <button onclick="location.href='/bms/score_update?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
+                        <button onclick="location.href='/score/score_signup?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
                       </td>
                     </tr>
                   <?php  } ?>
@@ -155,21 +159,23 @@
               <tr>
                 <th>相手チーム</th>
                 <th>最終スコア</th>
-                <th>勝利投手</th>
-                <th>敗戦投手</th>
-                <th>セーブ</th>
-                <th>本塁打</th>
+                <th>勝敗</th>
+                <th>考察</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>東レ 株式会社 松山</td>
-                <td>帝人３－１東レ</td>
-                <td>和泉</td>
-                <td>河崎</td>
-                <td>櫻井</td>
-                <td>和泉10号、河崎8号</td>
-              </tr>
+              <?php foreach ($game_array as $values) {
+                if ($_SESSION['id'] === $values['team_id']) {
+                  if ($values['delete_game'] === "0") { ?>
+                    <tr>
+                      <td><?= $values['battle_team'] ?></td>
+                      <td><?= $values['score'] ?> － <?= $values['loss'] ?></td>
+                      <td><?= $values['battle'] ?></td>
+                      <td><?= $values['consideration'] ?></td>
+                    </tr>
+                  <?php  } ?>
+                <?php  } ?>
+              <?php  } ?>
             </tbody>
           </table>
         </div><!-- /.row -->
