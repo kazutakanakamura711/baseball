@@ -40,11 +40,11 @@
               </div><!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-                  <p><strong>平均年齢：</strong><?= $_SESSION['age'] ?></p>
+                  <p><strong>平均年齢：</strong>約<?= round($age['sum(year)'] / $count, 0, PHP_ROUND_HALF_DOWN) ?>歳</p>
                   <p><strong>野球経験者：</strong><?= $_SESSION['experience'] ?></p>
                   <p><strong>活動方針：</strong><?= $_SESSION['policy'] ?></p>
                   <p><strong>練習頻度：</strong><?= $_SESSION['practice'] ?></p>
-                  <p><strong>年間試合数：</strong>約6試合</p>
+                  <p><strong>年間試合数：</strong>約<?= $game ?>試合</p>
                   <p><strong>監督から一言：</strong><?= $_SESSION['pr'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
@@ -75,7 +75,7 @@
                     <th>オーダー</th>
                     <th>背番号</th>
                     <th>名前</th>
-                    <th>生年</th>
+                    <th>満年齢</th>
                     <th>投/打</th>
                     <th>守備</th>
                     <th>電話番号</th>
@@ -85,7 +85,6 @@
                   </thead>
                   <tbody>
                     <?php foreach ($player_array as $values) {
-                      if ($_SESSION['id'] === $values['team_id']) {
                         if ($values['delete_player'] === "0") { ?>
                           <tr>
                             <td><?= $values['turn'] ?></td>
@@ -108,7 +107,6 @@
                           </tr>
                         <?php  } ?>
                       <?php  } ?>
-                    <?php  } ?>
                   </tbody>
                 </table>
               </div><!-- /.card-body -->

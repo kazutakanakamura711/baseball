@@ -9,9 +9,7 @@ class Main extends CI_Controller
     public function login()
     {
         if ($this->session->userdata("is_logged_in")) {
-            $this->load->model("model_players");
-            $player['player_array'] = $this->model_players->getplayers();
-            $this->load->view("admin", $player);
+            redirect("score/scores");
         } else {
             $data['csrf'] = array(
                 'name' => $this->security->get_csrf_token_name(),
@@ -59,8 +57,6 @@ class Main extends CI_Controller
                     "slogan" => $rows[0]["slogan"],
                     "year" => $rows[0]["year"],
                     "job" => $rows[0]["job"],
-                    "age" => $rows[0]["age"],
-                    "job" => $rows[0]["job"],
                     "experience" => $rows[0]["experience"],
                     "policy" => $rows[0]["policy"],
                     "practice" => $rows[0]["practice"],
@@ -80,9 +76,13 @@ class Main extends CI_Controller
     //チーム内登録選手全て
     public function players()
     {
+        $id = $_SESSION['id'];
         $this->load->model("model_players");
-        $player['player_array'] = $this->model_players->getplayers();
-        
+        $player['player_array'] = $this->model_players->getplayers($id);
+        $player['age'] = $this->model_players->getplayerage($id);
+        $player['count'] = $this->model_players->getplayercount($id);
+        $this->load->model("model_games");
+        $player['game'] = $this->model_games->getgamecount();
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

@@ -28,4 +28,9 @@ class Model_games extends CI_Model
     $games = $this->db->get('game');
     return $games->result_array();  //ログインチーム登録選手全て表示   
   }
+  public function getgamecount()
+  {
+    $game = $this->db->count_all('game');
+    return $game;  //試合数   
+  }
 }

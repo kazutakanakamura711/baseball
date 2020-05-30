@@ -10,7 +10,7 @@ class Model_players extends CI_Model
       "name" => $this->input->post("name"),
       "tel" => $this->input->post("tel"),
       "mail" => $this->input->post("mail"),
-      "year" => $this->input->post("year"),
+      "year" => date("Y") - ($this->input->post("year")),
       "arm" => $this->input->post("arm"),
       "position" => $this->input->post("position"),
       "turn" => $this->input->post("turn"),
@@ -26,10 +26,25 @@ class Model_players extends CI_Model
       return false;
     }
   }
-  public function getplayers()
+  public function getplayers($id)
   {
+    $this->db->where('team_id', $id);
     $players = $this->db->get('player');
     return $players->result_array();  //ログインチーム登録選手全て表示   
+  }
+  public function getplayerage($id)
+  {
+    $this->db->select('sum(year)');
+    $this->db->from('player');
+    $this->db->where('team_id', $id);
+    $age = $this->db->get();
+    return $age->row_array();  
+  }
+  public function getplayercount($id)
+  {
+    $this->db->where('team_id', $id);
+    $count = $this->db->count_all_results('player');
+    return $count;  
   }
   public function getplayer($id)
   {
@@ -40,30 +55,30 @@ class Model_players extends CI_Model
   public function update_player($day)
   {
     //update_playerのモデルの実行時、以下のデータを取得して、$dateと紐づける
-    $date=[
+    $date = [
       "name" => $this->input->post("name"),
       "tel" => $this->input->post("tel"),
       "mail" => $this->input->post("mail"),
-      "year" => $this->input->post("year"),
+      "year" =>  date("Y") - $this->input->post("year"),
       "arm" => $this->input->post("arm"),
       "position" => $this->input->post("position"),
       "turn" => $this->input->post("turn"),
       "number" => $this->input->post("number"),
-      "update_time" => $day     
+      "update_time" => $day
     ];
     $date = $this->security->xss_clean($date);
     //$dateをDB内の特定playerに挿入(更新)する
     return $this->db->where('id', $this->input->post("id"))
-      ->update('player',$date);
+      ->update('player', $date);
   }
   public function delete_player($day)
   {
     //フラグを立てて画面非表示にする
-    $date=[
+    $date = [
       "delete_player" => 1,
-      "update_time" => $day     
+      "update_time" => $day
     ];
     return $this->db->where('id', $this->input->post("delete_id"))
-      ->update('player',$date);
+      ->update('player', $date);
   }
 }

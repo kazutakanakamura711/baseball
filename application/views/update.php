@@ -110,7 +110,7 @@
             <div class="form-group">
               <label for="year">生年</label>
               <select name="year" class="form-control" style="width: 100%;">
-                <option><?= $row_array['year'] ?></option>
+                <option><?= date("Y") - $row_array['year'] ?></option>
                 <?php for ($i = 1950; $i < 2010; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>

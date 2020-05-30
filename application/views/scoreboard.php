@@ -34,7 +34,7 @@
                 if ($_SESSION['id'] === $value['team_id']) {
                   if ($value['delete_player'] === "0") { ?>
                     <tr>
-                      <td>0</td>
+                      <td><?= $game ?></td>
                       <td><?= number_format(round($value['sum(hit)'] / $value['sum(atbat)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
                       <td><?= $value['sum(homerun)'] ?></td>
                       <td><?= $value['sum(rbi)'] ?></td>
