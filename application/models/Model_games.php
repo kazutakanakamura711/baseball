@@ -23,14 +23,16 @@ class Model_games extends CI_Model
       return false;
     }
   }
-  public function getgames()
+  public function getgames($id)
   {
+    $this->db->where('team_id', $id);
     $games = $this->db->get('game');
-    return $games->result_array();  //ログインチーム登録選手全て表示   
+    return $games->result_array();  //   
   }
-  public function getgamecount()
+  public function getgamecount($id)
   {
-    $game = $this->db->count_all('game');
+    $this->db->where('team_id', $id);
+    $game = $this->db->count_all_results('game');
     return $game;  //試合数   
   }
 }

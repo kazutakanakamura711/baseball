@@ -102,7 +102,7 @@
                               <button onclick="location.href='/change/update?id=<?= $values['id'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                             </td>
                             <td>
-                              <button data-id="<?= $values['id'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                              <button name="delete1" data-id="<?= $values['id'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
                             </td>
                           </tr>
                         <?php  } ?>

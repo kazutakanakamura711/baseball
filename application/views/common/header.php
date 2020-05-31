@@ -88,7 +88,7 @@
       });
     });
     $(function() {
-      $(".btn-danger").on('click', function(event) {
+      $('[name="delete1"]').on('click', function(event) {
         event.preventDefault();
         var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
@@ -122,6 +122,51 @@
               )
             }
             window.location.href = "/main/players";
+          });
+        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+          Swal.fire({
+            icon: 'error',
+            title: '削除出来ませんでした!',
+          });
+        });
+        return false;
+      });
+    });
+    $(function() {
+      $('[name="delete2"]').on('click', function(event) {
+        event.preventDefault();
+        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+        var postdata = {
+          'delete_id': $(this).data('id')
+        };
+        postdata[csrf_name] = csrf_hash;
+        $.ajax({
+          type: "POST",
+          url: "/score/delete_score",
+          data: postdata,
+          crossDomain: false,
+          dataType: "json",
+          scriptCharset: 'utf-8'
+        }).done(function(data) {
+          Swal.fire({
+            title: '本当に削除してもいいですか?',
+            text: "削除選手：名前",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'はい!',
+            cancelButtonText: 'いいえ！',
+          }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                '削除完了しました！',
+                'Your file has been deleted.',
+                'success'
+              )
+            }
+            window.location.href = "/score/scores";
           });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({

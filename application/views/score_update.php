@@ -46,7 +46,7 @@
         postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
-          url: "/score/score_register",
+          url: "/score/update_score",
           data: postdata,
           crossDomain: false,
           dataType: "json",
@@ -77,14 +77,14 @@
 <body class="hold-transition register-page">
   <div class="register-box">
     <div class="register-logo">
-      <h1>スコア入力</h1>
+      <h1>スコア修正</h1>
     </div>
     <div class="card">
       <div class="card-body register-card-body">
-        <h5 class="text-center"><strong><?= $row_array['name'] ?></strong></h5>
+        <h5 class="text-center"><strong>下記から修正して下さい。</strong></h5>
         <div class="input-group mb-3">
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
-          <input type="hidden" class="form-control" name="id" value="<?= $row_array['id'] ?>">
+          <input type="hidden" class="form-control" name="id" value="<?= $row_array['score_id'] ?>">
         </div>
         <div class="form-group text-center">
           <label>【野手スコア】</label>
@@ -94,6 +94,7 @@
             <div class="form-group">
               <label>打席</label>
               <select name="atbat" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['atbat'] ?></option>
                 <?php for ($i = 1; $i < 10; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -104,6 +105,7 @@
             <div class="form-group">
               <label>安打</label>
               <select name="hit" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['hit'] ?></option>
                 <?php for ($i = 0; $i < 10; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -114,6 +116,7 @@
             <div class="form-group">
               <label>本塁打</label>
               <select name="homerun" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['homerun'] ?></option>
                 <?php for ($i = 0; $i < 10; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -124,6 +127,7 @@
             <div class="form-group">
               <label>打点</label>
               <select name="rbi" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['rbi'] ?></option>
                 <?php for ($i = 0; $i < 10; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -134,6 +138,7 @@
             <div class="form-group">
               <label>盗塁</label>
               <select name="steal" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['steal'] ?></option>
                 <?php for ($i = 0; $i < 10; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -144,6 +149,7 @@
             <div class="form-group">
               <label>四死球</label>
               <select name="walk" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['walk'] ?></option>
                 <?php for ($i = 0; $i < 10; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -154,6 +160,7 @@
             <div class="form-group">
               <label>犠打(犠飛)</label>
               <select name="sacrifice" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['sacrifice'] ?></option>
                 <?php for ($i = 0; $i < 10; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -169,6 +176,7 @@
             <div class="form-group">
               <label>投球イニング</label>
               <select name="inning" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['inning'] ?></option>
                 <?php $k = 0; ?>
                 <?php for ($i = 0; $i < 10; $i++) { ?>
                   <?php for ($j = 0; $j < 3; $j++) { ?>
@@ -183,6 +191,7 @@
             <div class="form-group">
               <label>被安打</label>
               <select name="h_hit" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['h_hit'] ?></option>
                 <?php for ($i = 0; $i < 20; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -193,6 +202,7 @@
             <div class="form-group">
               <label>奪三振</label>
               <select name="strikeout" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['strikeout'] ?></option>
                 <?php for ($i = 0; $i < 20; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -203,7 +213,8 @@
             <div class="form-group">
               <label>被本塁打</label>
               <select name="h_homerun" class="form-control select2" style="width: 100%;">
-                <?php for ($i = 0; $i < 10; $i++) { ?>
+                <option><?= $row_array['h_homerun'] ?></option>
+                <?php for ($i = 0; $i < 20; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -213,6 +224,7 @@
             <div class="form-group">
               <label>自責点</label>
               <select name="er" class="form-control select2" style="width: 100%;">
+                <option><?= $row_array['er'] ?></option>
                 <?php for ($i = 0; $i < 20; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -223,6 +235,7 @@
             <div class="form-group">
               <label>被四死球</label>
               <select name="h_walk" class="form-control select2" style="width: 100%;">
+              <option><?= $row_array['h_walk'] ?></option>
                 <?php for ($i = 0; $i < 20; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
@@ -232,7 +245,7 @@
         </div><!-- /.row -->
         <div class="container">
           <div class="row">
-            <button id="score" type="submit" class="btn btn-primary btn-block">登録</button>
+            <button id="score" type="submit" class="btn btn-primary btn-block">変更</button>
           </div>
           <br>
           <div class="row">

@@ -82,7 +82,7 @@ class Main extends CI_Controller
         $player['age'] = $this->model_players->getplayerage($id);
         $player['count'] = $this->model_players->getplayercount($id);
         $this->load->model("model_games");
-        $player['game'] = $this->model_games->getgamecount();
+        $player['game'] = $this->model_games->getgamecount($id);
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

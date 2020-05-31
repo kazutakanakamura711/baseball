@@ -30,12 +30,55 @@ class Score extends CI_Controller
     //チーム内登録選手スコア全て
     public function scores()
     {
+        $id = $_SESSION['id'];
         $this->load->model("model_scores");
-        $score['score_array'] = $this->model_scores->getscores();
-        $score['teamscore_array'] = $this->model_scores->getteamscore();
+        $score['score_array'] = $this->model_scores->getscores($id);
+        $score['teamscore_array'] = $this->model_scores->getteamscore($id);
         $this->load->model("model_games");
-        $score['game_array'] = $this->model_games->getgames();
-        $score['game'] = $this->model_games->getgamecount();
+        $score['game_array'] = $this->model_games->getgames($id);
+        $score['game'] = $this->model_games->getgamecount($id);
         $this->load->view("scoreboard", $score);
+    }
+    //スコア詳細へ
+    public function score_details()
+    {
+        $id = $this->input->get('id');
+        $this->load->model("model_scores");
+        $scores['score_array'] = $this->model_scores->getscore($id);
+        $scores['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view("score_details", $scores);
+    }
+    //選手情報変更へ
+    public function score_update()
+    {
+        $id = $this->input->get('id');
+        $this->load->model("model_scores");
+        $score['row_array'] = $this->model_scores->get_score($id);
+        $score['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view("score_update", $score);
+    }
+    //選手情報変更処理
+    public function update_score()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $day = date("Y-m-d H:i:s");
+        $this->load->model("model_scores");
+        $this->model_scores->update_score($day);
+        exit(json_encode(['score' => '更新完了']));
+    }
+    //選手削除
+    public function delete_score()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $day = date("Y-m-d H:i:s");
+        $this->load->model("model_scores");
+        $this->model_scores->score_delete($day);
+        exit(json_encode(['score' => '削除完了']));
     }
 }
