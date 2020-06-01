@@ -91,7 +91,6 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.card-body -->
-        
       </div><!-- /.container-fluid -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->

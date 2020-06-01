@@ -6,6 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <h1 class="m-0 text-dark">スコアボード</h1>
+          <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div><!-- /.content-header -->
@@ -52,7 +53,7 @@
         </div><!-- /.row -->
         <div class="row">
           <div class="col-sm-9">
-            <caption><strong>【野手】</strong></caption>
+            <caption><strong>【野手成績】</strong></caption>
           </div>
           <div class="col-sm-3">
             <a href="<?= base_url() ?>main/players" class="float-sm-right nav-link">選手情報一覧へ　
@@ -63,6 +64,7 @@
               <tr>
                 <th>打順</th>
                 <th>背番号</th>
+                <th>守備</th>
                 <th>名前</th>
                 <th>打率</th>
                 <th>本塁打</th>
@@ -70,7 +72,7 @@
                 <th>盗塁</th>
                 <th>四死球</th>
                 <th>犠打</th>
-                <th colspan="2">追加</th>
+                <th colspan="2">更新</th>
               </tr>
             </thead>
             <tbody>
@@ -79,6 +81,7 @@
                   <tr>
                     <td><?= $values['turn'] ?></td>
                     <td><?= $values['number'] ?></td>
+                    <td><?= $values['position'] ?></td>
                     <td><?= $values['name'] ?></td>
                     <td><?= number_format(round($values['sum(hit)'] / $values['sum(atbat)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
                     <td><?= $values['sum(homerun)'] ?></td>
@@ -100,7 +103,7 @@
         </div><!-- /.row -->
         <div class="row">
           <div class="col-sm-9">
-            <caption><strong>【投手】</strong></caption>
+            <caption><strong>【投手成績】</strong></caption>
           </div>
           <div class="col-sm-3">
             <a href="<?= base_url() ?>main/players" class="float-sm-right nav-link">選手情報一覧へ　
@@ -111,6 +114,7 @@
               <tr>
                 <th>打順</th>
                 <th>背番号</th>
+                <th>守備</th>
                 <th>名前</th>
                 <th>防御率</th>
                 <th>被安打</th>
@@ -127,6 +131,7 @@
                   <tr>
                     <td><?= $values['turn'] ?></td>
                     <td><?= $values['number'] ?></td>
+                    <td><?= $values['position'] ?></td>
                     <td><?= $values['name'] ?></td>
                     <td><?= number_format(round($values['sum(er)'] * 27 / $values['sum(inning)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
                     <td><?= $values['sum(h_hit)'] ?></td>
@@ -163,16 +168,23 @@
                 <th>最終スコア</th>
                 <th>勝敗</th>
                 <th>考察</th>
+                <th colspan="2">更新</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($game_array as $values) {
-                if ($values['delete_game'] === "0") { ?>
+              <?php foreach ($game_array as $games) {
+                if ($games['delete_game'] === "0") { ?>
                   <tr>
-                    <td><?= $values['battle_team'] ?></td>
-                    <td><?= $values['score'] ?> － <?= $values['loss'] ?></td>
-                    <td><?= $values['battle'] ?></td>
-                    <td><?= $values['consideration'] ?></td>
+                    <td><?= $games['battle_team'] ?></td>
+                    <td><?= $games['score'] ?> － <?= $games['loss'] ?></td>
+                    <td><?= $games['battle'] ?></td>
+                    <td><?= $games['consideration'] ?></td>
+                    <td>
+                      <button onclick="location.href='/match/game_update?id=<?= $games['id'] ?>'" id="button1" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
+                    </td>
+                    <td>
+                      <button name="delete3" data-id="<?= $games['id'] ?>" data-name="<?= $games['battle_team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                 <?php  } ?>
               <?php  } ?>

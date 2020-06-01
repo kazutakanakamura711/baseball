@@ -37,6 +37,10 @@ class Score extends CI_Controller
         $this->load->model("model_games");
         $score['game_array'] = $this->model_games->getgames($id);
         $score['game'] = $this->model_games->getgamecount($id);
+        $score['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         $this->load->view("scoreboard", $score);
     }
     //スコア詳細へ

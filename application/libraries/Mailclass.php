@@ -7,6 +7,7 @@ class Mailclass
 {
   public function php_mailer($to,$bcc,$subject,$body)
   {
+    //メールの設定読込
     $config = parse_ini_file('config.ini', true);
     // PHPMailerオブジェクト生成
     $mail = new PHPMailer(true);

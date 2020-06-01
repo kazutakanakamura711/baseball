@@ -162,9 +162,14 @@
               <label for="position">守備</label>
               <select name="position" class="form-control" style="width: 100%;">
                 <option><?= $row_array['position'] ?></option>
-                <option>投手</option>
+                <option>先発投手</option>
+                <option>中継ぎ投手</option>
+                <option>抑え投手</option>
                 <option>捕手</option>
-                <option>内野手</option>
+                <option>一塁手</option>
+                <option>二塁手</option>
+                <option>三塁手</option>
+                <option>遊塁手</option>
                 <option>外野手</option>
                 <option>指名打者</option>
               </select>

@@ -102,7 +102,7 @@
                               <button onclick="location.href='/change/update?id=<?= $values['id'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                             </td>
                             <td>
-                              <button name="delete1" data-id="<?= $values['id'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                              <button name="delete1" data-id="<?= $values['id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
                             </td>
                           </tr>
                         <?php  } ?>
@@ -192,9 +192,14 @@
                   <label for="position" class="col-3 col-form-label">守備：</label>
                   <div class="col-9">
                     <select name="position" class="form-control" style="width: 100%;">
-                      <option>投手</option>
+                      <option>先発投手</option>
+                      <option>中継ぎ投手</option>
+                      <option>抑え投手</option>
                       <option>捕手</option>
-                      <option>内野手</option>
+                      <option>一塁手</option>
+                      <option>二塁手</option>
+                      <option>三塁手</option>
+                      <option>遊塁手</option>
                       <option>外野手</option>
                       <option>指名打者</option>
                     </select>

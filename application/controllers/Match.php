@@ -43,6 +43,36 @@ class Match extends CI_Controller
         //redirect("main/players");
         exit(json_encode(['player' => '更新完了']));
     }
+    //試合結果変更へ
+    public function game_update()
+    {
+        $id = $this->input->get('id');
+        $this->load->model("model_games");
+        $game['row_array'] = $this->model_games->get_game($id);
+        $game['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view("game_update", $game);
+    }
+    //試合結果変更処理
+    public function update_game()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $day = date("Y-m-d H:i:s");
+        $this->load->model("model_games");
+        $this->model_games->update_game($day);
+        exit(json_encode(['game' => '更新完了']));
+    }
+    //試合結果削除
+    public function delete_game()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $day = date("Y-m-d H:i:s");
+        $this->load->model("model_games");
+        $this->model_games->game_delete($day);
+        exit(json_encode(['game' => '削除完了']));
+    }
     public function ground()
     {
         $this->load->view('ground');

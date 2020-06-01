@@ -46,7 +46,7 @@
                     <button onclick="location.href='/score/score_update?id=<?= $values['score_id'] ?>'" id="button1" type="submit" class="btn-success">スコア編集 <i class="fas fa-pencil-alt"></i></button>
                   </td>
                   <td>
-                    <button name="delete2" data-id="<?= $values['score_id'] ?>" type="submit" class="btn-danger">スコア削除 <i class="far fa-trash-alt"></i></button>
+                    <button name="delete2" data-id="<?= $values['score_id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">スコア削除 <i class="far fa-trash-alt"></i></button>
                   </td>
                 </tr>
               <?php  } ?>
@@ -83,7 +83,7 @@
                     <button onclick="location.href='/score/score_update?id=<?= $values['score_id'] ?>'" id="button1" type="submit" class="btn-success">スコア編集 <i class="fas fa-pencil-alt"></i></button>
                   </td>
                   <td>
-                    <button name="delete2" data-id="<?= $values['score_id'] ?>" type="submit" class="btn-danger">スコア削除 <i class="far fa-trash-alt"></i></button>
+                    <button name="delete2" data-id="<?= $values['score_id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">スコア削除 <i class="far fa-trash-alt"></i></button>
                   </td>
                 </tr>
               <?php  } ?>
