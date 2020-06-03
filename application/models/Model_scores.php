@@ -37,6 +37,7 @@ class Model_scores extends CI_Model
     $this->db->from('score');
     $this->db->join('player', 'player.id = score.player_id');
     $this->db->where('team_id', $id);
+    $this->db->where('delete_player', 0);
     $this->db->where('delete_score', 0);
     $this->db->group_by("player_id");   //選手別にスコアグループ分け
     $this->db->order_by('turn');
@@ -49,6 +50,7 @@ class Model_scores extends CI_Model
     $this->db->from('score');
     $this->db->join('player', 'player.id = score.player_id');
     $this->db->where('team_id', $id);
+    $this->db->where('delete_player', 0);
     $this->db->where('delete_score', 0);
     $score = $this->db->get();
     return $score->result_array();  //ログインチーム登録選手スコア全て表示   

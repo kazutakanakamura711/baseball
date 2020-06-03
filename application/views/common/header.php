@@ -88,7 +88,7 @@
       });
     });
     $(function() {
-      $('[name="delete1"]').on('click', function(event) {
+      $('[name="delete_player"]').on('click', function(event) {
         event.preventDefault();
         Swal.fire({
           title: '本当に削除してもいいですか?',
@@ -136,7 +136,7 @@
       });
     });
     $(function() {
-      $('[name="delete2"]').on('click', function(event) {
+      $('[name="delete_score"]').on('click', function(event) {
         event.preventDefault();
         Swal.fire({
           title: '本当に削除してもいいですか?',
@@ -184,7 +184,7 @@
       });
     });
     $(function() {
-      $('[name="delete3"]').on('click', function(event) {
+      $('[name="delete_game"]').on('click', function(event) {
         event.preventDefault();
         Swal.fire({
           title: '本当に削除してもいいですか?',
@@ -224,6 +224,102 @@
               Swal.fire({
                 icon: 'error',
                 title: '削除出来ませんでした!',
+              });
+            });
+          }
+        });
+        return false;
+      });
+    });
+    $(function() {
+      $('[name="return"]').on('click', function(event) {
+        event.preventDefault();
+        Swal.fire({
+          title: '本当に復帰してもいいですか?',
+          text: $(this).data('name'),
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'はい!',
+          cancelButtonText: 'いいえ！',
+        }).then((result) => {
+          if (result.value) { //はい！の場合
+            var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+            var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+            var postdata = {
+              'return_id': $(this).data('id')
+            };
+            postdata[csrf_name] = csrf_hash;
+            $.ajax({
+              type: "POST",
+              url: "/change/player_return",
+              data: postdata,
+              crossDomain: false,
+              dataType: "json",
+              scriptCharset: 'utf-8'
+            }).done(function(data) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: '選手復帰OK!',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/main/players";
+              });
+            }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+              Swal.fire({
+                icon: 'error',
+                title: '復帰出来ませんでした!',
+              });
+            });
+          }
+        });
+        return false;
+      });
+    });
+    $(function() {
+      $('[name="real_delete"]').on('click', function(event) {
+        event.preventDefault();
+        Swal.fire({
+          title: '本当にデータ削除してもいいですか?',
+          text: $(this).data('name')+'は復帰出来なくなります',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'はい!',
+          cancelButtonText: 'いいえ！',
+        }).then((result) => {
+          if (result.value) { //はい！の場合
+            var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+            var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+            var postdata = {
+              'delete_id': $(this).data('id')
+            };
+            postdata[csrf_name] = csrf_hash;
+            $.ajax({
+              type: "POST",
+              url: "/change/delete_real",
+              data: postdata,
+              crossDomain: false,
+              dataType: "json",
+              scriptCharset: 'utf-8'
+            }).done(function(data) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: '選手削除OK!',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/main/delete";
+              });
+            }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+              Swal.fire({
+                icon: 'error',
+                title: '復帰出来ませんでした!',
               });
             });
           }

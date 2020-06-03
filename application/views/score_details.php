@@ -33,23 +33,23 @@
           </thead>
           <tbody>
             <?php foreach ($score_array as $values) { ?>
-                <tr>
-                  <td><?= $values['atbat'] ?></td>
-                  <td><?= $values['hit'] ?></td>
-                  <td><?= number_format(round($values['hit'] / $values['atbat'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
-                  <td><?= $values['homerun'] ?></td>
-                  <td><?= $values['rbi'] ?></td>
-                  <td><?= $values['steal'] ?></td>
-                  <td><?= $values['walk'] ?></td>
-                  <td><?= $values['sacrifice'] ?></td>
-                  <td>
-                    <button onclick="location.href='/score/score_update?id=<?= $values['score_id'] ?>'" id="button1" type="submit" class="btn-success">スコア編集 <i class="fas fa-pencil-alt"></i></button>
-                  </td>
-                  <td>
-                    <button name="delete2" data-id="<?= $values['score_id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">スコア削除 <i class="far fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-              <?php  } ?>
+              <tr>
+                <td><?= $values['atbat'] ?></td>
+                <td><?= $values['hit'] ?></td>
+                <td><?= number_format(round($values['hit'] / $values['atbat'], 3), 3) ?></td>
+                <td><?= $values['homerun'] ?></td>
+                <td><?= $values['rbi'] ?></td>
+                <td><?= $values['steal'] ?></td>
+                <td><?= $values['walk'] ?></td>
+                <td><?= $values['sacrifice'] ?></td>
+                <td>
+                  <button onclick="location.href='/score/score_update?id=<?= $values['score_id'] ?>'" id="button1" type="submit" class="btn-success">スコア編集 <i class="fas fa-pencil-alt"></i></button>
+                </td>
+                <td>
+                  <button name="delete_score" data-id="<?= $values['score_id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">スコア削除 <i class="far fa-trash-alt"></i></button>
+                </td>
+              </tr>
+            <?php  } ?>
           </tbody>
         </table>
       </div><!-- /.row -->
@@ -58,7 +58,7 @@
         <table class="table table-bordered table-hover text-nowrap">
           <thead class="table-primary">
             <tr>
-              <th>アウト数</th>
+              <th>投球数</th>
               <th>防御率</th>
               <th>被安打</th>
               <th>被本塁打</th>
@@ -72,8 +72,8 @@
             <?php foreach ($score_array as $values) {
               if ($values['inning'] != "0") { ?>
                 <tr>
-                  <td><?= $values['inning'] ?></td>
-                  <td><?= number_format(round($values['er'] * 27 / $values['inning'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
+                  <td><?= floor($values['inning'] / 3) ?>回 <?= $values['inning'] % 3 ?>/3</td>
+                  <td><?= number_format(round($values['er'] * 27 / $values['inning'], 3), 3) ?></td>
                   <td><?= $values['h_hit'] ?></td>
                   <td><?= $values['h_homerun'] ?></td>
                   <td><?= $values['er'] ?></td>

@@ -54,4 +54,21 @@ class Change extends CI_Controller
         //redirect("main/players");
         exit(json_encode(['team' => '更新完了']));
     }
+    public function player_return()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $day = date("Y-m-d H:i:s");
+        $this->load->model("model_players");
+        $this->model_players->return_player($day);
+        //redirect("main/players");
+        exit(json_encode(['player' => '削除完了']));
+    }
+    public function delete_real()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $this->load->model("model_players");
+        $this->model_players->real_delete();
+        //redirect("main/players");
+        exit(json_encode(['player' => '削除完了']));
+    }
 }

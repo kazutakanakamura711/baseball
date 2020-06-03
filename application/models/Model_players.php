@@ -81,4 +81,19 @@ class Model_players extends CI_Model
     return $this->db->where('id', $this->input->post("delete_id"))
       ->update('player', $date);
   }
+  public function return_player($day)
+  {
+    //フラグを立てて画面非表示にする
+    $date = [
+      "delete_player" => 0,
+      "update_time" => $day
+    ];
+    return $this->db->where('id', $this->input->post("return_id"))
+      ->update('player', $date);
+  }
+  public function real_delete()
+  {
+    return $this->db->where('id', $this->input->post("delete_id"))
+      ->delete('player');;
+  }
 }

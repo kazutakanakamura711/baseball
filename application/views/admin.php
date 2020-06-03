@@ -5,9 +5,12 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-10 col-xs-6">
+          <div class="col-6">
             <h1 class="m-0 text-dark">チーム情報</h1>
             <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
+          </div><!-- /.col -->
+          <div class="col-6">
+            <button type="submit" onclick="location.href='/main/delete?id=<?= $_SESSION['id'] ?>'" class="float-right btn-danger">削除選手一覧</button>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -102,7 +105,7 @@
                               <button onclick="location.href='/change/update?id=<?= $values['id'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                             </td>
                             <td>
-                              <button name="delete1" data-id="<?= $values['id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                              <button name="delete_player" data-id="<?= $values['id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
                             </td>
                           </tr>
                         <?php  } ?>

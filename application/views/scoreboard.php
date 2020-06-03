@@ -36,11 +36,11 @@
                   if ($value['delete_player'] === "0") { ?>
                     <tr>
                       <td><?= $game ?></td>
-                      <td><?= number_format(round($value['sum(hit)'] / $value['sum(atbat)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
+                      <td><?= number_format(round($value['sum(hit)'] / $value['sum(atbat)'], 3), 3) ?></td>
                       <td><?= $value['sum(homerun)'] ?></td>
                       <td><?= $value['sum(rbi)'] ?></td>
                       <td><?= $value['sum(steal)'] ?></td>
-                      <td><?= number_format(round($value['sum(er)'] * 27 / $value['sum(inning)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
+                      <td><?= number_format(round($value['sum(er)'] * 27 / $value['sum(inning)'], 3), 3) ?></td>
                       <td><?= $value['sum(er)'] ?></td>
                       <td><?= $value['sum(strikeout)'] ?></td>
                       <td><?= $value['sum(sacrifice)'] ?></td>
@@ -83,7 +83,7 @@
                     <td><?= $values['number'] ?></td>
                     <td><?= $values['position'] ?></td>
                     <td><?= $values['name'] ?></td>
-                    <td><?= number_format(round($values['sum(hit)'] / $values['sum(atbat)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
+                    <td><?= number_format(round($values['sum(hit)'] / $values['sum(atbat)'], 3), 3) ?></td>
                     <td><?= $values['sum(homerun)'] ?></td>
                     <td><?= $values['sum(rbi)'] ?></td>
                     <td><?= $values['sum(steal)'] ?></td>
@@ -133,7 +133,7 @@
                     <td><?= $values['number'] ?></td>
                     <td><?= $values['position'] ?></td>
                     <td><?= $values['name'] ?></td>
-                    <td><?= number_format(round($values['sum(er)'] * 27 / $values['sum(inning)'], 3, PHP_ROUND_HALF_DOWN), 3) ?></td>
+                    <td><?= number_format(round($values['sum(er)'] * 27 / $values['sum(inning)'], 3), 3) ?></td>
                     <td><?= $values['sum(h_hit)'] ?></td>
                     <td><?= $values['sum(h_homerun)'] ?></td>
                     <td><?= $values['sum(er)'] ?></td>
@@ -178,12 +178,12 @@
                     <td><?= $games['battle_team'] ?></td>
                     <td><?= $games['score'] ?> － <?= $games['loss'] ?></td>
                     <td><?= $games['battle'] ?></td>
-                    <td><?= $games['consideration'] ?></td>
+                    <td><?= htmlspecialchars($games['consideration'], ENT_QUOTES, "UTF-8") ?></td>
                     <td>
                       <button onclick="location.href='/match/game_update?id=<?= $games['id'] ?>'" id="button1" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                     </td>
                     <td>
-                      <button name="delete3" data-id="<?= $games['id'] ?>" data-name="<?= $games['battle_team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                      <button name="delete_game" data-id="<?= $games['id'] ?>" data-name="<?= $games['battle_team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
                     </td>
                   </tr>
                 <?php  } ?>

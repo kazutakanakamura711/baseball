@@ -28,6 +28,7 @@
         var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
         var postdata = {
+          'id': $('[name="id"]').val(),
           'team_id': $('[name="team_id"]').val(),
           'battle_team': $('[name="battle_team"]').val(),
           'score': $('[name="score"]').val(),
@@ -77,7 +78,7 @@
         <div class="input-group mb-3">
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
           <input type="hidden" class="form-control" name="id" value="<?= $row_array['id'] ?>">
-          <input type="hidden" class="form-control" name="team_id" value="<?= $_SESSION['id'] ?>">
+          <input type="hidden" class="form-control" name="team_id" value="<?= $row_array['team_id'] ?>">
         </div>
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="battle_team" placeholder="対戦相手" value="<?= $row_array['battle_team'] ?>">

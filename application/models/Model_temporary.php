@@ -6,7 +6,7 @@ class Model_temporary extends CI_Model
   {
     $config = parse_ini_file('config.ini', true);
     //add_teamのモデルの実行時に、以下のデータを取得して、$dataと紐づける
-    $day = date("Y-m-d H:i:s",strtotime($config['expire']['day'])); 
+    $day = date("Y-m-d H:i:s",strtotime("+".$config['expire']['minutes']." min")); 
     $data = [
       "mail" => $this->input->post("mail"),
       "pass_tmp" => $key,

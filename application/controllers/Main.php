@@ -96,4 +96,15 @@ class Main extends CI_Controller
         $team['team_array'] = $this->model_teams->getteams();
         $this->load->view("matching", $team);
     }
+    public function delete()
+    {
+        $id = $this->input->get('id');
+        $this->load->model("model_players");
+        $player['player_array'] = $this->model_players->getplayers($id);
+        $player['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view("delete", $player);
+    }
 }
