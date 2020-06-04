@@ -35,6 +35,12 @@ class Model_games extends CI_Model
     $game = $this->db->count_all_results('game');
     return $game;  //試合数   
   }
+  public function getallgamecount()
+  {
+    $this->db->group_by('team_id');
+    $game = $this->db->count_all_results('game');
+    return $game;  //試合数   
+  }
   public function get_game($id)
   {
     $this->db->where('id', $id);

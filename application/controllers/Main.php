@@ -93,9 +93,10 @@ class Main extends CI_Controller
     //登録チーム全て
     public function teams()
     {
-        $this->load->model("model_teams");
-        $team['team_array'] = html_escape($this->model_teams->getteams());
-        $this->load->view("matching", $team);
+        $this->load->model("model_scores");
+        $team['teamscore_array'] = $this->model_scores->getallteamscore();
+        $clean_team = html_escape($team);
+        $this->load->view("matching", $clean_team);
     }
     public function delete()
     {

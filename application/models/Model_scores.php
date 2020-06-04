@@ -44,6 +44,18 @@ class Model_scores extends CI_Model
     $score = $this->db->get();
     return $score->result_array();  //ログインチーム登録選手スコア全て表示   
   }
+  public function getallteamscore()
+  {
+    $this->db->select('team,(SELECT count(*) FROM game where game.team_id = team.id) AS count,skipper,team_id,withdrawal,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk)');
+    $this->db->from('score');
+    $this->db->join('player', 'player.id = score.player_id');
+    $this->db->join('team', 'player.team_id = team.id');
+    $this->db->where('delete_player', 0);
+    $this->db->where('delete_score', 0);
+    $this->db->group_by("team_id");
+    $score = $this->db->get();
+    return $score->result_array();   
+  }
   public function getteamscore($id)
   {
     $this->db->select('id,team_id,delete_player,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk),delete_score');

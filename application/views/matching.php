@@ -36,26 +36,30 @@
                       <th>年間試合数</th>
                       <th>チーム名</th>
                       <th>監督</th>
-                      <th>チーム成績(攻)</th>
-                      <th>チーム成績(守)</th>
+                      <th colspan="3">チーム成績(攻)</th>
+                      <th colspan="3">チーム成績(守)</th>
                       <th colspan="2">申し込み</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($team_array as $values) {
+                    <?php foreach ($teamscore_array as $values) {
                       if ($values['withdrawal'] === "0") {
-                        if ($values['id'] !== $_SESSION['id']) { ?>
+                        if ($values['team_id'] !== $_SESSION['id']) { ?>
                           <tr>
-                            <td></td>
+                            <td><?= $values['count'] ?></td>
                             <td><?= $values['team'] ?></td>
                             <td><?= $values['skipper'] ?></td>
-                            <td>打率：.300 , 本塁打：30本 , 得点：70点 </td>
-                            <td>防御率：2.20 , 奪三振：40個 ,</td>
+                            <td>打率：<?= number_format(round($values['sum(hit)'] / $values['sum(atbat)'], 3), 3) ?></td>
+                            <td>本塁打：<?= $values['sum(homerun)'] ?></td>
+                            <td>得点：<?= $values['sum(rbi)'] ?></td>
+                            <td>防御率：<?= number_format(round($values['sum(er)'] * 27 / $values['sum(inning)'], 3), 3) ?></td>
+                            <td>失点：<?= $values['sum(er)'] ?></td>
+                            <td>奪三振：<?= $values['sum(strikeout)'] ?></td>
                             <td>
-                              <button onclick="location.href='/match/game?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">試合申し込み <i class="fas fa-baseball-ball"></i></button>
+                              <button onclick="location.href='/match/game?id=<?= $values['team_id'] ?>'" id="button1" type="submit" class="btn-primary">試合申し込み <i class="fas fa-baseball-ball"></i></button>
                             </td>
                             <td>
-                              <button onclick="location.href='/match/contact?id=<?= $values['id'] ?>'" id="button2" type="submit" class="btn-success">連絡する <i class="fas fa-envelope"></i></button>
+                              <button onclick="location.href='/match/contact?id=<?= $values['team_id'] ?>'" id="button2" type="submit" class="btn-success">連絡する <i class="fas fa-envelope"></i></button>
                             </td>
                           </tr>
                         <?php  } ?>
