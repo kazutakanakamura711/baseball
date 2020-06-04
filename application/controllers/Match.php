@@ -7,24 +7,24 @@ class Match extends CI_Controller
     {
         $id = $this->input->get('id');
         $this->load->model("model_teams");
-        $player['row_array'] =$this->model_teams->getteam($id);
+        $player['row_array'] = html_escape($this->model_teams->getteam($id));
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('game',$player);
+        $this->load->view('game', $player);
     }
     //連絡フォームへ
     public function contact()
     {
         $id = $this->input->get('id');
         $this->load->model("model_teams");
-        $player['row_array'] =$this->model_teams->getteam($id);
+        $player['row_array'] = html_escape($this->model_teams->getteam($id));
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('contact',$player);
+        $this->load->view('contact', $player);
     }
     public function game_result()
     {
@@ -32,7 +32,7 @@ class Match extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('game_result',$data);
+        $this->load->view('game_result', $data);
     }
     public function game_register()
     {
@@ -48,7 +48,7 @@ class Match extends CI_Controller
     {
         $id = $this->input->get('id');
         $this->load->model("model_games");
-        $game['row_array'] = $this->model_games->get_game($id);
+        $game['row_array'] = html_escape($this->model_games->get_game($id));
         $game['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

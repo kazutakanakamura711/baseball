@@ -47,7 +47,7 @@ class Main extends CI_Controller
         if ($this->form_validation->run()) {
             $this->load->model("model_team");
             $rows = $this->model_team->login();
-            if (password_verify($this->input->post("pass",true), $rows[0]["password"]) == true) {
+            if (password_verify($this->input->post("pass", true), $rows[0]["password"]) == true) {
                 $data = [
                     "id" => $rows[0]["id"],
                     "team" => $rows[0]["team"],
@@ -83,24 +83,25 @@ class Main extends CI_Controller
         $player['count'] = $this->model_players->getplayercount($id);
         $this->load->model("model_games");
         $player['game'] = $this->model_games->getgamecount($id);
-        $player['csrf'] = array(
+        $clean_player = html_escape($player);
+        $clean_player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("admin", $player);
+        $this->load->view("admin", $clean_player);
     }
     //登録チーム全て
     public function teams()
     {
         $this->load->model("model_teams");
-        $team['team_array'] = $this->model_teams->getteams();
+        $team['team_array'] = html_escape($this->model_teams->getteams());
         $this->load->view("matching", $team);
     }
     public function delete()
     {
         $id = $this->input->get('id');
         $this->load->model("model_players");
-        $player['player_array'] = $this->model_players->getplayers($id);
+        $player['player_array'] = html_escape($this->model_players->getplayers($id));
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

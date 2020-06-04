@@ -178,7 +178,7 @@
                     <td><?= $games['battle_team'] ?></td>
                     <td><?= $games['score'] ?> － <?= $games['loss'] ?></td>
                     <td><?= $games['battle'] ?></td>
-                    <td><?= htmlspecialchars($games['consideration'], ENT_QUOTES, "UTF-8") ?></td>
+                    <td class="text-truncate" style="max-width: 500px;"><?= $games['consideration'] ?></td>
                     <td>
                       <button onclick="location.href='/match/game_update?id=<?= $games['id'] ?>'" id="button1" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                     </td>

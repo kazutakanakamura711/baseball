@@ -7,7 +7,7 @@ class Change extends CI_Controller
     {
         $id = $this->input->get('id');
         $this->load->model("model_players");
-        $player['row_array'] = $this->model_players->getplayer($id);
+        $player['row_array'] = html_escape($this->model_players->getplayer($id));
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -38,7 +38,7 @@ class Change extends CI_Controller
     {
         $id = $this->input->get('id');
         $this->load->model("model_teams");
-        $team['team_array'] = $this->model_teams->getteam($id);
+        $team['team_array'] = html_escape($this->model_teams->getteam($id));
         $team['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

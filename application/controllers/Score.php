@@ -7,7 +7,7 @@ class Score extends CI_Controller
     {
         $id = $this->input->get('id');
         $this->load->model("model_players");
-        $player['row_array'] = $this->model_players->getplayer($id);
+        $player['row_array'] = html_escape($this->model_players->getplayer($id));
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -37,37 +37,38 @@ class Score extends CI_Controller
         $this->load->model("model_games");
         $score['game_array'] = $this->model_games->getgames($id);
         $score['game'] = $this->model_games->getgamecount($id);
-        $score['csrf'] = array(
+        $clean_score = html_escape($score);
+        $clean_score['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("scoreboard", $score);
+        $this->load->view("scoreboard", $clean_score);
     }
     //スコア詳細へ
     public function score_details()
     {
         $id = $this->input->get('id');
         $this->load->model("model_scores");
-        $scores['score_array'] = $this->model_scores->getscore($id);
+        $scores['score_array'] = html_escape($this->model_scores->getscore($id));
         $scores['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
         $this->load->view("score_details", $scores);
     }
-    //選手情報変更へ
+    //選手スコア変更へ
     public function score_update()
     {
         $id = $this->input->get('id');
         $this->load->model("model_scores");
-        $score['row_array'] = $this->model_scores->get_score($id);
+        $score['row_array'] = html_escape($this->model_scores->get_score($id));
         $score['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
         $this->load->view("score_update", $score);
     }
-    //選手情報変更処理
+    //選手スコア変更処理
     public function update_score()
     {
         header("Content-type: application/json; charset=UTF-8");
@@ -76,7 +77,7 @@ class Score extends CI_Controller
         $this->model_scores->update_score($day);
         exit(json_encode(['score' => '更新完了']));
     }
-    //選手削除
+    //スコア削除
     public function delete_score()
     {
         header("Content-type: application/json; charset=UTF-8");
