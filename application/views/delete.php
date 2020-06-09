@@ -49,16 +49,16 @@
                             <td><?= $values['turn'] ?></td>
                             <td><?= $values['number'] ?></td>
                             <td><?= $values['name'] ?></td>
-                            <td><?= $values['year'] ?></td>
+                            <td><?= date("Y") - $values['birth'] ?></td>
                             <td><?= $values['arm'] ?></td>
                             <td><?= $values['position'] ?></td>
                             <td><?= $values['tel'] ?></td>
                             <td><?= $values['mail'] ?></td>
                             <td>
-                              <button name="return" data-id="<?= $values['id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-primary">再登録 <i class="fas fa-pencil-alt"></i></button>
+                              <button name="return" data-id="<?= $values['pid'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-primary">再登録 <i class="fas fa-pencil-alt"></i></button>
                             </td>
                             <td>
-                              <button name="real_delete" data-id="<?= $values['id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">データ削除 <i class="far fa-trash-alt"></i></button>
+                              <button name="real_delete" data-id="<?= $values['pid'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">データ削除 <i class="far fa-trash-alt"></i></button>
                             </td>
                           </tr>
                         <?php  } ?>

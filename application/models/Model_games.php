@@ -14,7 +14,6 @@ class Model_games extends CI_Model
       "consideration" => $this->input->post("consideration"),
       "insert_time" => $day
     ];
-    $data = $this->security->xss_clean($data);
     //$dataをDB内のplayerに挿入後に、$queryと紐づける
     $query = $this->db->insert("game", $data);
     if ($query) {
@@ -59,7 +58,6 @@ class Model_games extends CI_Model
       "consideration" => $this->input->post("consideration"),
       "update_time" => $day
     ];
-    $date = $this->security->xss_clean($date);
     //$dateをDB内の特定playerに挿入(更新)する
     return $this->db->where('id', $this->input->post("id"))
       ->update('game', $date);

@@ -12,7 +12,6 @@ class Model_temporary extends CI_Model
       "pass_tmp" => $key,
       "expire_time" => $day 
     ];
-    $data = $this->security->xss_clean($data);
     //$dataをDB内のtemporaryに挿入後に、$queryと紐づける
     $query = $this->db->insert("temporary", $data);
     if ($query) {

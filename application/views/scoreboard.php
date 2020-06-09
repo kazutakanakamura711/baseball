@@ -90,10 +90,10 @@
                     <td><?= $values['sum(walk)'] ?></td>
                     <td><?= $values['sum(sacrifice)'] ?></td>
                     <td>
-                      <button onclick="location.href='/score/score_signup?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
+                      <button onclick="location.href='/score/score_signup?id=<?= $values['pid'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
                     </td>
                     <td>
-                      <button onclick="location.href='/score/score_details?id=<?= $values['id'] ?>'" id="button2" type="submit" class="btn-success">スコア詳細 <i class="fas fa-pencil-alt"></i></button>
+                      <button onclick="location.href='/score/score_details?id=<?= $values['pid'] ?>'" id="button2" type="submit" class="btn-success">スコア詳細 <i class="fas fa-pencil-alt"></i></button>
                     </td>
                   </tr>
                 <?php  } ?>
@@ -140,10 +140,10 @@
                     <td><?= $values['sum(strikeout)'] ?></td>
                     <td><?= $values['sum(h_walk)'] ?></td>
                     <td>
-                      <button onclick="location.href='/score/score_signup?id=<?= $values['id'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
+                      <button onclick="location.href='/score/score_signup?id=<?= $values['pid'] ?>'" id="button1" type="submit" class="btn-primary">スコア追加 <i class="fas fa-pencil-alt"></i></button>
                     </td>
                     <td>
-                      <button onclick="location.href='/score/score_details?id=<?= $values['id'] ?>'" id="button2" type="submit" class="btn-success">スコア詳細 <i class="fas fa-pencil-alt"></i></button>
+                      <button onclick="location.href='/score/score_details?id=<?= $values['pid'] ?>'" id="button2" type="submit" class="btn-success">スコア詳細 <i class="fas fa-pencil-alt"></i></button>
                     </td>
                   </tr>
                 <?php  } ?>
@@ -191,6 +191,9 @@
             </tbody>
           </table>
         </div><!-- /.row -->
+        <div class="google_map">
+                  <iframe src="http://yakyu.com/match/ground" width="325" height="243.75" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div><!-- /.google_map -->
       </div><!-- /.container-fluid -->
     </section><!-- /.content -->
   </div><!-- /.content-wrapper -->

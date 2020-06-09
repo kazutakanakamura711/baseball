@@ -32,7 +32,7 @@
           'name': $('[name="name"]').val(),
           'tel': $('[name="tel"]').val(),
           'mail': $('[name="mail"]').val(),
-          'year': $('[name="year"]').val(),
+          'birth': $('[name="birth"]').val(),
           'number': $('[name="number"]').val(),
           'turn': $('[name="turn"]').val(),
           'arm': $('[name="arm"]').val(),
@@ -79,7 +79,7 @@
         <p class="login-box-msg">入力してください</p>
         <div class="input-group mb-3">
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
-          <input type="hidden" class="form-control" name="id" value="<?= $row_array['id'] ?>">
+          <input type="hidden" class="form-control" name="id" value="<?= $row_array['pid'] ?>">
         </div>
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="name" value="<?= $row_array['name'] ?>">
@@ -108,9 +108,9 @@
         <div class="row">
           <div class="col-4">
             <div class="form-group">
-              <label for="year">生年</label>
-              <select name="year" class="form-control" style="width: 100%;">
-                <option><?= date("Y") - $row_array['year'] ?></option>
+              <label for="birth">生年</label>
+              <select name="birth" class="form-control" style="width: 100%;">
+                <option><?= $row_array['birth'] ?></option>
                 <?php for ($i = 1950; $i < 2010; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>

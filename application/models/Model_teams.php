@@ -13,7 +13,6 @@ class Model_teams extends CI_Model
       "password" => password_hash($this->input->post("pass"), PASSWORD_DEFAULT),
       "insert_time" => $days
     ];
-    $data = $this->security->xss_clean($data);
     //$dataをDB内のteamに挿入後に、$queryと紐づける
     $query = $this->db->insert("team", $data);
     if ($query) {
@@ -44,13 +43,11 @@ class Model_teams extends CI_Model
       "policy" => $this->input->post("policy"),
       "year" => $this->input->post("year"),
       "job" => $this->input->post("job"),
-      "age" => $this->input->post("age"),
       "experience" => $this->input->post("experience"),
       "practice" => $this->input->post("practice"),
       "pr" => $this->input->post("pr"),
       "update_time" => $day 
     ];
-    $data = $this->security->xss_clean($data);
     //$dateをDB内の特定playerに挿入(更新)する
     return $this->db->where('id', $this->input->post("id"))
       ->update('team',$data);

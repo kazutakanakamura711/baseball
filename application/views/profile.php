@@ -36,7 +36,6 @@
           'policy': $('[name="policy"]').val(),
           'year': $('[name="year"]').val(),
           'job': $('[name="job"]').val(),
-          'age': $('[name="age"]').val(),
           'experience': $('[name="experience"]').val(),
           'practice': $('[name="practice"]').val(),
           'pr': $('[name="pr"]').val()
@@ -44,7 +43,7 @@
         postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
-          url: "/bms/update_profile",
+          url: "/change/update_profile",
           data: postdata,
           crossDomain: false,
           dataType: "json",
@@ -148,17 +147,6 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-6">
-            <div class="form-group">
-              <label for="age">選手平均年齢</label>
-              <select name="age" class="form-control" style="width: 100%;">
-                <option><?= $team_array['age'] ?></option>
-                <?php for ($i = 10; $i < 70; $i++) { ?>
-                  <option>約<?= $i; ?>歳</option>
-                <?php } ?>
-              </select>
-            </div>
-          </div>
           <div class="col-6">
             <div class="form-group">
               <label for="experience">選手野球経験</label>

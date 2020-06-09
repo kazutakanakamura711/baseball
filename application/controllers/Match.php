@@ -5,6 +5,7 @@ class Match extends CI_Controller
     //試合申し込みへ
     public function game()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $id = $this->input->get('id');
         $this->load->model("model_teams");
         $player['row_array'] = html_escape($this->model_teams->getteam($id));
@@ -17,6 +18,7 @@ class Match extends CI_Controller
     //連絡フォームへ
     public function contact()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $id = $this->input->get('id');
         $this->load->model("model_teams");
         $player['row_array'] = html_escape($this->model_teams->getteam($id));
@@ -28,6 +30,7 @@ class Match extends CI_Controller
     }
     public function game_result()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $data['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -46,6 +49,7 @@ class Match extends CI_Controller
     //試合結果変更へ
     public function game_update()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $id = $this->input->get('id');
         $this->load->model("model_games");
         $game['row_array'] = html_escape($this->model_games->get_game($id));
@@ -75,6 +79,7 @@ class Match extends CI_Controller
     }
     public function ground()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $this->load->view('ground');
     }
     public function schedule()
@@ -95,6 +100,7 @@ class Match extends CI_Controller
     }
     public function rules()
     {
+        $this->output->set_header('X-Frame-Options: DENY');
         $this->load->view('rules');
     }
 }

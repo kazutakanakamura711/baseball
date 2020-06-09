@@ -53,7 +53,7 @@
           'name': $('[name="name"]').val(),
           'tel': $('[name="tel"]').val(),
           'mail': $('[name="mail"]').val(),
-          'year': $('[name="year"]').val(),
+          'birth': $('[name="birth"]').val(),
           'arm': $('[name="arm"]').val(),
           'position': $('[name="position"]').val(),
           'number': $('[name="number"]').val(),

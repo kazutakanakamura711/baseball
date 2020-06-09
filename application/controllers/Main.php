@@ -76,6 +76,7 @@ class Main extends CI_Controller
     //チーム内登録選手全て
     public function players()
     {
+        $this->output->set_header('X-Frame-Options: DENY');
         $id = $_SESSION['id'];
         $this->load->model("model_players");
         $player['player_array'] = $this->model_players->getplayers($id);
@@ -93,6 +94,7 @@ class Main extends CI_Controller
     //登録チーム全て
     public function teams()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $this->load->model("model_scores");
         $team['teamscore_array'] = $this->model_scores->getallteamscore();
         $clean_team = html_escape($team);
@@ -100,6 +102,7 @@ class Main extends CI_Controller
     }
     public function delete()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $id = $this->input->get('id');
         $this->load->model("model_players");
         $player['player_array'] = html_escape($this->model_players->getplayers($id));

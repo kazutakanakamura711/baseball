@@ -5,6 +5,7 @@ class Change extends CI_Controller
     //選手情報変更へ
     public function update()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $id = $this->input->get('id');
         $this->load->model("model_players");
         $player['row_array'] = html_escape($this->model_players->getplayer($id));

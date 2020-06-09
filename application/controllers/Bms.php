@@ -4,6 +4,7 @@ class Bms extends CI_Controller
 {
     public function signup()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $data['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -58,11 +59,12 @@ class Bms extends CI_Controller
                 echo "選手登録できませんでした。";
             }
         } else {
-            $this->load->view('register');
+            redirect("main/players");
         }
     }
     public function check_signup_team($key)
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         //add_temp_usersモデルが書かれている、model_uses.phpをロードする
         $this->load->model("model_temporary");
         if ($this->model_temporary->is_valid_key($key)) {    //キーが正しい場合は、以下を実行

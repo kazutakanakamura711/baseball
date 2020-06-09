@@ -32,23 +32,23 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <p><strong>チーム名：</strong><?= $_SESSION['team'] ?></p>
+                  <p><strong>チーム名：</strong><?= $player_array[0]['team'] ?></p>
                   <p><strong>監督：</strong><?= $_SESSION['skipper'] ?></p>
                   <p><strong>電話番号：</strong><?= $_SESSION['tel'] ?></p>
                   <p><strong>メールアドレス：</strong><?= $_SESSION['mail'] ?></p>
-                  <p><strong>チームスローガン：</strong><?= $_SESSION['slogan'] ?></p>
-                  <p><strong>チーム結成：</strong><?= $_SESSION['year'] ?></p>
-                  <p><strong>選手層：</strong><?= $_SESSION['job'] ?></p>
+                  <p><strong>チームスローガン：</strong><?= $player_array[0]['slogan'] ?></p>
+                  <p><strong>チーム結成：</strong><?= $player_array[0]['year'] ?></p>
+                  <p><strong>選手層：</strong><?= $player_array[0]['job'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-                  <p><strong>平均年齢：</strong>約<?= round($age['sum(year)'] / $count, 0, PHP_ROUND_HALF_DOWN) ?>歳</p>
-                  <p><strong>野球経験者：</strong><?= $_SESSION['experience'] ?></p>
-                  <p><strong>活動方針：</strong><?= $_SESSION['policy'] ?></p>
-                  <p><strong>練習頻度：</strong><?= $_SESSION['practice'] ?></p>
+                  <p><strong>平均年齢：</strong>約<?= date("Y") - (round($age['sum(birth)'] / $count, 0)) ?>歳</p>
+                  <p><strong>野球経験者：</strong><?= $player_array[0]['experience'] ?></p>
+                  <p><strong>活動方針：</strong><?= $player_array[0]['policy'] ?></p>
+                  <p><strong>練習頻度：</strong><?= $player_array[0]['practice'] ?></p>
                   <p><strong>年間試合数：</strong>約<?= $game ?>試合</p>
-                  <p><strong>監督から一言：</strong><?= $_SESSION['pr'] ?></p>
+                  <p><strong>監督から一言：</strong><?= $player_array[0]['pr'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
             </div><!-- /.row -->
@@ -57,7 +57,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <button type="submit" onclick="location.href='/bms/profile?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">プロフィール編集　<i class="fas fa-pencil-alt"></i></button>
+                  <button type="submit" onclick="location.href='/change/profile?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">プロフィール編集　<i class="fas fa-pencil-alt"></i></button>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
             </div><!-- /.row -->
@@ -93,19 +93,19 @@
                             <td><?= $values['turn'] ?></td>
                             <td><?= $values['number'] ?></td>
                             <td><?= $values['name'] ?></td>
-                            <td><?= $values['year'] ?></td>
+                            <td><?= date("Y") - $values['birth'] ?></td>
                             <td><?= $values['arm'] ?></td>
                             <td><?= $values['position'] ?></td>
                             <td><?= $values['tel'] ?></td>
                             <td><?= $values['mail'] ?></td>
                             <td>
-                              <button onclick="location.href='/score/score_signup?id=<?= $values['id'] ?>'" type="submit" class="btn-primary">スコア入力 <i class="fas fa-pencil-alt"></i></button>
+                              <button onclick="location.href='/score/score_signup?id=<?= $values['pid'] ?>'" type="submit" class="btn-primary">スコア入力 <i class="fas fa-pencil-alt"></i></button>
                             </td>
                             <td>
-                              <button onclick="location.href='/change/update?id=<?= $values['id'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
+                              <button onclick="location.href='/change/update?id=<?= $values['pid'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                             </td>
                             <td>
-                              <button name="delete_player" data-id="<?= $values['id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                              <button name="delete_player" data-id="<?= $values['pid'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
                             </td>
                           </tr>
                         <?php  } ?>
@@ -169,9 +169,9 @@
               </div><!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group row">
-                  <label for="year" class="col-3 col-form-label">生年：</label>
+                  <label for="birth" class="col-3 col-form-label">生年：</label>
                   <div class="col-9">
-                    <select name="year" class="form-control" style="width: 100%;">
+                    <select name="birth" class="form-control" style="width: 100%;">
                       <?php for ($i = 1950; $i < 2010; $i++) { ?>
                         <option><?= $i; ?></option>
                       <?php } ?>

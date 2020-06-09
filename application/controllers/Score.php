@@ -30,6 +30,7 @@ class Score extends CI_Controller
     //チーム内登録選手スコア全て
     public function scores()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $id = $_SESSION['id'];
         $this->load->model("model_scores");
         $score['score_array'] = $this->model_scores->getscores($id);
@@ -47,6 +48,7 @@ class Score extends CI_Controller
     //スコア詳細へ
     public function score_details()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $id = $this->input->get('id');
         $this->load->model("model_scores");
         $scores['score_array'] = html_escape($this->model_scores->getscore($id));
@@ -59,6 +61,7 @@ class Score extends CI_Controller
     //選手スコア変更へ
     public function score_update()
     {
+        $this->output->set_header('X-Frame-Options: DENY',false);
         $id = $this->input->get('id');
         $this->load->model("model_scores");
         $score['row_array'] = html_escape($this->model_scores->get_score($id));

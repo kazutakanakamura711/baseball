@@ -84,7 +84,7 @@
         <h5 class="text-center"><strong><?= $row_array['name'] ?></strong></h5>
         <div class="input-group mb-3">
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
-          <input type="hidden" class="form-control" name="id" value="<?= $row_array['id'] ?>">
+          <input type="hidden" class="form-control" name="id" value="<?= $row_array['pid'] ?>">
         </div>
         <div class="form-group text-center">
           <label>【野手スコア】</label>
