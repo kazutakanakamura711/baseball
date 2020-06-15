@@ -1753,6 +1753,7 @@ ul.bullet-none {
   color: white;
   background-color: #856d4f;
   border-color: #222d44;
+  text-shadow:none;
 }
 
 .btn-primary.active, .btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:active:focus {
@@ -4371,7 +4372,7 @@ hr.short {
 }
 
 .background-primary {
-  background-color: rgb(137, 248, 171) !important;
+  background-color: rgb(249, 252, 250) !important;
 }
 
 .border-color-primary {
@@ -8316,8 +8317,21 @@ p {
   opacity: 0;
   color: black;
   text-align: center;
+  text-shadow    : 
+       2px  2px 1px white,
+      -2px  2px 1px white,
+       2px -2px 1px white,
+      -2px -2px 1px white,
+       2px  0px 1px white,
+       0px  2px 1px white,
+      -2px  0px 1px white,
+       0px -2px 1px white;
 }
-
+.readmore {
+  opacity: 0;
+  color: black;
+  text-align: center;
+}
 .elixir-zanim-scale {
   opacity: 1;
   -webkit-transform: scale(1.05);

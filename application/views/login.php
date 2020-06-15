@@ -47,7 +47,7 @@
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
-            window.location.href = "/score/scores";
+            window.location.href = "/main/players";
           });
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({

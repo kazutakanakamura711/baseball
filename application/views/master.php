@@ -78,6 +78,7 @@
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         </div>
         <div class="input-group mb-3">
+          <input type="hidden" class="form-control" name="mail" value="<?= $row_array['mail'] ?>">
           <input type="text" class="form-control" name="team" placeholder="チーム名">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -98,14 +99,6 @@
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-phone"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" name="mail" value="<?= $row_array['mail'] ?>">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>

@@ -89,7 +89,7 @@
                 </table>
               </div><!-- /.col -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground1.jpg" alt="坊っちゃん" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/bochan.jpg" alt="坊っちゃん" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">
@@ -148,7 +148,7 @@
                 </table>
               </div><!-- /.col -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground2.jpg" alt="マドンナ" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/madonna.jpg" alt="マドンナ" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">
@@ -203,7 +203,7 @@
                 </table>
               </div><!-- /.row -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground1.jpg" alt="総合運動公園" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/ninsta.jpg" alt="総合運動公園" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">
@@ -262,7 +262,7 @@
                 </table>
               </div><!-- /.row -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground3.jpg" alt="しおさい" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/siosai.jpg" alt="しおさい" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">
@@ -315,7 +315,7 @@
                 </table>
               </div><!-- /.col -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground2.jpg" alt="ウェルピア" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/welpia.jpg" alt="ウェルピア" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">
@@ -368,7 +368,7 @@
                 </table>
               </div><!-- /.col -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground3.jpg" alt="五色浜" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/gosikihama.jpg" alt="五色浜" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">
@@ -440,7 +440,7 @@
                 </table>
               </div><!-- /.col -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground3.jpg" alt="ゆとり" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/yutori.jpg" alt="ゆとり" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">
@@ -493,7 +493,7 @@
                 </table>
               </div><!-- /.col -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground2.jpg" alt="文化の森" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/bunka.jpg" alt="文化の森" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">
@@ -547,7 +547,7 @@
                 </table>
               </div><!-- /.col -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground1.jpg" alt="東温総合公園" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/toonsogo.jpg" alt="東温総合公園" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">
@@ -601,7 +601,7 @@
                 </table>
               </div><!-- /.col -->
               <div class="col-md-4">
-                <img src="<?= base_url() ?>assets/images/ground2.jpg" alt="松前公園" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/masaki.jpg" alt="松前公園" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <div class="google_map">

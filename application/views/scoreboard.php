@@ -191,9 +191,6 @@
             </tbody>
           </table>
         </div><!-- /.row -->
-        <div class="google_map">
-                  <iframe src="http://yakyu.com/match/ground" width="325" height="243.75" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                </div><!-- /.google_map -->
       </div><!-- /.container-fluid -->
     </section><!-- /.content -->
   </div><!-- /.content-wrapper -->

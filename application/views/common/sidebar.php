@@ -43,14 +43,14 @@
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="<?= base_url() ?>match/chat" class="nav-link">
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>チャット</p>
                 <i class="right fas fa-angle-right"></i>
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a href="<?= base_url() ?>match/recruit" class="nav-link">
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>選手募集</p>
@@ -63,7 +63,7 @@
                 <p>オーダー管理</p>
                 <i class="right fas fa-angle-right"></i>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="<?= base_url() ?>match/game_result" class="nav-link">
                 <i class="nav-icon far fa-circle text-info"></i>
@@ -86,13 +86,13 @@
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="<?= base_url() ?>match/schedule" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>
                 <p>チームスケジュール</p>
                 <i class="right fas fa-angle-right"></i>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="<?= base_url() ?>match/rules" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>

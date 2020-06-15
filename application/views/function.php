@@ -105,7 +105,7 @@
                 <li data-zanim-timeline="{}">
                     <section class="py-0">
                         <div>
-                            <div class="background-holder elixir-zanimm-scale" style="background-image:url(<?= base_url('assets/images/member3.png'); ?>);" data-zanimm='{"from":{"opacity":0.1,"filter":"blur(10px)","scale":1.05},"to":{"opacity":1,"filter":"blur(0px)","scale":1}}'>
+                            <div class="background-holder elixir-zanimm-scale" style="background-image:url(<?= base_url('assets/images/stadium.png'); ?>);" data-zanimm='{"from":{"opacity":0.1,"filter":"blur(10px)","scale":1.05},"to":{"opacity":1,"filter":"blur(0px)","scale":1}}'>
                             </div>
                             <!--/.background-holder-->
                             <div class="container" style="font-size: 2.7rem;">
@@ -116,7 +116,7 @@
                                                 やきゅうしようよ！</h1>
                                         </div>
                                         <div class="overflow-hidden">
-                                            <div class="zopacity" data-zanim='{"delay":0.2}'>
+                                            <div class="readmore" data-zanim='{"delay":0.2}'>
                                                 <a class="btn btn-primary mr-3 mt-3" href="#about">READ MORE
                                                     <span class="fa fa-chevron-down ml-2"></span>
                                                 </a>
@@ -142,7 +142,7 @@
                 </div>
                 <div class="row mt-4 mt-md-5">
                     <div class="col-sm-12 col-lg-12 mt-4" data-zanim-timeline='{"delay":0.1}' data-zanim-trigger="scroll">
-                        <div class="col-md-12 text-center"><img src="<?= base_url() ?>assets/images/siai5.jpg" class="img-responsive">
+                        <div class="col-md-12 text-center"><img src="<?= base_url() ?>assets/images/kantoku.png" class="img-responsive">
                         </div>
                         <h5 class="mt-4" data-zanim='{"delay":0.1}' style="font-size: 2.3rem;">
                             「こんなのあったらいいな」が叶う野球チーム管理システム</h5>
@@ -169,7 +169,7 @@
                 <div class="row no-gutters pos-relative mt-6">
                     <div class="elixir-caret d-none d-lg-block"></div>
                     <div class="col-lg-6 py-3 py-lg-0 mb-0" style="min-height:400px;">
-                        <div class="background-holder radius-tl-secondary radius-tr-secondary radius-tr-lg-0" style="background-image:url(<?= base_url('assets/images/siai3.jpg') ?>);"> </div>
+                        <div class="background-holder radius-tl-secondary radius-tr-secondary radius-tr-lg-0" style="background-image:url(<?= base_url('assets/images/yakyu1.png') ?>);"> </div>
                         <!--/.background-holder-->
                     </div>
                     <div class="col-lg-6 px-lg-5 py-lg-6 p-4 my-lg-0 background-white radius-bl-secondary radius-bl-lg-0 radius-br-secondary radius-br-lg-0 radius-tr-lg-secondary">
@@ -194,7 +194,7 @@
                 <div class="row no-gutters pos-relative mt-4 mt-lg-0">
                     <div class="elixir-caret d-none d-lg-block"></div>
                     <div class="col-lg-6 py-3 py-lg-0 mb-0 order-lg-2" style="min-height:400px;">
-                        <div class="background-holder radius-tl-secondary radius-tl-lg-0 radius-tr-secondary radius-tr-lg-0" style="background-image:url(<?= base_url('assets/images/siai9.jpg') ?>);"> </div>
+                        <div class="background-holder radius-tl-secondary radius-tl-lg-0 radius-tr-secondary radius-tr-lg-0" style="background-image:url(<?= base_url('assets/images/yakyu2.jpg') ?>);"> </div>
                         <!--/.background-holder-->
                     </div>
                     <div class="col-lg-6 px-lg-5 py-lg-6 p-4 my-lg-0 background-white radius-bl-secondary radius-bl-lg-0 radius-br-secondary radius-br-lg-0">
@@ -219,7 +219,7 @@
                 <div class="row no-gutters pos-relative mt-4 mt-lg-0">
                     <div class="elixir-caret d-none d-lg-block"></div>
                     <div class="col-lg-6 py-3 py-lg-0 mb-0" style="min-height:400px;">
-                        <div class="background-holder radius-tl-secondary radius-tr-secondary radius-tr-lg-0 radius-tl-lg-0 radius-bl-0 radius-bl-lg-secondary" style="background-image:url(<?= base_url('assets/images/siai6.jpg') ?>);"> </div>
+                        <div class="background-holder radius-tl-secondary radius-tr-secondary radius-tr-lg-0 radius-tl-lg-0 radius-bl-0 radius-bl-lg-secondary" style="background-image:url(<?= base_url('assets/images/yakyu3.jpg') ?>);"> </div>
                         <!--/.background-holder-->
                     </div>
                     <div class="col-lg-6 px-lg-5 py-lg-6 p-4 my-lg-0 background-white radius-bl-secondary radius-bl-lg-0 radius-br-secondary">
@@ -358,13 +358,13 @@
             <div class="section">
                 <div class="oneArea">
                     <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/pawapurokun1.jpg" alt="パワプロ君"></div>
+                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
                         <div class="fukiArea">
                             <div class="fukidasi">選手もログイン可能ですか？</div>
                         </div>
                     </div>
                     <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/sensyu1.jpg" alt="矢部君"></div>
+                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
                         <div class="fukiArea">
                             <div class="fukidasi">可能です。監督だけでなく選手の方もログインし閲覧や連絡機能など利用出来ます。</div>
                         </div>
@@ -372,14 +372,14 @@
                 </div>
                 <div class="oneArea">
                     <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/pawapurokun1.jpg" alt="パワプロ君"></div>
+                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
                         <div class="fukiArea">
                             <div class="fukidasi">チームHPを外部に非公開にできますか？
                             </div>
                         </div>
                     </div>
                     <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/hakase.png" alt="ダイジョーブ博士"></div>
+                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
                         <div class="fukiArea">
                             <div class="fukidasi">ダイジョーブです。公開・非公開設定を選択できます。非公開設定にするとメンバー登録またはファン登録しているユーザーのみ閲覧が可能になります</div>
                         </div>
@@ -387,13 +387,13 @@
                 </div>
                 <div class="oneArea">
                     <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/pawapurokun1.jpg" alt="パワプロ君"></div>
+                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
                         <div class="fukiArea">
                             <div class="fukidasi">複数人で管理をすることは可能ですか？</div>
                         </div>
                     </div>
                     <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/sensyu3.jpg" alt="みずきちゃん"></div>
+                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
                         <div class="fukiArea">
                             <div class="fukidasi">はい。副管理人を設定することで複数人でのチーム管理が可能になります。また、副管理人には複数人のメンバーを指定することができます。</div>
                         </div>
@@ -401,13 +401,13 @@
                 </div>
                 <div class="oneArea">
                     <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/pawapurokun1.jpg" alt="パワプロ君"></div>
+                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
                         <div class="fukiArea">
                             <div class="fukidasi">スマホからでも操作可能ですか？</div>
                         </div>
                     </div>
                     <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/sensyu2.jpg" alt="あおいちゃん"></div>
+                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
                         <div class="fukiArea">
                             <div class="fukidasi">はい。PC・スマホどちらにも対応しており操作可能です。</div>
                         </div>

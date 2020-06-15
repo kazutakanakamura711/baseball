@@ -48,7 +48,8 @@
                   <p><strong>活動方針：</strong><?= $player_array[0]['policy'] ?></p>
                   <p><strong>練習頻度：</strong><?= $player_array[0]['practice'] ?></p>
                   <p><strong>年間試合数：</strong>約<?= $game ?>試合</p>
-                  <p><strong>監督から一言：</strong><?= $player_array[0]['pr'] ?></p>
+                  <p><strong>公開設定：</strong></p>
+                  <p><strong>その他PR：</strong><?= $player_array[0]['pr'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
             </div><!-- /.row -->
