@@ -5,13 +5,8 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-10 col-xs-6">
+          <div class="float-left">
             <h1 class="m-0 text-dark">グラウンド一覧</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-2 col-xs-6">
-            <?= form_open("main/logout"); ?>
-            <button class="float-right btn-info" type="submit">ログアウト</button>
-            <?= form_close(); ?>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

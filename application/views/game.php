@@ -25,6 +25,7 @@
     $(function() {
       $("#game").on('click', function(event) {
         event.preventDefault();
+        $(this).prop('disabled', true);
         var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
         var postdata = {
@@ -59,6 +60,8 @@
             icon: 'error',
             title: 'メール送信NG!',
             text: '入力内容をご確認下さい。',
+          }).then((result) => {
+            $("#game").prop('disabled', false);
           });
         });
         return false;

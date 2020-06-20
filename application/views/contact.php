@@ -25,6 +25,7 @@
     $(function() {
       $("#contact").on('click', function(event) {
         event.preventDefault();
+        $(this).prop('disabled',true);
         var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
         var postdata = {
@@ -59,6 +60,8 @@
             icon: 'error',
             title: 'メール送信NG!',
             text: '入力内容をご確認下さい。',
+          }).then((result) => {
+            $("#contact").prop('disabled', false);
           });
         });
         return false;
@@ -105,7 +108,7 @@
           <input type="hidden" class="form-control" name="mail" placeholder="店番" value="<?= $_SESSION['mail'] ?>">
         </div>
         <div class="form-group mb-3">
-          <textarea name="message" id="message" cols="42" rows="10"></textarea>
+          <textarea name="message" id="message" cols="42" rows="10" placeholder="ここにメッセージを入力してください"></textarea>
         </div>
         <div class="row">
           <button id="contact" type="submit" class="btn btn-primary btn-block">送信する</button>

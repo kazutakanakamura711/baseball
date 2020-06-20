@@ -5,6 +5,15 @@ Username =
 Password = 
 Secure = 
 Port = 
+
 ; 有効期限の設定
 [expire]
-day = 
+minutes = 
+
+; お問い合わせ先の設定
+[contact]
+Host = 
+Username = 
+Password = 
+Secure = 
+Port = 

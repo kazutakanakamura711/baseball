@@ -41,6 +41,52 @@
     <!-- Main stylesheet and color file-->
     <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/css/custom.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        $(function() {
+            $("#contact").on('click', function(event) {
+                event.preventDefault();
+                $(this).prop('disabled', true);
+                var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+                var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+                var postdata = {
+                    'name': $('#name').val(),
+                    'email': $('#email').val(),
+                    'message': $('#message').val()
+                };
+                postdata[csrf_name] = csrf_hash;
+                $.ajax({
+                    type: "POST",
+                    url: "/email/contact",
+                    data: postdata,
+                    crossDomain: false,
+                    dataType: "json",
+                    scriptCharset: 'utf-8'
+                }).done(function(data) {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'お問い合わせ受け付けました。!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((result) => {
+                        window.location.href = "/main/index";
+                    });
+                }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'お問い合わせ受け付け出来ませんでした。',
+                        text: '入力内容をご確認下さい。',
+                    }).then((result) => {
+                        $("#contact").prop('disabled', false);
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
 </head>
 
 <body data-spy="scroll" data-target=".inner-link" data-offset="60">
@@ -49,6 +95,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-auto">
+                        <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
                         <img src="<?= base_url() ?>assets/images/logo2.png" alt="MBC">
                         <a class="ml-2 mb-0 fs--1 d-inline color-white fw-700" href="<?= base_url() ?>main/index"></a>
                     </div>
@@ -499,7 +546,7 @@
             </div>
             <!--/.container-->
         </section>
-        <section id="contact" style="background-color: white;">
+        <section id="form" style="background-color: white;">
             <div class="container">
                 <div class="text-center">
                     <div class="row mb-6">
@@ -509,28 +556,25 @@
                         </div>
                     </div>
                     <h3>氏名・メールアドレス・お問い合わせ内容を入力の上、「送信」ボタンを押してください。</h3>
-                    <form action="" name="sentMessage" method="POST">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="name" class="form-control" placeholder="氏名" required="required">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" id="email" class="form-control" placeholder="メールアドレス" required="required">
-                                    <p class="help-block text-danger"></p>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="name" class="form-control" placeholder="氏名">
+                                <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <textarea name="message" id="message" class="form-control" rows="4" placeholder="お問い合わせ内容" required></textarea>
-                            <p class="help-block text-danger"></p>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-control" placeholder="メールアドレス">
+                                <p class="help-block text-danger"></p>
+                            </div>
                         </div>
-                        <div id="success"></div>
-                        <button type="submit" class="btn btn-primary">送信<span class="fa fa-chevron-right ml-2"></span></button>
-                    </form>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" id="message" class="form-control" rows="4" placeholder="お問い合わせ内容"></textarea>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <button type="submit" id="contact" class="btn btn-primary">送信<span class="fa fa-chevron-right ml-2"></span></button>
                 </div>
             </div>
             <br>

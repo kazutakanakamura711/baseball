@@ -25,6 +25,7 @@
     $(function() {
       $("#register").on('click', function(event) {
         event.preventDefault();
+        $(this).prop('disabled', true);
         var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
         var postdata = {
@@ -58,6 +59,8 @@
             icon: 'error',
             title: '編集NG!',
             text: '入力内容をご確認下さい。',
+          }).then((result) => {
+            $("#register").prop('disabled', false);
           });
         });
         return false;
@@ -125,9 +128,9 @@
         <div class="row">
           <button id="register" type="submit" class="btn btn-primary btn-block">登録</button>
         </div>
+        <br>
+        <p><?= anchor('score/scores', '一覧に戻る　>>'); ?></p>
       </div>
-      <br>
-      <p><?= anchor('score/scores', '一覧に戻る　>>'); ?></p>
     </div><!-- /.form-box -->
   </div><!-- /.card -->
   </div><!-- /.register-box -->

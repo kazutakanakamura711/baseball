@@ -54,4 +54,16 @@ class Email extends CI_Controller
 			$this->load->view('signup');
 		}
 	}
+	public function contact()
+	{
+		header("Content-type: application/json; charset=UTF-8");
+		//メールの設定読込
+    $config = parse_ini_file('config.ini', true);
+		$to= $config['contact']['Username'];
+		$subject=	$_POST['name'] . "様からの問い合わせ";
+		$body=	$_POST['message'];
+		$this->load->library('mailclass');
+		$this->mailclass->php_mailer($to,NULL,$subject,$body);
+		exit(json_encode(['mailsend' => 'メール送信完了']));
+	}
 }

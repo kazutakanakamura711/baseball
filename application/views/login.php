@@ -25,6 +25,7 @@
     $(function() {
       $("#login").on('click', function(event) {
         event.preventDefault();
+        $(this).prop('disabled', true);
         var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
         var postdata = {
@@ -54,6 +55,8 @@
             icon: 'error',
             title: 'ログイン認証NG!',
             text: '入力内容をご確認下さい。',
+          }).then((result) => {
+            $("#login").prop('disabled', false);
           });
         });
         return false;
@@ -71,6 +74,7 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">ログインしてください。</p>
         <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
+        <?= form_open("main/login_validation"); ?>
         <div class="input-group mb-3">
           <div class="error">
             <?= form_error("mail"); ?>
@@ -101,6 +105,7 @@
           <br>
           <p><?= anchor('bms/signup/', '新規チーム登録へ　>>'); ?></p>
         </div>
+        <?= form_close(); ?>
       </div><!-- /.login-card-body -->
     </div><!-- /.card -->
   </div><!-- /.login-box -->

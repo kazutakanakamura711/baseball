@@ -5,7 +5,7 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <h1 class="m-0 text-dark">対戦チーム募集</h1>
+          <h1 class="m-0 text-dark">対戦チーム一覧</h1>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div><!-- /.content-header -->
@@ -21,10 +21,10 @@
                 <h3 class="card-title">登録チーム一覧</h3>
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <!-- <input type="text" name="table_search" class="form-control float-right" placeholder="Search"> -->
 
                     <div class="input-group-append">
-                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                      <!-- <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button> -->
                     </div><!-- /.input-group-append -->
                   </div><!-- /.input-group input-group-sm -->
                 </div><!-- /.card-tools -->
