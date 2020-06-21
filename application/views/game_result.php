@@ -33,7 +33,6 @@
           'battle_team': $('[name="battle_team"]').val(),
           'score': $('[name="score"]').val(),
           'loss': $('[name="loss"]').val(),
-          'battle': $('[name="battle"]').val(),
           'consideration': $('[name="consideration"]').val()
         };
         postdata[csrf_name] = csrf_hash;
@@ -109,16 +108,6 @@
                 <?php } ?>
               </select>
             </div><!-- /.form-group -->
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label for="battle">勝敗</label>
-              <select name="battle" class="form-control" style="width: 100%;">
-                <option>勝ち</option>
-                <option>負け</option>
-                <option>引き分け</option>
-              </select>
-            </div>
           </div>
         </div>
         <div class="form-group mb-3">

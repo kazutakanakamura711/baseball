@@ -2,13 +2,13 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Model_scores extends CI_Model
 {
-  public function add_scores($day)
+  public function add_scores($atbat,$hit)
   {
     //add_playersのモデルの実行時に、以下のデータを取得して、$dataと紐づける
     $data = [
       "player_id" => $this->input->post("id"),
-      "atbat" => $this->input->post("atbat"),
-      "hit" => $this->input->post("hit"),
+      "atbat" => $atbat,
+      "hit" => $hit,
       "homerun" => $this->input->post("homerun"),
       "rbi" => $this->input->post("rbi"),
       "steal" => $this->input->post("steal"),
@@ -20,7 +20,7 @@ class Model_scores extends CI_Model
       "er" => $this->input->post("er"),
       "strikeout" => $this->input->post("strikeout"),
       "h_walk" => $this->input->post("h_walk"),
-      "insert_time" => $day
+      "insert_time" => date("Y-m-d H:i:s")
     ];
     //$dataをDB内のplayerに挿入後に、$queryと紐づける
     $query = $this->db->insert("score", $data);

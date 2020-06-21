@@ -18,19 +18,21 @@ class Score extends CI_Controller
     public function score_register()
     {
         header("Content-type: application/json; charset=UTF-8");
-        $day = date("Y-m-d H:i:s");
+        $atbat = $this->input->post("atbat");
+        $hit = $this->input->post("hit");
         $this->load->model("model_scores");
-        if ($this->model_scores->add_scores($day)) {
+        if ($atbat >= $hit) {
+            $this->model_scores->add_scores($atbat, $hit);
             //redirect("main/players");
             exit(json_encode(['score' => 'スコア登録完了']));
         } else {
-            echo "スコア登録できませんでした。";
+            echo "スコアが不正である為、登録できませんでした。";
         }
     }
     //チーム内登録選手スコア全て
     public function scores()
     {
-        $this->output->set_header('X-Frame-Options: DENY',false);
+        $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $_SESSION['id'];
         $this->load->model("model_scores");
         $score['score_array'] = $this->model_scores->getscores($id);
@@ -48,7 +50,7 @@ class Score extends CI_Controller
     //スコア詳細へ
     public function score_details()
     {
-        $this->output->set_header('X-Frame-Options: DENY',false);
+        $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_scores");
         $scores['score_array'] = html_escape($this->model_scores->getscore($id));
@@ -61,7 +63,7 @@ class Score extends CI_Controller
     //選手スコア変更へ
     public function score_update()
     {
-        $this->output->set_header('X-Frame-Options: DENY',false);
+        $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_scores");
         $score['row_array'] = html_escape($this->model_scores->get_score($id));

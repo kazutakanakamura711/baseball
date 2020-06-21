@@ -2,17 +2,17 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Model_games extends CI_Model
 {
-  public function add_game($day)
+  public function add_game($score, $loss,$battle)
   {
     //add_playersのモデルの実行時に、以下のデータを取得して、$dataと紐づける
     $data = [
       "team_id" => $this->input->post("team_id"),
       "battle_team" => $this->input->post("battle_team"),
-      "score" => $this->input->post("score"),
-      "loss" => $this->input->post("loss"),
-      "battle" => $this->input->post("battle"),
+      "score" => $score,
+      "loss" => $loss,
+      "battle" => $battle,
       "consideration" => $this->input->post("consideration"),
-      "insert_time" => $day
+      "insert_time" => date("Y-m-d H:i:s")
     ];
     //$dataをDB内のplayerに挿入後に、$queryと紐づける
     $query = $this->db->insert("game", $data);
