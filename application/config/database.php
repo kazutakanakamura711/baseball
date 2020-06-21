@@ -72,14 +72,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
-
+$config = parse_ini_file('config.ini', true);
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'baseball',
-	'dbdriver' => 'mysqli',
+	'hostname' => $config['database']['hostname'],
+	'username' => $config['database']['username'],
+	'password' => $config['database']['password'],
+	'database' => $config['database']['database'],
+	'dbdriver' => $config['database']['dbdriver'],
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

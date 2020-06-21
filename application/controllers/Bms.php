@@ -18,12 +18,6 @@ class Bms extends CI_Controller
         $this->load->library("form_validation");
         $config = [
             [
-                "field" => "team_id",
-                "label" => "チーム番号",
-                "rules" => 'trim|required',
-                "errors" => ["required" => "idは入力必須です。"]
-            ],
-            [
                 "field" => "name",
                 "label" => "氏名",
                 "rules" => 'trim|required',
@@ -114,20 +108,27 @@ class Bms extends CI_Controller
                 "rules" => "trim|required|valid_email|is_unique[team.mail]",
                 "errors" => [
                     "required" => "メールアドレスは入力必須です。",
-                    "valid_email" => "メールアドレスが不正です。"
+                    "valid_email" => "メールアドレスが不正です。",
+                    "is_unique" => "既に登録されているメールアドレスです。"
                 ]
             ],
             [
                 "field" => "pass",
                 "label" => "パスワード",
-                "rules" => "trim|required",
-                "errors" => ["required" => "パスワードは入力必須です。"]
+                "rules" => "trim|required|min_length[6]",
+                "errors" => [
+                    "required" => "パスワードは入力必須です。",
+                    "min_length" => "最低6文字以上にしてください。"
+                ]
             ],
             [
                 "field" => "chkpass",
                 "label" => "パスワード確認",
-                "rules" => "trim|required",
-                "errors" => ["required" => "もう一度パスワードを入力してください。",]
+                "rules" => "trim|required|matches[password]",
+                "errors" => [
+                    "required" => "もう一度パスワードを入力してください。",
+                    "matches" => "同じパスワードを入力してください。。"
+                ]
             ]
         ];
         $this->form_validation->set_rules($config);

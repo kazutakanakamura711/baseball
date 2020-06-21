@@ -17,3 +17,11 @@ Username =
 Password = 
 Secure = 
 Port = 
+
+; データベースの設定
+[database]
+hostname = 
+username = 
+password = 
+database = 
+dbdriver = 
