@@ -72,7 +72,7 @@
           Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: '選手登録OK!',
+            title: '選手登録しました。',
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
@@ -81,7 +81,7 @@
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
             icon: 'error',
-            title: '選手登録NG!',
+            title: '選手登録出来ませんでした。',
             text: '入力内容をご確認下さい。',
           }).then((result) => {
             $("#register").prop('disabled', false);
@@ -122,7 +122,7 @@
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: '選手削除OK!',
+                title: '選手削除しました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
@@ -131,7 +131,7 @@
             }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
               Swal.fire({
                 icon: 'error',
-                title: '削除出来ませんでした!',
+                title: '選手削除出来ませんでした。',
               }).then((result) => {
                 $('[name="delete_player"]').prop('disabled', false);
               });
@@ -175,7 +175,7 @@
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: 'スコア削除OK!',
+                title: 'スコア削除しました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
@@ -184,7 +184,7 @@
             }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
               Swal.fire({
                 icon: 'error',
-                title: '削除出来ませんでした!',
+                title: 'スコア削除出来ませんでした。',
               }).then((result) => {
                 $('[name="delete_score"]').prop('disabled', false);
               });
@@ -228,7 +228,7 @@
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: '試合削除OK!',
+                title: '試合削除しました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
@@ -237,7 +237,7 @@
             }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
               Swal.fire({
                 icon: 'error',
-                title: '削除出来ませんでした!',
+                title: '試合削除出来ませんでした。',
               }).then((result) => {
                 $('[name="delete_game"]').prop('disabled', false);
               });
@@ -281,7 +281,7 @@
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: '選手復帰OK!',
+                title: '削除選手復帰しました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
@@ -290,7 +290,7 @@
             }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
               Swal.fire({
                 icon: 'error',
-                title: '復帰出来ませんでした!',
+                title: '削除選手復帰出来ませんでした。',
               }).then((result) => {
                 $('[name="return"]').prop('disabled', false);
               });

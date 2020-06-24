@@ -48,7 +48,7 @@
           Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: 'チーム本登録OK!',
+            title: 'チーム登録出来ました。',
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
@@ -57,7 +57,7 @@
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
             icon: 'error',
-            title: 'チーム本登録NG!',
+            title: 'チーム登録出来ませんでした。',
             text: '入力内容をご確認下さい。',
           }).then((result) => {
             $("#master").prop('disabled', false);

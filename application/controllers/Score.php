@@ -45,6 +45,12 @@ class Score extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
+        $this->load->library('pagination');
+        $config['base_url'] = 'http://yakyu.com/index.php/score/scores/';
+        $config['total_rows'] = 10;
+        $config['per_page'] = 3;
+        $config["num_links"] = 2;
+        $this->pagination->initialize($config);
         $this->load->view("scoreboard", $clean_score);
     }
     //スコア詳細へ

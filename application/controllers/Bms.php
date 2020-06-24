@@ -21,7 +21,7 @@ class Bms extends CI_Controller
                 "field" => "name",
                 "label" => "氏名",
                 "rules" => 'trim|required',
-                "errors" => ["required" => "名前は入力必須です。"]
+                "errors" => ["required" => "氏名は入力必須です。"]
             ],
             [
                 "field" => "tel",
@@ -82,15 +82,15 @@ class Bms extends CI_Controller
                 "field" => "team",
                 "label" => "チーム名",
                 "rules" => 'trim|required',
-                "errors" => ["required" => "事業所名は入力必須です。"]
+                "errors" => ["required" => "チーム名は入力必須です。"]
             ],
             [
                 "field" => "skipper",
                 "label" => "監督名",
                 "rules" => 'trim|required',
                 "errors" => [
-                    "required" => "住所は入力必須です。",
-                    "errors" => ["required" => "住所は入力必須です。"]
+                    "required" => "監督名は入力必須です。",
+                    "errors" => ["required" => "監督名は入力必須です。"]
                 ],
             ],
             [
@@ -118,7 +118,7 @@ class Bms extends CI_Controller
                 "rules" => "trim|required|min_length[6]",
                 "errors" => [
                     "required" => "パスワードは入力必須です。",
-                    "min_length" => "最低6文字以上にしてください。"
+                    "min_length" => "パスワードは最低6文字以上にしてください。"
                 ]
             ],
             [
@@ -127,7 +127,7 @@ class Bms extends CI_Controller
                 "rules" => "trim|required|matches[password]",
                 "errors" => [
                     "required" => "もう一度パスワードを入力してください。",
-                    "matches" => "同じパスワードを入力してください。。"
+                    "matches" => "同じパスワードを入力してください。"
                 ]
             ]
         ];

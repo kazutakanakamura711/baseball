@@ -40,19 +40,36 @@ class Match extends CI_Controller
     public function game_register()
     {
         header("Content-type: application/json; charset=UTF-8");
-        $score = $this->input->post("score");
-        $loss = $this->input->post("loss");
-        if ($score > $loss) {
-            $battle = "勝ち";
-        } elseif ($score == $loss) {
-            $battle = "引き分け";
+        $this->load->library("form_validation");
+        $config = [
+            [
+                "field" => "battle_team",
+                "label" => "対戦相手",
+                "rules" => 'trim|required',
+                "errors" => ["required" => "チーム名は入力必須です。"]
+            ]
+        ];
+        $this->form_validation->set_rules($config);
+        if ($this->form_validation->run()) {
+            $score = $this->input->post("score");
+            $loss = $this->input->post("loss");
+            if ($score > $loss) {
+                $battle = "勝ち";
+            } elseif ($score == $loss) {
+                $battle = "引き分け";
+            } else {
+                $battle = "負け";
+            }
+            $this->load->model("model_games");
+            if ($this->model_games->add_game($score, $loss, $battle)) {
+                //redirect("main/players");
+                exit(json_encode(['player' => '更新完了']));
+            } else {
+                echo "試合結果登録できませんでした。";
+            }
         } else {
-            $battle = "負け";
+            echo "登録出来ませんでした、入力内容確認して下さい。";
         }
-        $this->load->model("model_games");
-        $this->model_games->add_game($score, $loss,$battle);
-        //redirect("main/players");
-        exit(json_encode(['player' => '更新完了']));
     }
     //試合結果変更へ
     public function game_update()
@@ -71,10 +88,36 @@ class Match extends CI_Controller
     public function update_game()
     {
         header("Content-type: application/json; charset=UTF-8");
-        $day = date("Y-m-d H:i:s");
-        $this->load->model("model_games");
-        $this->model_games->update_game($day);
-        exit(json_encode(['game' => '更新完了']));
+        $this->load->library("form_validation");
+        $config = [
+            [
+                "field" => "battle_team",
+                "label" => "対戦相手",
+                "rules" => 'trim|required',
+                "errors" => ["required" => "チーム名は入力必須です。"]
+            ]
+        ];
+        $this->form_validation->set_rules($config);
+        if ($this->form_validation->run()) {
+            $score = $this->input->post("score");
+            $loss = $this->input->post("loss");
+            if ($score > $loss) {
+                $battle = "勝ち";
+            } elseif ($score == $loss) {
+                $battle = "引き分け";
+            } else {
+                $battle = "負け";
+            }
+            $this->load->model("model_games");
+            if ($this->model_games->update_game($score, $loss, $battle)) {
+                //redirect("main/players");
+                exit(json_encode(['game' => '更新完了']));
+            } else {
+                echo "試合結果登録できませんでした。";
+            }
+        } else {
+            echo "登録出来ませんでした、入力内容確認して下さい。";
+        }
     }
     //試合結果削除
     public function delete_game()

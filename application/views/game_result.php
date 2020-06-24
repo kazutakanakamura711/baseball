@@ -47,7 +47,7 @@
           Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: '編集OK!',
+            title: '試合結果登録しました。',
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
@@ -56,7 +56,7 @@
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
             icon: 'error',
-            title: '編集NG!',
+            title: '試合結果登録出来ませんでした。',
             text: '入力内容をご確認下さい。',
           }).then((result) => {
             $("#register").prop('disabled', false);

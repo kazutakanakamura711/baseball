@@ -46,17 +46,17 @@ class Model_games extends CI_Model
     $player = $this->db->get('game');
     return $player->row_array();  //特定選手を表示   
   }
-  public function update_game($day)
+  public function update_game($score, $loss,$battle)
   {
     //update_playerのモデルの実行時、以下のデータを取得して、$dateと紐づける
     $date = [
       "team_id" => $this->input->post("team_id"),
       "battle_team" => $this->input->post("battle_team"),
-      "score" => $this->input->post("score"),
-      "loss" => $this->input->post("loss"),
-      "battle" => $this->input->post("battle"),
+      "score" => $score,
+      "loss" => $loss,
+      "battle" => $battle,
       "consideration" => $this->input->post("consideration"),
-      "update_time" => $day
+      "update_time" => date("Y-m-d H:i:s")
     ];
     //$dateをDB内の特定playerに挿入(更新)する
     return $this->db->where('id', $this->input->post("id"))

@@ -56,7 +56,7 @@
           Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: 'スコア入力OK!',
+            title: 'スコア登録しました。',
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
@@ -65,7 +65,7 @@
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
             icon: 'error',
-            title: 'スコア入力NG',
+            title: 'スコア登録出来ませんでした。',
             text: '入力内容をご確認下さい。',
           }).then((result) => {
             $("#score").prop('disabled', false);

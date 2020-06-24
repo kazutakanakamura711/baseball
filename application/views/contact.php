@@ -49,7 +49,7 @@
           Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: 'メール送信OK!',
+            title: 'メール送信しました。',
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
@@ -58,7 +58,7 @@
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
             icon: 'error',
-            title: 'メール送信NG!',
+            title: 'メール送信出来ませんでした。',
             text: '入力内容をご確認下さい。',
           }).then((result) => {
             $("#contact").prop('disabled', false);

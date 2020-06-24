@@ -34,7 +34,6 @@
           'battle_team': $('[name="battle_team"]').val(),
           'score': $('[name="score"]').val(),
           'loss': $('[name="loss"]').val(),
-          'battle': $('[name="battle"]').val(),
           'consideration': $('[name="consideration"]').val()
         };
         postdata[csrf_name] = csrf_hash;
@@ -49,7 +48,7 @@
           Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: '編集OK!',
+            title: '試合結果更新しました。',
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
@@ -58,7 +57,7 @@
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
             icon: 'error',
-            title: '編集NG!',
+            title: '試合結果更新出来ませんでした。',
             text: '入力内容をご確認下さい。',
           }).then((result) => {
             $("#update").prop('disabled', false);
@@ -113,17 +112,6 @@
                 <?php } ?>
               </select>
             </div><!-- /.form-group -->
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label for="battle">勝敗</label>
-              <select name="battle" class="form-control" style="width: 100%;">
-                <option><?= $row_array['battle'] ?></option>
-                <option>勝ち</option>
-                <option>負け</option>
-                <option>引き分け</option>
-              </select>
-            </div>
           </div>
         </div>
         <div class="form-group mb-3">

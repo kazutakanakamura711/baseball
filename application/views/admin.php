@@ -111,7 +111,7 @@
                           </tr>
                         <?php  } ?>
                       <?php  } ?>
-                  </tbody>
+                  </tbody> 
                 </table>
               </div><!-- /.card-body -->
             </div><!-- /.card -->

@@ -40,10 +40,11 @@
           dataType: "json",
           scriptCharset: 'utf-8'
         }).done(function(data) {
+          alert (data);
           Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: '新規チーム仮登録OK',
+            title: 'メールアドレス登録出来ました',
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
@@ -52,8 +53,8 @@
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
             icon: 'error',
-            title: '新規チーム仮登録NG!',
-            text: '入力内容をご確認下さい。',
+            title: 'メールアドレス登録出来ませんでした。',
+            text: '入力内容をご確認下さい。'
           }).then((result) => {
             $("#signup").prop('disabled', false);
           });

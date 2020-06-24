@@ -49,7 +49,7 @@
           Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: 'メール送信OK!',
+            title: 'メール送信しました。',
             showConfirmButton: false,
             timer: 1500
           }).then((result) => {
@@ -58,7 +58,7 @@
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
           Swal.fire({
             icon: 'error',
-            title: 'メール送信NG!',
+            title: 'メール送信出来ませんでした。',
             text: '入力内容をご確認下さい。',
           }).then((result) => {
             $("#game").prop('disabled', false);
@@ -79,22 +79,8 @@
       <div class="card-body register-card-body">
         <p class="login-box-msg">入力確認し、申し込んでください。</p>
         <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="battle_team" placeholder="チーム名" value="<?= $row_array['team'] ?>">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-baseball-ball"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="battle_skipper" placeholder="監督名" value="<?= $row_array['skipper'] ?>">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
+        <p class="float-left mb-3">チーム名 <span class="fas fa-baseball-ball"></span> : <strong><?= $row_array['team'] ?></strong></p>
+        <p class="float-left mb-3">監督名　 <span class="fas fa-user"></span> : <strong><?= $row_array['skipper'] ?></strong></p>
         <div class="input-group mb-3">
           <input type="hidden" class="form-control" name="battle_mail" placeholder="メールアドレス" value="<?= $row_array['mail'] ?>">
         </div>

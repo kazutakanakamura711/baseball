@@ -100,6 +100,7 @@
               <?php  } ?>
             </tbody>
           </table>
+          <?= $this->pagination->create_links() ?>
         </div><!-- /.row -->
         <div class="row">
           <div class="col-sm-9">
@@ -157,7 +158,7 @@
           </div>
           <div class="col-sm-3">
             <?= form_open("#"); ?>
-            <a href="#" class="float-sm-right nav-link">試合結果入力へ　
+            <a href="<?= base_url() ?>match/game_result" class="float-sm-right nav-link">試合結果登録へ　
               <span class="fa fa-chevron-right"></span><span class="fa fa-chevron-right"></span></a>
             <?= form_close(); ?>
           </div>

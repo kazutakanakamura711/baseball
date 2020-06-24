@@ -8,7 +8,7 @@ class Main extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('function',$data);
+        $this->load->view('function', $data);
     }
     public function login()
     {
@@ -98,7 +98,7 @@ class Main extends CI_Controller
     //登録チーム全て
     public function teams()
     {
-        $this->output->set_header('X-Frame-Options: DENY',false);
+        $this->output->set_header('X-Frame-Options: DENY', false);
         $this->load->model("model_scores");
         $team['teamscore_array'] = $this->model_scores->getallteamscore();
         $clean_team = html_escape($team);
@@ -106,7 +106,7 @@ class Main extends CI_Controller
     }
     public function delete()
     {
-        $this->output->set_header('X-Frame-Options: DENY',false);
+        $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_players");
         $player['player_array'] = html_escape($this->model_players->getplayers($id));
