@@ -99,8 +99,10 @@
                 <?php  } ?>
               <?php  } ?>
             </tbody>
+            <tfoot>
+              <?= $this->pagination->create_links() ?>
+            </tfoot>
           </table>
-          <?= $this->pagination->create_links() ?>
         </div><!-- /.row -->
         <div class="row">
           <div class="col-sm-9">
@@ -150,6 +152,9 @@
                 <?php  } ?>
               <?php  } ?>
             </tbody>
+            <tfoot>
+              <?= $this->pagination->create_links() ?>
+            </tfoot>
           </table>
         </div><!-- /.row -->
         <div class="row">

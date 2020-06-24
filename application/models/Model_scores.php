@@ -30,7 +30,7 @@ class Model_scores extends CI_Model
       return false;
     }
   }
-  public function getscores($id)
+  public function getscores($id,$limit,$offset)
   {
 
     $this->db->select('pid,team_id,number,turn,position,name,delete_player,player_id,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk),delete_score');
@@ -41,6 +41,7 @@ class Model_scores extends CI_Model
     $this->db->where('delete_score', 0);
     $this->db->group_by("player_id");   //選手別にスコアグループ分け
     $this->db->order_by('turn');
+    $this->db->limit($limit,$offset);
     $score = $this->db->get();
     return $score->result_array();  //ログインチーム登録選手スコア全て表示   
   }

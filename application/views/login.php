@@ -74,7 +74,6 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">ログインしてください。</p>
         <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
-        <?= form_open("main/login_validation"); ?>
         <div class="input-group mb-3">
           <div class="error">
             <?= form_error("mail"); ?>
@@ -105,7 +104,6 @@
           <br>
           <p><?= anchor('bms/signup/', '新規チーム登録へ　>>'); ?></p>
         </div>
-        <?= form_close(); ?>
       </div><!-- /.login-card-body -->
     </div><!-- /.card -->
   </div><!-- /.login-box -->

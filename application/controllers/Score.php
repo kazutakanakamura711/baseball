@@ -34,8 +34,12 @@ class Score extends CI_Controller
     {
         $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $_SESSION['id'];
+        $this->load->model("model_players");
+        $num = $this->model_players->getplayercount($id);
+        $limit = 3;
+        $offset = $this->input->get('per_page');
         $this->load->model("model_scores");
-        $score['score_array'] = $this->model_scores->getscores($id);
+        $score['score_array'] = $this->model_scores->getscores($id,$limit,$offset);
         $score['teamscore_array'] = $this->model_scores->getteamscore($id);
         $this->load->model("model_games");
         $score['game_array'] = $this->model_games->getgames($id);
@@ -45,13 +49,19 @@ class Score extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
+        $clean_score['pagenation'] = $this->setPage($limit,$num);
+        $this->load->view("scoreboard", $clean_score);
+    }
+    public function setPage($limit,$num)
+    {
         $this->load->library('pagination');
         $config['base_url'] = 'http://yakyu.com/index.php/score/scores/';
-        $config['total_rows'] = 10;
-        $config['per_page'] = 3;
-        $config["num_links"] = 2;
+        $config['total_rows'] = $num;
+        $config['per_page'] = $limit;
+        $config['reuse_query_string'] = TRUE;
+        $config['page_query_string'] = TRUE;
         $this->pagination->initialize($config);
-        $this->load->view("scoreboard", $clean_score);
+        return $this->pagination->create_links();
     }
     //スコア詳細へ
     public function score_details()
