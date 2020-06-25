@@ -22,9 +22,10 @@ class Model_games extends CI_Model
       return false;
     }
   }
-  public function getgames($id)
+  public function getgames($id,$limit,$offset)
   {
     $this->db->where('team_id', $id);
+    $this->db->limit($limit,$offset);
     $games = $this->db->get('game');
     return $games->result_array();    
   }

@@ -100,7 +100,7 @@
               <?php  } ?>
             </tbody>
             <tfoot>
-              <?= $this->pagination->create_links() ?>
+              <?= $score_pagination ?>
             </tfoot>
           </table>
         </div><!-- /.row -->
@@ -153,7 +153,7 @@
               <?php  } ?>
             </tbody>
             <tfoot>
-              <?= $this->pagination->create_links() ?>
+              <?= $score_pagination ?>
             </tfoot>
           </table>
         </div><!-- /.row -->
@@ -195,6 +195,9 @@
                 <?php  } ?>
               <?php  } ?>
             </tbody>
+            <tfoot>
+              <?= $game_pagination ?>
+            </tfoot>
           </table>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

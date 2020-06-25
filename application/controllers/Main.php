@@ -25,6 +25,7 @@ class Main extends CI_Controller
     }
     public function logout()
     {
+        $this->session->sess_expiration = '14400';
         $this->session->sess_destroy();        //セッションデータの削除
         redirect("main/index");
     }
@@ -80,6 +81,10 @@ class Main extends CI_Controller
     //チーム内登録選手全て
     public function players()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY');
         $id = $_SESSION['id'];
         $this->load->model("model_players");
@@ -98,6 +103,10 @@ class Main extends CI_Controller
     //登録チーム全て
     public function teams()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $this->load->model("model_scores");
         $team['teamscore_array'] = $this->model_scores->getallteamscore();

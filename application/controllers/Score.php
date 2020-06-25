@@ -32,24 +32,29 @@ class Score extends CI_Controller
     //チーム内登録選手スコア全て
     public function scores()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $_SESSION['id'];
         $this->load->model("model_players");
-        $num = $this->model_players->getplayercount($id);
+        $score_num = $this->model_players->getplayercount($id);
         $limit = 3;
         $offset = $this->input->get('per_page');
         $this->load->model("model_scores");
         $score['score_array'] = $this->model_scores->getscores($id,$limit,$offset);
         $score['teamscore_array'] = $this->model_scores->getteamscore($id);
         $this->load->model("model_games");
-        $score['game_array'] = $this->model_games->getgames($id);
+        $score['game_array'] = $this->model_games->getgames($id,$limit,$offset);
         $score['game'] = $this->model_games->getgamecount($id);
         $clean_score = html_escape($score);
         $clean_score['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $clean_score['pagenation'] = $this->setPage($limit,$num);
+        $clean_score['score_pagination'] = $this->setPage($limit,$score_num);
+        $clean_score['game_pagination'] = $this->setPage($limit,$score['game']);
         $this->load->view("scoreboard", $clean_score);
     }
     public function setPage($limit,$num)
