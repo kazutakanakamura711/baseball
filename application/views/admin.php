@@ -89,29 +89,29 @@
                   </thead>
                   <tbody>
                     <?php foreach ($player_array as $values) {
-                        if ($values['delete_player'] === "0") { ?>
-                          <tr>
-                            <td><?= $values['turn'] ?></td>
-                            <td><?= $values['number'] ?></td>
-                            <td><?= $values['name'] ?></td>
-                            <td><?= date("Y") - $values['birth'] ?></td>
-                            <td><?= $values['arm'] ?></td>
-                            <td><?= $values['position'] ?></td>
-                            <td><?= $values['tel'] ?></td>
-                            <td><?= $values['mail'] ?></td>
-                            <td>
-                              <button onclick="location.href='/score/score_signup?id=<?= $values['pid'] ?>'" type="submit" class="btn-primary">スコア入力 <i class="fas fa-pencil-alt"></i></button>
-                            </td>
-                            <td>
-                              <button onclick="location.href='/change/update?id=<?= $values['pid'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
-                            </td>
-                            <td>
-                              <button name="delete_player" data-id="<?= $values['pid'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
-                            </td>
-                          </tr>
-                        <?php  } ?>
+                      if ($values['delete_player'] === "0") { ?>
+                        <tr>
+                          <td><?= $values['turn'] ?></td>
+                          <td><?= $values['number'] ?></td>
+                          <td><?= $values['name'] ?></td>
+                          <td><?= date("Y") - $values['birth'] ?></td>
+                          <td><?= $values['arm'] ?></td>
+                          <td><?= $values['position'] ?></td>
+                          <td><?= $values['tel'] ?></td>
+                          <td><?= $values['mail'] ?></td>
+                          <td>
+                            <button onclick="location.href='/score/score_signup?id=<?= $values['pid'] ?>'" type="submit" class="btn-primary">スコア入力 <i class="fas fa-pencil-alt"></i></button>
+                          </td>
+                          <td>
+                            <button onclick="location.href='/change/update?id=<?= $values['pid'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
+                          </td>
+                          <td>
+                            <button name="delete_player" data-id="<?= $values['pid'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                          </td>
+                        </tr>
                       <?php  } ?>
-                  </tbody> 
+                    <?php  } ?>
+                  </tbody>
                 </table>
               </div><!-- /.card-body -->
             </div><!-- /.card -->
@@ -132,24 +132,33 @@
                   <div class="input-group mb-3">
                     <input type="hidden" class="form-control" name="team_id" placeholder="チーム番号" value="<?= $_SESSION['id'] ?>">
                   </div>
+                  <div class="error">
+                    <strong><span id="name_error" class="text-danger"></span></strong>
+                  </div>
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="name" placeholder="氏名">
+                    <input type="text" class="form-control" name="name" placeholder="※氏名" required>
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-user"></span>
                       </div>
                     </div>
                   </div>
+                  <div class="error">
+                    <strong><span id="tel_error" class="text-danger"></span></strong>
+                  </div>
                   <div class="input-group mb-3">
-                    <input type="tel" class="form-control" name="tel" placeholder="電話番号">
+                    <input type="tel" class="form-control" name="tel" placeholder="※電話番号" required>
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-phone"></span>
                       </div>
                     </div>
                   </div>
+                  <div class="error">
+                    <strong><span id="mail_error" class="text-danger"></span></strong>
+                  </div>
                   <div class="input-group mb-3">
-                    <input type="email" class="form-control" name="mail" placeholder="メールアドレス">
+                    <input type="email" class="form-control" name="mail" placeholder="※メールアドレス" required>
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-envelope"></span>

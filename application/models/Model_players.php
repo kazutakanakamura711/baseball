@@ -29,7 +29,6 @@ class Model_players extends CI_Model
   {
     $this->db->select('*');
     $this->db->from('player');
-    $this->db->join('team', 'team.id = player.team_id');
     $this->db->where('team_id', $id);
     $players = $this->db->get();
     return $players->result_array();  //ログインチーム登録選手全て表示   

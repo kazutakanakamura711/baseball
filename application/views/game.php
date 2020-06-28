@@ -79,8 +79,8 @@
       <div class="card-body register-card-body">
         <p class="login-box-msg">入力確認し、申し込んでください。</p>
         <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
-        <p class="float-left mb-3">チーム名 <span class="fas fa-baseball-ball"></span> : <strong><?= $row_array['team'] ?></strong></p>
-        <p class="float-left mb-3">監督名　 <span class="fas fa-user"></span> : <strong><?= $row_array['skipper'] ?></strong></p>
+        <p class="text-group mb-3">チーム名 <span class="fas fa-baseball-ball"></span> : <strong><?= $row_array['team'] ?></strong></p>
+        <p class="text-group mb-3">監督名　 <span class="fas fa-user"></span> : <strong><?= $row_array['skipper'] ?></strong></p>
         <div class="input-group mb-3">
           <input type="hidden" class="form-control" name="battle_mail" placeholder="メールアドレス" value="<?= $row_array['mail'] ?>">
         </div>

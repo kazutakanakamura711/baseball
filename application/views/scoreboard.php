@@ -99,10 +99,8 @@
                 <?php  } ?>
               <?php  } ?>
             </tbody>
-            <tfoot>
-              <?= $score_pagination ?>
-            </tfoot>
           </table>
+          <?= $score_pagination ?>
         </div><!-- /.row -->
         <div class="row">
           <div class="col-sm-9">
@@ -152,10 +150,8 @@
                 <?php  } ?>
               <?php  } ?>
             </tbody>
-            <tfoot>
-              <?= $score_pagination ?>
-            </tfoot>
           </table>
+          <?= $score_pagination ?>
         </div><!-- /.row -->
         <div class="row">
           <div class="col-sm-9">
@@ -195,10 +191,8 @@
                 <?php  } ?>
               <?php  } ?>
             </tbody>
-            <tfoot>
-              <?= $game_pagination ?>
-            </tfoot>
           </table>
+          <?= $game_pagination ?>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </section><!-- /.content -->

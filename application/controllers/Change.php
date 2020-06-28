@@ -5,6 +5,10 @@ class Change extends CI_Controller
     //選手情報変更へ
     public function update()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_players");
@@ -69,6 +73,10 @@ class Change extends CI_Controller
     }
     public function profile()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $id = $this->input->get('id');
         $this->load->model("model_teams");
         $team['team_array'] = html_escape($this->model_teams->getteam($id));

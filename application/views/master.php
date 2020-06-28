@@ -43,25 +43,59 @@
           data: postdata,
           crossDomain: false,
           dataType: "json",
-          scriptCharset: 'utf-8'
-        }).done(function(data) {
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: 'チーム登録出来ました。',
-            showConfirmButton: false,
-            timer: 1500
-          }).then((result) => {
-            window.location.href = "/main/login";
-          });
-        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          Swal.fire({
-            icon: 'error',
-            title: 'チーム登録出来ませんでした。',
-            text: '入力内容をご確認下さい。',
-          }).then((result) => {
-            $("#master").prop('disabled', false);
-          });
+          scriptCharset: 'utf-8',
+          success: function(data) {
+            if (data.error) {
+              if (data.mail_error != '') {
+                $('#mail_error').html(data.mail_error);
+              } else {
+                $('#mail_error').html('');
+              }
+              if (data.team_error != '') {
+                $('#team_error').html(data.team_error);
+              } else {
+                $('#team_error').html('');
+              }
+              if (data.skipper_error != '') {
+                $('#skipper_error').html(data.skipper_error);
+              } else {
+                $('#skipper_error').html('');
+              }
+              if (data.tel_error != '') {
+                $('#tel_error').html(data.tel_error);
+              } else {
+                $('#tel_error').html('');
+              }
+              if (data.pass_error != '') {
+                $('#pass_error').html(data.pass_error);
+              } else {
+                $('#pass_error').html('');
+              }
+              if (data.chkpass_error != '') {
+                $('#chkpass_error').html(data.chkpass_error);
+              } else {
+                $('#chkpass_error').html('');
+              }
+              Swal.fire({
+                icon: 'error',
+                title: 'チーム登録出来ませんでした。',
+                text: '入力内容をご確認下さい。',
+              }).then((result) => {
+                $("#master").prop('disabled', false);
+              });
+            }
+            if (data.success) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'チーム登録出来ました。',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/main/login";
+              });
+            }
+          }
         });
         return false;
       });
@@ -80,41 +114,59 @@
         <div class="input-group mb-3">
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         </div>
-        <div class="input-group mb-3">
+        <div class="error">
           <input type="hidden" class="form-control" name="mail" value="<?= $row_array['mail'] ?>">
-          <input type="text" class="form-control" name="team" placeholder="チーム名">
+          <strong><span id="mail_error" class="text-danger"></span></strong>
+        </div>
+        <div class="error">
+          <strong><span id="team_error" class="text-danger"></span></strong>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="team" placeholder="※チーム名" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-baseball-ball"></span>
             </div>
           </div>
         </div>
+        <div class="error">
+          <strong><span id="skipper_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="skipper" placeholder="監督名">
+          <input type="text" class="form-control" name="skipper" placeholder="※監督名" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
+        <div class="error">
+          <strong><span id="tel_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
-          <input type="tel" class="form-control" name="tel" placeholder="電話番号">
+          <input type="tel" class="form-control" name="tel" placeholder="※電話番号" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-phone"></span>
             </div>
           </div>
         </div>
+        <div class="error">
+          <strong><span id="pass_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
-          <input type="pass" class="form-control" name="pass" placeholder="パスワード">
+          <input type="pass" class="form-control" name="pass" placeholder="※パスワード" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
+        <div class="error">
+          <strong><span id="chkpass_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
-          <input type="pass" class="form-control" name="chkpass" placeholder="パスワード確認">
+          <input type="pass" class="form-control" name="chkpass" placeholder="※パスワード確認" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

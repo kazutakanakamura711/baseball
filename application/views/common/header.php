@@ -67,25 +67,44 @@
           data: postdata,
           crossDomain: false,
           dataType: "json",
-          scriptCharset: 'utf-8'
-        }).done(function(data) {
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: '選手登録しました。',
-            showConfirmButton: false,
-            timer: 1500
-          }).then((result) => {
-            window.location.href = "/main/players";
-          });
-        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          Swal.fire({
-            icon: 'error',
-            title: '選手登録出来ませんでした。',
-            text: '入力内容をご確認下さい。',
-          }).then((result) => {
-            $("#register").prop('disabled', false);
-          });
+          scriptCharset: 'utf-8',
+          success: function(data) {
+            if (data.error) {
+              if (data.name_error != '') {
+                $('#name_error').html(data.name_error);
+              } else {
+                $('#name_error').html('');
+              }
+              if (data.tel_error != '') {
+                $('#tel_error').html(data.tel_error);
+              } else {
+                $('#tel_error').html('');
+              }
+              if (data.mail_error != '') {
+                $('#mail_error').html(data.mail_error);
+              } else {
+                $('#mail_error').html('');
+              }
+              Swal.fire({
+                icon: 'error',
+                title: '選手登録出来ませんでした。',
+                text: '入力内容をご確認下さい。',
+              }).then((result) => {
+                $("#register").prop('disabled', false);
+              });
+            }
+            if (data.success) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: '選手登録しました。',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/main/players";
+              });
+            }
+          }
         });
         return false;
       });
@@ -136,7 +155,7 @@
                 $('[name="delete_player"]').prop('disabled', false);
               });
             });
-          }else{
+          } else {
             $('[name="delete_player"]').prop('disabled', false);
           }
         });
@@ -189,7 +208,7 @@
                 $('[name="delete_score"]').prop('disabled', false);
               });
             });
-          }else{
+          } else {
             $('[name="delete_score"]').prop('disabled', false);
           }
         });
@@ -242,7 +261,7 @@
                 $('[name="delete_game"]').prop('disabled', false);
               });
             });
-          }else{
+          } else {
             $('[name="delete_game"]').prop('disabled', false);
           }
         });
@@ -295,7 +314,7 @@
                 $('[name="return"]').prop('disabled', false);
               });
             });
-          }else{
+          } else {
             $('[name="return"]').prop('disabled', false);
           }
         });
@@ -348,7 +367,7 @@
                 $('[name="real_delete"]').prop('disabled', false);
               });
             });
-          }else{
+          } else {
             $('[name="real_delete"]').prop('disabled', false);
           }
         });

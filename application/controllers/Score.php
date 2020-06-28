@@ -40,7 +40,7 @@ class Score extends CI_Controller
         $id = $_SESSION['id'];
         $this->load->model("model_players");
         $score_num = $this->model_players->getplayercount($id);
-        $limit = 3;
+        $limit = 5;
         $offset = $this->input->get('per_page');
         $this->load->model("model_scores");
         $score['score_array'] = $this->model_scores->getscores($id,$limit,$offset);
@@ -71,6 +71,10 @@ class Score extends CI_Controller
     //スコア詳細へ
     public function score_details()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_scores");
@@ -84,6 +88,10 @@ class Score extends CI_Controller
     //選手スコア変更へ
     public function score_update()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_scores");

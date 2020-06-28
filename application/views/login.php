@@ -23,45 +23,45 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     $(function() {
-      $("#login").on('click', function(event) {
-        event.preventDefault();
-        $(this).prop('disabled', true);
-        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
-        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
-        var postdata = {
-          'mail': $('[name="mail"]').val(),
-          'pass': $('[name="pass"]').val()
-        };
-        postdata[csrf_name] = csrf_hash;
-        $.ajax({
-          type: "POST",
-          url: "/main/login_validation",
-          data: postdata,
-          crossDomain: false,
-          dataType: "json",
-          scriptCharset: 'utf-8'
-        }).done(function(data) {
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: 'ログイン認証OK!',
-            showConfirmButton: false,
-            timer: 1500
-          }).then((result) => {
-            window.location.href = "/main/players";
+          $("#login").on('click', function(event) {
+              event.preventDefault();
+              $(this).prop('disabled', true);
+              var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+              var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+              var postdata = {
+                'mail': $('[name="mail"]').val(),
+                'pass': $('[name="pass"]').val()
+              };
+              postdata[csrf_name] = csrf_hash;
+              $.ajax({
+                type: "POST",
+                url: "/main/login_validation",
+                data: postdata,
+                crossDomain: false,
+                dataType: "json",
+                scriptCharset: 'utf-8'
+              }).done(function(data) {
+                Swal.fire({
+                  position: 'top-center',
+                  icon: 'success',
+                  title: 'ログイン認証OK!',
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then((result) => {
+                  window.location.href = "/main/players";
+                });
+              }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'ログイン認証NG!',
+                      text: '入力内容をご確認下さい。',
+                    }).then((result) => {
+                      $("#login").prop('disabled', false);
+                    });
+                  });
+                return false;
+              });
           });
-        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          Swal.fire({
-            icon: 'error',
-            title: 'ログイン認証NG!',
-            text: '入力内容をご確認下さい。',
-          }).then((result) => {
-            $("#login").prop('disabled', false);
-          });
-        });
-        return false;
-      });
-    });
   </script>
 </head>
 
@@ -75,10 +75,7 @@
         <p class="login-box-msg">ログインしてください。</p>
         <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         <div class="input-group mb-3">
-          <div class="error">
-            <?= form_error("mail"); ?>
-          </div>
-          <input type="mail" name="mail" class="form-control" placeholder="メールアドレス">
+          <input type="email" name="mail" class="form-control" placeholder="※メールアドレス" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -86,10 +83,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <div class="error">
-            <?= form_error("pass"); ?>
-          </div>
-          <input type="pass" name="pass" class="form-control" placeholder="パスワード">
+          <input type="pass" name="pass" class="form-control" placeholder="※パスワード" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

@@ -5,6 +5,10 @@ class Match extends CI_Controller
     //試合申し込みへ
     public function game()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_teams");
@@ -18,6 +22,10 @@ class Match extends CI_Controller
     //連絡フォームへ
     public function contact()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_teams");
@@ -30,6 +38,10 @@ class Match extends CI_Controller
     }
     public function game_result()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $data['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
@@ -74,6 +86,10 @@ class Match extends CI_Controller
     //試合結果変更へ
     public function game_update()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_games");
@@ -130,6 +146,10 @@ class Match extends CI_Controller
     }
     public function ground()
     {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY', false);
         $this->load->view('ground');
     }

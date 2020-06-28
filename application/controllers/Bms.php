@@ -4,7 +4,7 @@ class Bms extends CI_Controller
 {
     public function signup()
     {
-        $this->output->set_header('X-Frame-Options: DENY',false);
+        $this->output->set_header('X-Frame-Options: DENY', false);
         $data['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -47,18 +47,25 @@ class Bms extends CI_Controller
             $day = date("Y-m-d H:i:s");
             $this->load->model("model_players");
             if ($this->model_players->add_players($day)) {
-                //redirect("main/players");
-                exit(json_encode(['register_id' => '登録完了']));
+                //$this->output->set_status_header(200);
+                $array = ['success' => true];
             } else {
                 echo "選手登録できませんでした。";
             }
         } else {
-            redirect("main/players");
+            //$this->output->set_status_header(520);
+            $array = [
+                'error' => true,
+                'name_error' => form_error('name'),
+                'tel_error' => form_error('tel'),
+                'mail_error' => form_error('mail')
+            ];
         }
+        exit(json_encode($array));
     }
     public function check_signup_team($key)
     {
-        $this->output->set_header('X-Frame-Options: DENY',false);
+        $this->output->set_header('X-Frame-Options: DENY', false);
         //add_temp_usersモデルが書かれている、model_uses.phpをロードする
         $this->load->model("model_temporary");
         if ($this->model_temporary->is_valid_key($key)) {    //キーが正しい場合は、以下を実行
@@ -105,10 +112,9 @@ class Bms extends CI_Controller
             [
                 "field" => "mail",
                 "label" => "メールアドレス",
-                "rules" => "trim|required|valid_email|is_unique[team.mail]",
+                "rules" => "trim|required|is_unique[team.mail]",
                 "errors" => [
                     "required" => "メールアドレスは入力必須です。",
-                    "valid_email" => "メールアドレスが不正です。",
                     "is_unique" => "既に登録されているメールアドレスです。"
                 ]
             ],
@@ -124,10 +130,10 @@ class Bms extends CI_Controller
             [
                 "field" => "chkpass",
                 "label" => "パスワード確認",
-                "rules" => "trim|required|matches[password]",
+                "rules" => "trim|required|matches[pass]",
                 "errors" => [
-                    "required" => "もう一度パスワードを入力してください。",
-                    "matches" => "同じパスワードを入力してください。"
+                    "required" => "確認パスワードは入力必須です。",
+                    "matches" => "上記と同じパスワードを入力してください。"
                 ]
             ]
         ];
@@ -135,11 +141,22 @@ class Bms extends CI_Controller
         $days = date("Y-m-d H:i:s");
         if ($this->form_validation->run()) {
             $this->load->model("model_teams");
-            $this->model_teams->add_teams($days);
-            //redirect("main/login");
-            exit(json_encode(['master_id' => '登録完了']));
+            if($this->model_teams->add_teams($days)){
+                $array = ['success' => true];
+            } else {
+                echo "選手登録できませんでした。";
+            }
         } else {
-            echo "入力内容に誤りがあるか、既に使われているメールアドレスの可能性がある為、チーム登録できませんでした。";
+            $array = [
+                'error' => true,
+                'team_error' => form_error('team'),
+                'skipper_error' => form_error('skipper'),
+                'tel_error' => form_error('tel'),
+                'mail_error' => form_error('mail'),
+                'pass_error' => form_error('pass'),
+                'chkpass_error' => form_error('chkpass')
+            ];
         }
+        exit(json_encode($array));
     }
 }

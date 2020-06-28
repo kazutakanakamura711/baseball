@@ -79,22 +79,8 @@
       <div class="card-body register-card-body">
         <p class="login-box-msg">下記に入力し、送信してください。</p>
         <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="battle_team" placeholder="チーム名" value="<?= $row_array['team'] ?>">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-baseball-ball"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="battle_skipper" placeholder="監督名" value="<?= $row_array['skipper'] ?>">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
+        <p class="text-group mb-3">チーム名 <span class="fas fa-baseball-ball"></span> : <strong><?= $row_array['team'] ?></strong></p>
+        <p class="text-group mb-3">監督名　 <span class="fas fa-user"></span> : <strong><?= $row_array['skipper'] ?></strong></p>
         <div class="input-group mb-3">
           <input type="hidden" class="form-control" name="battle_mail" placeholder="メールアドレス" value="<?= $row_array['mail'] ?>">
         </div>
@@ -108,7 +94,7 @@
           <input type="hidden" class="form-control" name="mail" placeholder="店番" value="<?= $_SESSION['mail'] ?>">
         </div>
         <div class="form-group mb-3">
-          <textarea name="message" id="message" cols="42" rows="10" placeholder="ここにメッセージを入力してください"></textarea>
+          <textarea name="message" id="message" cols="42" rows="10" placeholder="※ここにメッセージを入力してください"></textarea>
         </div>
         <div class="row">
           <button id="contact" type="submit" class="btn btn-primary btn-block">送信する</button>

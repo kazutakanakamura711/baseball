@@ -50,10 +50,11 @@ class Email extends CI_Controller
 				exit(json_encode(['result' => 'success']));
 			} else {
 				$this->output->set_status_header(520);
-				exit(json_encode(['result' => 'error', 'error_detail' => ['原因1', '原因2']]));
+				exit(json_encode(['result' => 'error']));
 			}
 		} else {
-			$this->load->view('signup');
+			$this->output->set_status_header(520);
+			exit(json_encode(['result' => 'error']));
 		}
 	}
 	public function contact()
