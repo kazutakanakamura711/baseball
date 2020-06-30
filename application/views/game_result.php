@@ -30,7 +30,7 @@
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
         var postdata = {
           'team_id': $('[name="team_id"]').val(),
-          'battle_team': $('[name="battle_team"]').val(),
+          'battleteam': $('[name="battleteam"]').val(),
           'score': $('[name="score"]').val(),
           'loss': $('[name="loss"]').val(),
           'consideration': $('[name="consideration"]').val()
@@ -42,25 +42,34 @@
           data: postdata,
           crossDomain: false,
           dataType: "json",
-          scriptCharset: 'utf-8'
-        }).done(function(data) {
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: '試合結果登録しました。',
-            showConfirmButton: false,
-            timer: 1500
-          }).then((result) => {
-            window.location.href = "/main/players";
-          });
-        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          Swal.fire({
-            icon: 'error',
-            title: '試合結果登録出来ませんでした。',
-            text: '入力内容をご確認下さい。',
-          }).then((result) => {
-            $("#register").prop('disabled', false);
-          });
+          scriptCharset: 'utf-8',
+          success: function(data) {
+            if (data.error) {
+              if (data.battleteam_error != '') {
+                $('#battleteam_error').html(data.battleteam_error);
+              } else {
+                $('#battleteam_error').html('');
+              }
+              Swal.fire({
+                icon: 'error',
+                title: '試合結果登録出来ませんでした。',
+                text: '入力内容をご確認下さい。',
+              }).then((result) => {
+                $("#register").prop('disabled', false);
+              });
+            }
+            if (data.success) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: '試合結果登録しました。',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/main/players";
+              });
+            }
+          }
         });
         return false;
       });
@@ -80,8 +89,11 @@
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
           <input type="hidden" class="form-control" name="team_id" value="<?= $_SESSION['id'] ?>">
         </div>
+        <div class="error">
+          <strong><span id="battleteam_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="battle_team" placeholder="対戦相手">
+          <input type="text" class="form-control" name="battleteam" placeholder="対戦相手">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>

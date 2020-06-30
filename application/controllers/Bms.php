@@ -110,21 +110,13 @@ class Bms extends CI_Controller
                 ]
             ],
             [
-                "field" => "mail",
-                "label" => "メールアドレス",
-                "rules" => "trim|required|is_unique[team.mail]",
-                "errors" => [
-                    "required" => "メールアドレスは入力必須です。",
-                    "is_unique" => "既に登録されているメールアドレスです。"
-                ]
-            ],
-            [
                 "field" => "pass",
                 "label" => "パスワード",
-                "rules" => "trim|required|min_length[6]",
+                "rules" => "trim|required|min_length[6]|alpha_numeric",
                 "errors" => [
                     "required" => "パスワードは入力必須です。",
-                    "min_length" => "パスワードは最低6文字以上にしてください。"
+                    "min_length" => "パスワードは最低6文字以上にしてください。",
+                    "alpha_numeric" => "パスワードは半角英数字のみにしてください。"
                 ]
             ],
             [
@@ -144,7 +136,7 @@ class Bms extends CI_Controller
             if($this->model_teams->add_teams($days)){
                 $array = ['success' => true];
             } else {
-                echo "選手登録できませんでした。";
+                echo "チーム登録できませんでした。";
             }
         } else {
             $array = [

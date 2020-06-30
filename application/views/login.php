@@ -97,6 +97,7 @@
           </div>
           <br>
           <p><?= anchor('bms/signup/', '新規チーム登録へ　>>'); ?></p>
+          <p><?= anchor('change/password/', 'パスワード忘れた方　>>'); ?></p>
         </div>
       </div><!-- /.login-card-body -->
     </div><!-- /.card -->

@@ -55,10 +55,10 @@ class Match extends CI_Controller
         $this->load->library("form_validation");
         $config = [
             [
-                "field" => "battle_team",
+                "field" => "battleteam",
                 "label" => "対戦相手",
                 "rules" => 'trim|required',
-                "errors" => ["required" => "チーム名は入力必須です。"]
+                "errors" => ["required" => "対戦相手は入力必須です。"]
             ]
         ];
         $this->form_validation->set_rules($config);
@@ -75,13 +75,17 @@ class Match extends CI_Controller
             $this->load->model("model_games");
             if ($this->model_games->add_game($score, $loss, $battle)) {
                 //redirect("main/players");
-                exit(json_encode(['player' => '更新完了']));
+                $array = ['success' => true];
             } else {
                 echo "試合結果登録できませんでした。";
             }
         } else {
-            echo "登録出来ませんでした、入力内容確認して下さい。";
+            $array = [
+                'error' => true,
+                'battleteam' => form_error('battleteam')
+            ];
         }
+        exit(json_encode($array));
     }
     //試合結果変更へ
     public function game_update()

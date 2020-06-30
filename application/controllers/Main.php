@@ -45,7 +45,7 @@ class Main extends CI_Controller
                 "field" => "pass",
                 "label" => "パスワード",
                 "rules" => "trim|required",
-                "errors" => ["required" => "パスワードを入力してください。",]
+                "errors" => ["required" => "パスワードは入力必須です。",]
             ]
         ];
         $this->form_validation->set_rules($config);
@@ -59,19 +59,12 @@ class Main extends CI_Controller
                     "skipper" => $rows[0]["skipper"],
                     "tel" => $rows[0]["tel"],
                     "mail" => $this->input->post("mail"),
-                    "slogan" => $rows[0]["slogan"],
-                    "year" => $rows[0]["year"],
-                    "job" => $rows[0]["job"],
-                    "experience" => $rows[0]["experience"],
-                    "policy" => $rows[0]["policy"],
-                    "practice" => $rows[0]["practice"],
-                    "pr" => $rows[0]["pr"],
                     "is_logged_in" => 1
                 ];
                 $this->session->set_userdata($data);
                 exit(json_encode($data));
             } else {
-                $data["error"] = "メールアドレスかパスワードが不正です";
+                $data["error"] = "メールアドレスかパスワードが不正です。";
                 $this->load->view("login", $data);
             }
         } else {
@@ -87,6 +80,8 @@ class Main extends CI_Controller
         }
         $this->output->set_header('X-Frame-Options: DENY');
         $id = $_SESSION['id'];
+        $this->load->model("model_teams");
+        $player['team_array'] = $this->model_teams->getteam($id);
         $this->load->model("model_players");
         $player['player_array'] = $this->model_players->getplayers($id);
         $player['age'] = $this->model_players->getplayerage($id);

@@ -31,8 +31,8 @@
         var postdata = {
           'id': $('[name="id"]').val(),
           'team': $('[name="team"]').val(),
+          'skipper': $('[name="skipper"]').val(),
           'tel': $('[name="tel"]').val(),
-          'mail': $('[name="mail"]').val(),
           'slogan': $('[name="slogan"]').val(),
           'policy': $('[name="policy"]').val(),
           'year': $('[name="year"]').val(),
@@ -48,25 +48,44 @@
           data: postdata,
           crossDomain: false,
           dataType: "json",
-          scriptCharset: 'utf-8'
-        }).done(function(data) {
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: '編集OK!',
-            showConfirmButton: false,
-            timer: 1500
-          }).then((result) => {
-            window.location.href = "/main/players";
-          });
-        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          Swal.fire({
-            icon: 'error',
-            title: '編集NG!',
-            text: '入力内容をご確認下さい。',
-          }).then((result) => {
-            $("#update").prop('disabled', false);
-          });
+          scriptCharset: 'utf-8',
+          success: function(data) {
+            if (data.error) {
+              if (data.team_error != '') {
+                $('#team_error').html(data.team_error);
+              } else {
+                $('#team_error').html('');
+              }
+              if (data.skipper_error != '') {
+                $('#skipper_error').html(data.skipper_error);
+              } else {
+                $('#skipper_error').html('');
+              }
+              if (data.tel_error != '') {
+                $('#tel_error').html(data.tel_error);
+              } else {
+                $('#tel_error').html('');
+              }
+              Swal.fire({
+                icon: 'error',
+                title: '編集NG!',
+                text: '入力内容をご確認下さい。',
+              }).then((result) => {
+                $("#update").prop('disabled', false);
+              });
+            }
+            if (data.success) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: '編集OK!',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/main/players";
+              });
+            }
+          }
         });
         return false;
       });
@@ -81,32 +100,41 @@
     </div>
     <div class="card">
       <div class="card-body register-card-body">
-        <p class="login-box-msg">入力してください</p>
+        <p class="login-box-msg">変更箇所を入力してください</p>
         <div class="input-group mb-3">
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
           <input type="hidden" class="form-control" name="id" value="<?= $team_array['id'] ?>">
         </div>
+        <div class="error">
+          <strong><span id="team_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="team" value="<?= $team_array['team'] ?>">
+          <input type="text" class="form-control" name="team" placeholder="※チーム名" value="<?= $team_array['team'] ?>" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-baseball-ball"></span>
             </div>
           </div>
         </div>
+        <div class="error">
+          <strong><span id="skipper_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
-          <input type="tel" class="form-control" name="tel" value="<?= $team_array['tel'] ?>">
+          <input type="text" class="form-control" name="skipper" placeholder="※監督名" value="<?= $team_array['skipper'] ?>" required>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-phone"></span>
+              <span class="fas fa-baseball-ball"></span>
             </div>
           </div>
         </div>
+        <div class="error">
+          <strong><span id="tel_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="mail" value="<?= $team_array['mail'] ?>">
+          <input type="tel" class="form-control" name="tel" placeholder="※電話番号" value="<?= $team_array['tel'] ?>" required>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-phone"></span>
             </div>
           </div>
         </div>
@@ -152,7 +180,7 @@
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <label for="experience">選手野球経験</label>
+              <label for="experience">野球経験者</label>
               <select name="experience" class="form-control" style="width: 100%;">
                 <option><?= $team_array['experience'] ?></option>
                 <?php for ($i = 1; $i < 10; $i++) { ?>

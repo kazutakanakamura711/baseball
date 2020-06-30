@@ -37,6 +37,7 @@ class Model_teams extends CI_Model
     //update_playerのモデルの実行時、以下のデータを取得して、$dateと紐づける
     $data=[
       "team" => $this->input->post("team"),
+      "skipper" => $this->input->post("skipper"),
       "tel" => $this->input->post("tel"),
       "mail" => $this->input->post("mail"),
       "slogan" => $this->input->post("slogan"),
@@ -50,6 +51,16 @@ class Model_teams extends CI_Model
     ];
     //$dateをDB内の特定playerに挿入(更新)する
     return $this->db->where('id', $this->input->post("id"))
+      ->update('team',$data);
+  }
+  public function update_password($days)
+  {
+    //add_teamsのモデルの実行時に、以下のデータを取得して、$dataと紐づける
+    $data = [
+      "password" => password_hash($this->input->post("pass"), PASSWORD_DEFAULT),
+      "update_time" => $days
+    ];
+    return $this->db->where('mail', $this->input->post("mail"))
       ->update('team',$data);
   }
 }

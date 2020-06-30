@@ -7,7 +7,7 @@ class Model_games extends CI_Model
     //add_playersのモデルの実行時に、以下のデータを取得して、$dataと紐づける
     $data = [
       "team_id" => $this->input->post("team_id"),
-      "battle_team" => $this->input->post("battle_team"),
+      "battle_team" => $this->input->post("battleteam"),
       "score" => $score,
       "loss" => $loss,
       "battle" => $battle,

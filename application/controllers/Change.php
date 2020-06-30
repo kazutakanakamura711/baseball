@@ -54,12 +54,20 @@ class Change extends CI_Controller
         if ($this->form_validation->run()) {
             $day = date("Y-m-d H:i:s");
             $this->load->model("model_players");
-            $this->model_players->update_player($day);
-            //redirect("main/players");
-            exit(json_encode(['player' => '更新完了']));
+            if ($this->model_players->update_player($day)) {
+                $array = ['success' => true];
+            } else {
+                echo "選手情報変更できませんでした。";
+            }
         } else {
-            redirect("main/players");
+            $array = [
+                'error' => true,
+                'name_error' => form_error('name'),
+                'tel_error' => form_error('tel'),
+                'mail_error' => form_error('mail')
+            ];
         }
+        exit(json_encode($array));
     }
     //選手削除
     public function delete_bms()
@@ -77,6 +85,7 @@ class Change extends CI_Controller
             redirect("main/login");
             return;
         }
+        $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
         $this->load->model("model_teams");
         $team['team_array'] = html_escape($this->model_teams->getteam($id));
@@ -89,11 +98,51 @@ class Change extends CI_Controller
     public function update_profile()
     {
         header("Content-type: application/json; charset=UTF-8");
-        $day = date("Y-m-d H:i:s");
-        $this->load->model("model_teams");
-        $this->model_teams->update_team($day);
-        //redirect("main/players");
-        exit(json_encode(['team' => '更新完了']));
+        $this->load->library("form_validation");
+        $config = [
+            [
+                "field" => "team",
+                "label" => "チーム名",
+                "rules" => 'trim|required',
+                "errors" => ["required" => "チーム名は入力必須です。"]
+            ],
+            [
+                "field" => "skipper",
+                "label" => "監督名",
+                "rules" => 'trim|required',
+                "errors" => [
+                    "required" => "監督名は入力必須です。",
+                    "errors" => ["required" => "監督名は入力必須です。"]
+                ],
+            ],
+            [
+                "field" => "tel",
+                "label" => "電話番号",
+                "rules" => "trim|required|regex_match[/^[0-9]+$/]",
+                "errors" => [
+                    "required" => "電話番号は入力必須です。",
+                    "regex_match" => "電話番号が不正です。"
+                ]
+            ]
+        ];
+        $this->form_validation->set_rules($config);
+        if ($this->form_validation->run()) {
+            $day = date("Y-m-d H:i:s");
+            $this->load->model("model_teams");
+            if ($this->model_teams->update_team($day)) {
+                $array = ['success' => true];
+            } else {
+                echo "チーム編集できませんでした。";
+            }
+        } else {
+            $array = [
+                'error' => true,
+                'team_error' => form_error('team'),
+                'skipper_error' => form_error('skipper'),
+                'tel_error' => form_error('tel')
+            ];
+        }
+        exit(json_encode($array));
     }
     public function player_return()
     {
@@ -101,7 +150,6 @@ class Change extends CI_Controller
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_players");
         $this->model_players->return_player($day);
-        //redirect("main/players");
         exit(json_encode(['player' => '削除完了']));
     }
     public function delete_real()
@@ -109,7 +157,81 @@ class Change extends CI_Controller
         header("Content-type: application/json; charset=UTF-8");
         $this->load->model("model_players");
         $this->model_players->real_delete();
-        //redirect("main/players");
         exit(json_encode(['player' => '削除完了']));
     }
+    public function password()
+    {
+        $this->output->set_header('X-Frame-Options: DENY', false);
+        $team['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view("password", $team);
+    }
+    public function update_password()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $this->load->library("form_validation");
+        $config = [
+            [
+                "field" => "mail",
+                "label" => "メールアドレス",
+                "rules" => "trim|required|valid_email",
+                "errors" => [
+                    "required" => "メールアドレスは入力必須です。",
+                    "valid_email" => "メールアドレスが不正です。"
+                ]
+            ],
+            [
+                "field" => "pass",
+                "label" => "パスワード",
+                "rules" => "trim|required|min_length[6]|alpha_numeric",
+                "errors" => [
+                    "required" => "パスワードは入力必須です。",
+                    "min_length" => "パスワードは最低6文字以上にしてください。",
+                    "alpha_numeric" => "パスワードは半角英数字のみにしてください。"
+                ]
+            ],
+            [
+                "field" => "chkpass",
+                "label" => "パスワード確認",
+                "rules" => "trim|required|matches[pass]",
+                "errors" => [
+                    "required" => "確認パスワードは入力必須です。",
+                    "matches" => "上記と同じパスワードを入力してください。"
+                ]
+            ]
+        ];
+        $this->form_validation->set_rules($config);
+        $days = date("Y-m-d H:i:s");
+        if ($this->form_validation->run()) {
+            $this->load->model("model_teams");
+            if ($this->model_teams->update_password($days)) {
+                $array = ['success' => true];
+            } else {
+                echo "チーム登録できませんでした。";
+            }
+        } else {
+            $array = [
+                'error' => true,
+                'mail_error' => form_error('mail'),
+                'pass_error' => form_error('pass'),
+                'chkpass_error' => form_error('chkpass')
+            ];
+        }
+        exit(json_encode($array));
+    }
+    public function mail()
+    {
+        $id = $this->input->get('id');
+        $this->output->set_header('X-Frame-Options: DENY', false);
+        $this->load->model("model_teams");
+        $team['team_array'] = html_escape($this->model_teams->getteam($id));
+        $team['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view("mail_send", $team);
+    }
+
 }

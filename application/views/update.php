@@ -46,25 +46,44 @@
           data: postdata,
           crossDomain: false,
           dataType: "json",
-          scriptCharset: 'utf-8'
-        }).done(function(data) {
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: '更新しました。',
-            showConfirmButton: false,
-            timer: 1500
-          }).then((result) => {
-            window.location.href = "/main/players";
-          });
-        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          Swal.fire({
-            icon: 'error',
-            title: '更新出来ませんでした。',
-            text: '入力内容をご確認下さい。',
-          }).then((result) => {
-            $("#update").prop('disabled', false);
-          });
+          scriptCharset: 'utf-8',
+          success: function(data) {
+            if (data.error) {
+              if (data.name_error != '') {
+                $('#name_error').html(data.name_error);
+              } else {
+                $('#name_error').html('');
+              }
+              if (data.tel_error != '') {
+                $('#tel_error').html(data.tel_error);
+              } else {
+                $('#tel_error').html('');
+              }
+              if (data.mail_error != '') {
+                $('#mail_error').html(data.mail_error);
+              } else {
+                $('#mail_error').html('');
+              }
+              Swal.fire({
+                icon: 'error',
+                title: '更新出来ませんでした。',
+                text: '入力内容をご確認下さい。',
+              }).then((result) => {
+                $("#update").prop('disabled', false);
+              });
+            }
+            if (data.success) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: '更新しました。',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/main/players";
+              });
+            }
+          }
         });
         return false;
       });
@@ -84,6 +103,9 @@
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
           <input type="hidden" class="form-control" name="id" value="<?= $row_array['pid'] ?>">
         </div>
+        <div class="error">
+          <strong><span id="name_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="name" value="<?= $row_array['name'] ?>">
           <div class="input-group-append">
@@ -92,6 +114,9 @@
             </div>
           </div>
         </div>
+        <div class="error">
+          <strong><span id="tel_error" class="text-danger"></span></strong>
+        </div>
         <div class="input-group mb-3">
           <input type="tel" class="form-control" name="tel" value="<?= $row_array['tel'] ?>">
           <div class="input-group-append">
@@ -99,6 +124,9 @@
               <span class="fas fa-phone"></span>
             </div>
           </div>
+        </div>
+        <div class="error">
+          <strong><span id="mail_error" class="text-danger"></span></strong>
         </div>
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="mail" value="<?= $row_array['mail'] ?>">

@@ -32,24 +32,24 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <p><strong>チーム名：</strong><?= $player_array[0]['team'] ?></p>
-                  <p><strong>監督：</strong><?= $_SESSION['skipper'] ?></p>
-                  <p><strong>電話番号：</strong><?= $_SESSION['tel'] ?></p>
-                  <p><strong>メールアドレス：</strong><?= $_SESSION['mail'] ?></p>
-                  <p><strong>チームスローガン：</strong><?= $player_array[0]['slogan'] ?></p>
-                  <p><strong>チーム結成：</strong><?= $player_array[0]['year'] ?></p>
-                  <p><strong>選手層：</strong><?= $player_array[0]['job'] ?></p>
+                  <p><strong>チーム名：</strong><?= $team_array['team'] ?></p>
+                  <p><strong>監督：</strong><?= $team_array['skipper'] ?></p>
+                  <p><strong>電話番号：</strong><?= $team_array['tel'] ?></p>
+                  <p><strong>メールアドレス：</strong><?= $team_array['mail'] ?></p>
+                  <p><strong>チームスローガン：</strong><?= $team_array['slogan'] ?></p>
+                  <p><strong>チーム結成：</strong><?= $team_array['year'] ?></p>
+                  <p><strong>選手層：</strong><?= $team_array['job'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
                   <p><strong>平均年齢：</strong>約<?= date("Y") - (round($age['sum(birth)'] / $count, 0)) ?>歳</p>
-                  <p><strong>野球経験者：</strong><?= $player_array[0]['experience'] ?></p>
-                  <p><strong>活動方針：</strong><?= $player_array[0]['policy'] ?></p>
-                  <p><strong>練習頻度：</strong><?= $player_array[0]['practice'] ?></p>
+                  <p><strong>野球経験者：</strong><?= $team_array['experience'] ?></p>
+                  <p><strong>活動方針：</strong><?= $team_array['policy'] ?></p>
+                  <p><strong>練習頻度：</strong><?= $team_array['practice'] ?></p>
                   <p><strong>年間試合数：</strong>約<?= $game ?>試合</p>
                   <p><strong>公開設定：</strong></p>
-                  <p><strong>その他PR：</strong><?= $player_array[0]['pr'] ?></p>
+                  <p><strong>その他PR：</strong><?= $team_array['pr'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
             </div><!-- /.row -->
@@ -59,6 +59,11 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <button type="submit" onclick="location.href='/change/profile?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">プロフィール編集　<i class="fas fa-pencil-alt"></i></button>
+                </div><!-- /.form-group -->
+              </div><!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <button type="submit" onclick="location.href='/change/profile?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">メールアドレス変更　<i class="fas fa-envelope"></i></button>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
             </div><!-- /.row -->

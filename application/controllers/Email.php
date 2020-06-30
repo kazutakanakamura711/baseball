@@ -27,10 +27,11 @@ class Email extends CI_Controller
 			[
 				"field" => "mail",
 				"label" => "メールアドレス",
-				"rules" => "trim|required|valid_email|",
+				"rules" => "trim|required|valid_email|is_unique[team.mail]",
 				"errors" => [
 					"required" => "メールアドレスは入力必須です。",
-					"valid_email" => "メールアドレスが不正です。"
+					"valid_email" => "メールアドレスが不正です。",
+					"is_unique" => "既に登録されているメールアドレスです。"
 				]
 			]
 		];
@@ -46,16 +47,18 @@ class Email extends CI_Controller
 			$this->mailclass->php_mailer($to, NULL, $subject, $body);
 			$this->load->model("model_temporary");
 			if ($this->model_temporary->add_team($key)) {
-				$this->output->set_status_header(200);
-				exit(json_encode(['result' => 'success']));
+				//$this->output->set_status_header(200);
+				$array = ['success' => true];
 			} else {
-				$this->output->set_status_header(520);
-				exit(json_encode(['result' => 'error']));
+				echo "仮登録できませんでした。";
 			}
 		} else {
-			$this->output->set_status_header(520);
-			exit(json_encode(['result' => 'error']));
+			$array = [
+				'error' => true,
+				'mail_error' => form_error('mail')
+			];
 		}
+		exit(json_encode($array));
 	}
 	public function contact()
 	{
