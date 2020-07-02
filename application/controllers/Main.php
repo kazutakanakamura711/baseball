@@ -13,7 +13,7 @@ class Main extends CI_Controller
     public function login()
     {
         if ($this->session->userdata("is_logged_in")) {
-            redirect("score/scores");
+            redirect("main/players");
         } else {
             $data['csrf'] = array(
                 'name' => $this->security->get_csrf_token_name(),

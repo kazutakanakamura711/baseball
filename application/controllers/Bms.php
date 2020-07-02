@@ -110,6 +110,16 @@ class Bms extends CI_Controller
                 ]
             ],
             [
+                "field" => "mail",
+                "label" => "メールアドレス",
+                "rules" => "trim|required|valid_email|is_unique[team.mail]",
+                "errors" => [
+                    "required" => "メールアドレスは入力必須です。",
+                    "valid_email" => "メールアドレスが不正です。",
+                    "is_unique" => "既に登録されているメールアドレスです。"
+                ]
+            ],
+            [
                 "field" => "pass",
                 "label" => "パスワード",
                 "rules" => "trim|required|min_length[6]|alpha_numeric",
@@ -133,7 +143,7 @@ class Bms extends CI_Controller
         $days = date("Y-m-d H:i:s");
         if ($this->form_validation->run()) {
             $this->load->model("model_teams");
-            if($this->model_teams->add_teams($days)){
+            if ($this->model_teams->add_teams($days)) {
                 $array = ['success' => true];
             } else {
                 echo "チーム登録できませんでした。";

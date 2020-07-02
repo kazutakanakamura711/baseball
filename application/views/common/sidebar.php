@@ -93,10 +93,18 @@
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li> -->
+            <li class="nav-header">information</li>
             <li class="nav-item">
               <a href="<?= base_url() ?>match/rules" class="nav-link">
-                <i class="nav-icon far fa-circle text-danger"></i>
+                <i class="nav-icon far fa-circle text-success"></i>
                 <p>管理人の野球コラム</p>
+                <i class="right fas fa-angle-right"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url() ?>match/rules" class="nav-link">
+                <i class="nav-icon far fa-circle text-success"></i>
+                <p>お問い合わせ</p>
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li>

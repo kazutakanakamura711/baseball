@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>メールアドレス変更確認</title>
+  <title>パスワード変更</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,42 +23,58 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     $(function() {
-      $("#update").on('click', function(event) {
+      $("#password").on('click', function(event) {
         event.preventDefault();
         $(this).prop('disabled', true);
         var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
         var postdata = {
           'id': $('[name="id"]').val(),
-          'mail': $('[name="mail"]').val()
+          'pass': $('[name="pass"]').val(),
+          'chkpass': $('[name="chkpass"]').val()
         };
         postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
-          url: "/change/mail_update",
+          url: "/change/update_password",
           data: postdata,
           crossDomain: false,
           dataType: "json",
           scriptCharset: 'utf-8',
           success: function(data) {
             if (data.error) {
+              if (data.mail_error != '') {
+                $('#mail_error').html(data.mail_error);
+              } else {
+                $('#mail_error').html('');
+              }
+              if (data.pass_error != '') {
+                $('#pass_error').html(data.pass_error);
+              } else {
+                $('#pass_error').html('');
+              }
+              if (data.chkpass_error != '') {
+                $('#chkpass_error').html(data.chkpass_error);
+              } else {
+                $('#chkpass_error').html('');
+              }
               Swal.fire({
                 icon: 'error',
-                title: 'メールアドレス変更出来ませんでした。',
+                title: 'パスワード変更出来ませんでした。',
                 text: '入力内容をご確認下さい。',
               }).then((result) => {
-                $("#update").prop('disabled', false);
+                $("#password").prop('disabled', false);
               });
             }
             if (data.success) {
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: 'メールアドレス変更出来ました。',
+                title: 'パスワード変更出来ました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
-                window.location.href = "/main/players";
+                window.location.href = "/main/login";
               });
             }
           }
@@ -72,25 +88,48 @@
 <body class="hold-transition register-page">
   <div class="register-box">
     <div class="register-logo">
-      <h1>メールアドレス変更確認</h1>
+      <h1>パスワード変更</h1>
     </div>
     <div class="card">
       <div class="card-body register-card-body">
-        <p class="login-box-msg">下記内容確認後、送信してください。</p>
-        <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
-        <p class="text-group mb-3">変更後 <span class="fas fa-envelope"></span> : <strong><?= $row_array['mail'] ?></strong></p>
-        <div class="team">
+        <p class="login-box-msg">下記に入力後、変更してください。</p>
+        <div class="input-group mb-3">
+          <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
           <input type="hidden" class="form-control" name="id" value="<?= $row_array['teamid'] ?>">
-          <input type="hidden" class="form-control" name="mail" value="<?= $row_array['mail'] ?>">
-        </div>
+        </div>    
         <div class="error">
           <strong><span id="pass_error" class="text-danger"></span></strong>
         </div>
-        <div class="row">
-          <button id="update" type="submit" class="btn btn-primary btn-block">変更する</button>
+        <div class="input-group mb-3">
+          <input type="pass" class="form-control" name="pass" placeholder="※パスワード" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
         </div>
-        <br>
-        <p><?= anchor('main/teams', '一覧に戻る　>>'); ?></p>
+        <div class="error">
+          <strong><span id="chkpass_error" class="text-danger"></span></strong>
+        </div>
+        <div class="input-group mb-3">
+          <input type="pass" class="form-control" name="chkpass" placeholder="※パスワード確認" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <button id="password" type="submit" class="btn btn-primary btn-block">登録</button>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-6">
+              <p class="float-left"><?= anchor('main/players/', '一覧に戻る　>>'); ?></p>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div>
       </div>
       <!-- /.form-box -->
     </div><!-- /.card -->

@@ -35,7 +35,7 @@ class Model_teams extends CI_Model
   public function update_team($day)
   {
     //update_playerのモデルの実行時、以下のデータを取得して、$dateと紐づける
-    $data=[
+    $data = [
       "team" => $this->input->post("team"),
       "skipper" => $this->input->post("skipper"),
       "tel" => $this->input->post("tel"),
@@ -46,12 +46,13 @@ class Model_teams extends CI_Model
       "job" => $this->input->post("job"),
       "experience" => $this->input->post("experience"),
       "practice" => $this->input->post("practice"),
+      "open_to" => $this->input->post("open_to"),
       "pr" => $this->input->post("pr"),
-      "update_time" => $day 
+      "update_time" => $day
     ];
     //$dateをDB内の特定playerに挿入(更新)する
     return $this->db->where('id', $this->input->post("id"))
-      ->update('team',$data);
+      ->update('team', $data);
   }
   public function update_password($days)
   {
@@ -60,7 +61,17 @@ class Model_teams extends CI_Model
       "password" => password_hash($this->input->post("pass"), PASSWORD_DEFAULT),
       "update_time" => $days
     ];
-    return $this->db->where('mail', $this->input->post("mail"))
-      ->update('team',$data);
+    return $this->db->where('id', $this->input->post("id"))
+      ->update('team', $data);
+  }
+  public function mail_update($id)
+  {
+    //add_teamsのモデルの実行時に、以下のデータを取得して、$dataと紐づける
+    $data = [
+      "mail" => $this->input->post("mail"),
+      "update_time" => date("Y-m-d H:i:s")
+    ];
+    return $this->db->where('id', $id)
+      ->update('team', $data);
   }
 }

@@ -39,6 +39,7 @@
           'job': $('[name="job"]').val(),
           'experience': $('[name="experience"]').val(),
           'practice': $('[name="practice"]').val(),
+          'open_to': $('[name="open_to"]').val(),
           'pr': $('[name="pr"]').val()
         };
         postdata[csrf_name] = csrf_hash;
@@ -197,6 +198,16 @@
                 <?php for ($i = 1; $i < 8; $i++) { ?>
                   <option>週<?= $i; ?>日</option>
                 <?php } ?>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="open_to">公開設定</label>
+              <select name="open_to" class="form-control" style="width: 100%;">
+                <option><?= $team_array['open_to'] ?></option>
+                <option>公開</option>
+                <option>非公開</option>
               </select>
             </div>
           </div>

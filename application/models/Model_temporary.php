@@ -20,6 +20,25 @@ class Model_temporary extends CI_Model
       return false;
     }
   }
+  public function add_mail($key, $team)
+  {
+    $config = parse_ini_file('config.ini', true);
+    //add_teamのモデルの実行時に、以下のデータを取得して、$dataと紐づける
+    $day = date("Y-m-d H:i:s",strtotime("+".$config['expire']['minutes']." min")); 
+    $data = [
+      "teamid" => $team['id'],
+      "mail" => $this->input->post("mail"),
+      "pass_tmp" => $key,
+      "expire_time" => $day 
+    ];
+    //$dataをDB内のtemporaryに挿入後に、$queryと紐づける
+    $query = $this->db->insert("temporary", $data);
+    if ($query) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   public function is_valid_key($key)
   {
     $days = date("Y-m-d H:i:s");

@@ -28,15 +28,11 @@
         $(this).prop('disabled', true);
         var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
-        var postdata = {
-          'mail': $('[name="mail"]').val(),
-          'pass': $('[name="pass"]').val(),
-          'chkpass': $('[name="chkpass"]').val()
-        };
+        var postdata = {'mail': $('[name="mail"]').val()};
         postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
-          url: "/change/update_password",
+          url: "/email/email_validation",
           data: postdata,
           crossDomain: false,
           dataType: "json",
@@ -48,19 +44,9 @@
               } else {
                 $('#mail_error').html('');
               }
-              if (data.pass_error != '') {
-                $('#pass_error').html(data.pass_error);
-              } else {
-                $('#pass_error').html('');
-              }
-              if (data.chkpass_error != '') {
-                $('#chkpass_error').html(data.chkpass_error);
-              } else {
-                $('#chkpass_error').html('');
-              }
               Swal.fire({
                 icon: 'error',
-                title: 'パスワード変更出来ませんでした。',
+                title: 'メール送信出来ませんでした。',
                 text: '入力内容をご確認下さい。',
               }).then((result) => {
                 $("#password").prop('disabled', false);
@@ -70,7 +56,7 @@
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: 'パスワード変更出来ました。',
+                title: 'メール送信出来ました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
@@ -107,31 +93,9 @@
             </div>
           </div>
         </div>       
-        <div class="error">
-          <strong><span id="pass_error" class="text-danger"></span></strong>
-        </div>
-        <div class="input-group mb-3">
-          <input type="pass" class="form-control" name="pass" placeholder="※パスワード" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="error">
-          <strong><span id="chkpass_error" class="text-danger"></span></strong>
-        </div>
-        <div class="input-group mb-3">
-          <input type="pass" class="form-control" name="chkpass" placeholder="※パスワード確認" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
         <div class="container">
           <div class="row">
-            <button id="password" type="submit" class="btn btn-primary btn-block">登録</button>
+            <button id="password" type="submit" class="btn btn-primary btn-block">送信</button>
           </div>
           <br>
           <div class="row">

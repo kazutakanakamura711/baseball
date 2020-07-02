@@ -43,12 +43,13 @@
               </div><!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-                  <p><strong>平均年齢：</strong>約<?= date("Y") - (round($age['sum(birth)'] / $count, 0)) ?>歳</p>
+                
+                  <p><strong>平均年齢：</strong><?php if ( $count!= 0) { ?>約<?= date("Y") - (round($age['sum(birth)'] / $count, 0)) ?>歳<?php  } ?></p>
                   <p><strong>野球経験者：</strong><?= $team_array['experience'] ?></p>
                   <p><strong>活動方針：</strong><?= $team_array['policy'] ?></p>
                   <p><strong>練習頻度：</strong><?= $team_array['practice'] ?></p>
                   <p><strong>年間試合数：</strong>約<?= $game ?>試合</p>
-                  <p><strong>公開設定：</strong></p>
+                  <p><strong>公開設定：</strong><?= $team_array['open_to'] ?></p>
                   <p><strong>その他PR：</strong><?= $team_array['pr'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
@@ -63,7 +64,7 @@
               </div><!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-                  <button type="submit" onclick="location.href='/change/profile?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">メールアドレス変更　<i class="fas fa-envelope"></i></button>
+                  <button type="submit" onclick="location.href='/change/mail?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">メールアドレス変更　<i class="fas fa-envelope"></i></button>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
             </div><!-- /.row -->

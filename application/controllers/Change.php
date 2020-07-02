@@ -174,15 +174,6 @@ class Change extends CI_Controller
         $this->load->library("form_validation");
         $config = [
             [
-                "field" => "mail",
-                "label" => "メールアドレス",
-                "rules" => "trim|required|valid_email",
-                "errors" => [
-                    "required" => "メールアドレスは入力必須です。",
-                    "valid_email" => "メールアドレスが不正です。"
-                ]
-            ],
-            [
                 "field" => "pass",
                 "label" => "パスワード",
                 "rules" => "trim|required|min_length[6]|alpha_numeric",
@@ -233,5 +224,51 @@ class Change extends CI_Controller
         );
         $this->load->view("mail_send", $team);
     }
-
+    public function check_team_mail($key)
+    {
+        $this->output->set_header('X-Frame-Options: DENY', false);
+        //add_temp_usersモデルが書かれている、model_uses.phpをロードする
+        $this->load->model("model_temporary");
+        if ($this->model_temporary->is_valid_key($key)) {    //キーが正しい場合は、以下を実行
+            $data["row_array"] = $this->model_temporary->is_valid_key($key);
+            $data['csrf'] = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->load->view("mail_update", $data);
+        } else {
+            echo "URLが間違っているか、アクセス期限が過ぎています。";
+        }
+    }
+    public function mail_update()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $id = $this->input->post('id');
+        $this->load->model("model_teams");
+        if ($this->model_teams->mail_update($id)) {
+            $array = ['success' => true];
+        } else {
+            $array = [
+                'error' => true,
+                'pass_error' => form_error('pass')
+            ];
+        }
+        exit(json_encode($array));
+    }
+    public function check_team_pass($key)
+    {
+        $this->output->set_header('X-Frame-Options: DENY', false);
+        //add_temp_usersモデルが書かれている、model_uses.phpをロードする
+        $this->load->model("model_temporary");
+        if ($this->model_temporary->is_valid_key($key)) {    //キーが正しい場合は、以下を実行
+            $data["row_array"] = $this->model_temporary->is_valid_key($key);
+            $data['csrf'] = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->load->view("pass_update", $data);
+        } else {
+            echo "URLが間違っているか、アクセス期限が過ぎています。";
+        }
+    }
 }

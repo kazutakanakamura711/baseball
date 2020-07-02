@@ -115,8 +115,10 @@
           <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         </div>
         <div class="error">
-          <input type="hidden" class="form-control" name="mail" value="<?= $row_array['mail'] ?>">
           <strong><span id="mail_error" class="text-danger"></span></strong>
+        </div>
+        <div class="email">
+          <input type="hidden" class="form-control" name="mail" value="<?= $row_array['mail'] ?>">
         </div>
         <div class="error">
           <strong><span id="team_error" class="text-danger"></span></strong>
