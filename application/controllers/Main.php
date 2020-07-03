@@ -21,11 +21,10 @@ class Main extends CI_Controller
             );
             $this->load->view('login', $data);
         }
-        $this->session->sess_destroy();
+        //$this->session->sess_destroy();
     }
     public function logout()
     {
-        $this->session->sess_expiration = '14400';
         $this->session->sess_destroy();        //セッションデータの削除
         redirect("main/index");
     }

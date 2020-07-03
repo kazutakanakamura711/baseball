@@ -15,8 +15,7 @@ class Model_team extends CI_Model
   public function getteamid()
   {
     $this->db->select('id');
-    //$this->db->where("mail", $this->input->post("mail"));
-    $this->db->where("mail","takanorimari@gmail.com");
+    $this->db->where("mail", $this->input->post("mail"));
     $teamid = $this->db->get('team');
     return $teamid->first_row()->id;  //特定チームid   
   }

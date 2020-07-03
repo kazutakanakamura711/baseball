@@ -39,7 +39,6 @@ class Model_teams extends CI_Model
       "team" => $this->input->post("team"),
       "skipper" => $this->input->post("skipper"),
       "tel" => $this->input->post("tel"),
-      "mail" => $this->input->post("mail"),
       "slogan" => $this->input->post("slogan"),
       "policy" => $this->input->post("policy"),
       "year" => $this->input->post("year"),
