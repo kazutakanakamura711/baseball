@@ -111,13 +111,4 @@ class Score extends CI_Controller
         $this->model_scores->update_score($day);
         exit(json_encode(['score' => '更新完了']));
     }
-    //スコア削除
-    public function delete_score()
-    {
-        header("Content-type: application/json; charset=UTF-8");
-        $day = date("Y-m-d H:i:s");
-        $this->load->model("model_scores");
-        $this->model_scores->score_delete($day);
-        exit(json_encode(['score' => '削除完了']));
-    }
 }

@@ -140,7 +140,7 @@
                                 <a class="btn btn-outline-primary btn-capsule btn-sm border-2x fw-700" href="<?= base_url() ?>main/login" target="_blank">ログイン</a>
                             </li>
                             <li>
-                                <a class="btn btn-outline-primary btn-capsule btn-sm border-2x fw-700" href="<?= base_url() ?>bms/signup" target="_blank">新規登録</a>
+                                <a class="btn btn-outline-primary btn-capsule btn-sm border-2x fw-700" href="<?= base_url() ?>form/signup" target="_blank">新規登録</a>
                             </li>
                         </ul>
                     </div>
@@ -223,16 +223,11 @@
                         <div class="d-flex align-items-center h-100">
                             <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h5 data-zanim='{"delay":0}'>試合結果・成績の管理</h5>
+                                    <h5 data-zanim='{"delay":0}'>マッチングによる試合設定が簡単に出来る。</h5>
                                 </div>
                                 <div class="overflow-hidden">
                                     <p class="mt-3" data-zanim='{"delay":0.1}'>
-                                        選手名鑑を作成するとチーム・個人成績管理がすぐにできます。成績ランキング・条件絞り込みなど、それぞれチームに応じた成績管理が可能です。</p>
-                                </div>
-                                <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                    <a class="btn btn-primary mr-3 mt-3" href="#">詳しく見る
-                                        <span class="fa fa-chevron-right ml-2"></span>
-                                    </a>
+                                    他チームとの試合マッチングやグラウンド検索機能により、気軽に試合をセッティングすることが可能です。</p>
                                 </div>
                             </div>
                         </div>
@@ -248,16 +243,11 @@
                         <div class="d-flex align-items-center h-100">
                             <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h5 data-zanim='{"delay":0}'>あらゆるチーム活動を一元管理</h5>
+                                    <h5 data-zanim='{"delay":0}'>試合結果・成績の管理</h5>
                                 </div>
                                 <div class="overflow-hidden">
                                     <p class="mt-3" data-zanim='{"delay":0.1}'>
-                                        チーム登録すればチームスケジュール、出欠管理、コミュニケーションボード上での情報共有などのチーム活動が一元管理できます。</p>
-                                </div>
-                                <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                    <a class="btn btn-primary mr-3 mt-3" href="#">詳しく見る
-                                        <span class="fa fa-chevron-right ml-2"></span>
-                                    </a>
+                                    選手名鑑を作成し成績を登録するとチーム・個人成績管理がすぐにできます。それぞれチームに応じた成績管理が可能です。</p>
                                 </div>
                             </div>
                         </div>
@@ -273,11 +263,11 @@
                         <div class="d-flex align-items-center h-100">
                             <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h5 data-zanim='{"delay":0}'>マッチングによる試合設定が簡単に出来る。</h5>
+                                    <h5 data-zanim='{"delay":0}'>野球を通じてコミュニティーの和が拡がる。</h5>
                                 </div>
                                 <div class="overflow-hidden">
                                     <p class="mt-3" data-zanim='{"delay":0.1}'>
-                                        他チームとの試合マッチングやグラウンド検索機能により、気軽に試合をすることが可能です。</p>
+                                        他チームとの交流の機会が増えることで、新たな球友との思い出を記録だけでなく記憶にも沢山残すことが可能です。</p>
                                 </div>
                                 <div class="zopacity" data-zanim='{"delay":0.2}'>
                                     <a class="btn btn-primary mr-3 mt-3" href="#">詳しく見る

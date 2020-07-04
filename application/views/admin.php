@@ -10,7 +10,7 @@
             <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
           </div><!-- /.col -->
           <div class="col-6">
-            <button type="submit" onclick="location.href='/main/delete?id=<?= $_SESSION['id'] ?>'" class="float-right btn-danger">削除選手一覧</button>
+            <button type="submit" onclick="location.href='/dust/delete?id=<?= $_SESSION['id'] ?>'" class="float-right btn-danger">削除選手一覧</button>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -59,12 +59,12 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <button type="submit" onclick="location.href='/change/profile?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">プロフィール編集　<i class="fas fa-pencil-alt"></i></button>
+                  <button type="submit" onclick="location.href='/form/profile?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">プロフィール編集　<i class="fas fa-pencil-alt"></i></button>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-                  <button type="submit" onclick="location.href='/change/mail?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">メールアドレス変更　<i class="fas fa-envelope"></i></button>
+                  <button type="submit" onclick="location.href='/form/mail?id=<?= $_SESSION['id'] ?>'" class="btn btn-primary w-50 mt-2">メールアドレス変更　<i class="fas fa-envelope"></i></button>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
             </div><!-- /.row -->
@@ -109,7 +109,7 @@
                             <button onclick="location.href='/score/score_signup?id=<?= $values['pid'] ?>'" type="submit" class="btn-primary">スコア入力 <i class="fas fa-pencil-alt"></i></button>
                           </td>
                           <td>
-                            <button onclick="location.href='/change/update?id=<?= $values['pid'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
+                            <button onclick="location.href='/form/update_player?id=<?= $values['pid'] ?>'" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                           </td>
                           <td>
                             <button name="delete_player" data-id="<?= $values['pid'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>

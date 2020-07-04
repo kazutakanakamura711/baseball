@@ -182,7 +182,7 @@
                     <td><?= $games['battle'] ?></td>
                     <td class="text-truncate" style="max-width: 500px;"><?= $games['consideration'] ?></td>
                     <td>
-                      <button onclick="location.href='/match/game_update?id=<?= $games['id'] ?>'" id="button1" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
+                      <button onclick="location.href='/game/game_update?id=<?= $games['id'] ?>'" id="button1" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                     </td>
                     <td>
                       <button name="delete_game" data-id="<?= $games['id'] ?>" data-name="<?= $games['battle_team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>

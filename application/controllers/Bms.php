@@ -2,15 +2,6 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Bms extends CI_Controller
 {
-    public function signup()
-    {
-        $this->output->set_header('X-Frame-Options: DENY', false);
-        $data['csrf'] = array(
-            'name' => $this->security->get_csrf_token_name(),
-            'hash' => $this->security->get_csrf_hash()
-        );
-        $this->load->view("signup", $data);
-    }
     //選手登録
     public function register_validation()
     {

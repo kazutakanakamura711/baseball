@@ -107,16 +107,4 @@ class Main extends CI_Controller
         $clean_team = html_escape($team);
         $this->load->view("matching", $clean_team);
     }
-    public function delete()
-    {
-        $this->output->set_header('X-Frame-Options: DENY', false);
-        $id = $this->input->get('id');
-        $this->load->model("model_players");
-        $player['player_array'] = html_escape($this->model_players->getplayers($id));
-        $player['csrf'] = array(
-            'name' => $this->security->get_csrf_token_name(),
-            'hash' => $this->security->get_csrf_hash()
-        );
-        $this->load->view("delete", $player);
-    }
 }

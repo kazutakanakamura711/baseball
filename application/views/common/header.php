@@ -132,7 +132,7 @@
             postdata[csrf_name] = csrf_hash;
             $.ajax({
               type: "POST",
-              url: "/change/delete_bms",
+              url: "/dust/delete_player",
               data: postdata,
               crossDomain: false,
               dataType: "json",
@@ -185,7 +185,7 @@
             postdata[csrf_name] = csrf_hash;
             $.ajax({
               type: "POST",
-              url: "/score/delete_score",
+              url: "/dust/delete_score",
               data: postdata,
               crossDomain: false,
               dataType: "json",
@@ -238,7 +238,7 @@
             postdata[csrf_name] = csrf_hash;
             $.ajax({
               type: "POST",
-              url: "/match/delete_game",
+              url: "/game/delete_game",
               data: postdata,
               crossDomain: false,
               dataType: "json",
@@ -291,7 +291,7 @@
             postdata[csrf_name] = csrf_hash;
             $.ajax({
               type: "POST",
-              url: "/change/player_return",
+              url: "/dust/player_return",
               data: postdata,
               crossDomain: false,
               dataType: "json",
@@ -344,7 +344,7 @@
             postdata[csrf_name] = csrf_hash;
             $.ajax({
               type: "POST",
-              url: "/change/delete_real",
+              url: "/dust/delete_real",
               data: postdata,
               crossDomain: false,
               dataType: "json",

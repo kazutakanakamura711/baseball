@@ -38,7 +38,7 @@
         postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
-          url: "/match/game_register",
+          url: "/game/game_register",
           data: postdata,
           crossDomain: false,
           dataType: "json",

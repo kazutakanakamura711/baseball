@@ -65,7 +65,7 @@
               </a>
             </li> -->
             <li class="nav-item">
-              <a href="<?= base_url() ?>match/game_result" class="nav-link">
+              <a href="<?= base_url() ?>game/game_result" class="nav-link">
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>試合結果登録</p>
                 <i class="right fas fa-angle-right"></i>
