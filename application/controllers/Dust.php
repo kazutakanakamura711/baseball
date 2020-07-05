@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Dust extends CI_Controller
 {
-  public function delete()
+    public function deletes()
     {
         $this->output->set_header('X-Frame-Options: DENY', false);
         $id = $this->input->get('id');
@@ -12,7 +12,23 @@ class Dust extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("delete", $player);
+        $this->load->view("delete_player", $player);
+    }
+    public function stop_teams()
+    {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
+        $this->output->set_header('X-Frame-Options: DENY');
+        $this->load->model("model_teams");
+        $team['team_array'] = $this->model_teams->getteams();
+        $clean_team = html_escape($team);
+        $clean_team['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view("delete_team", $clean_team);
     }
     public function player_return()
     {
@@ -46,5 +62,22 @@ class Dust extends CI_Controller
         $this->load->model("model_scores");
         $this->model_scores->score_delete($day);
         exit(json_encode(['score' => '削除完了']));
+    }
+    //チーム削除
+    public function delete_team()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $day = date("Y-m-d H:i:s");
+        $this->load->model("model_manager");
+        $this->model_manager->delete_team($day);
+        exit(json_encode(['team' => '削除完了']));
+    }
+    public function team_return()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $day = date("Y-m-d H:i:s");
+        $this->load->model("model_manager");
+        $this->model_manager->return_team($day);
+        exit(json_encode(['player' => '削除完了']));
     }
 }

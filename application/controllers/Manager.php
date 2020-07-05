@@ -32,7 +32,7 @@ class Manager extends CI_Controller
     if ($this->form_validation->run()) {
       //管理者パスワードの設定読込
       $config = parse_ini_file('config.ini', true);
-      if ($this->input->post("pass")== $config['login']['password'] ) {
+      if ($this->input->post("pass") == $config['login']['password']) {
         $data = ["is_logged_in" => 1];
         $this->session->set_userdata($data);
         exit(json_encode($data));
@@ -47,7 +47,7 @@ class Manager extends CI_Controller
   public function teams()
   {
     if (!$this->session->userdata("is_logged_in")) {
-      redirect("main/login");
+      redirect("manager/login");
       return;
     }
     $this->output->set_header('X-Frame-Options: DENY');
@@ -60,25 +60,36 @@ class Manager extends CI_Controller
     );
     $this->load->view("supervisor", $clean_team);
   }
-  public function players()
+  public function contacts()
   {
     if (!$this->session->userdata("is_logged_in")) {
-      redirect("main/login");
+      redirect("manager/login");
       return;
     }
     $this->output->set_header('X-Frame-Options: DENY');
-    $id = $_SESSION['id'];
-    $this->load->model("model_players");
-    $player['player_array'] = $this->model_players->getplayers($id);
-    $player['age'] = $this->model_players->getplayerage($id);
-    $player['count'] = $this->model_players->getplayercount($id);
-    $this->load->model("model_games");
-    $player['game'] = $this->model_games->getgamecount($id);
-    $clean_player = html_escape($player);
+    $this->load->model("model_supports");
+    $contact['message_array'] = $this->model_supports->getmessages();
+    $clean_player = html_escape($contact);
     $clean_player['csrf'] = array(
       'name' => $this->security->get_csrf_token_name(),
       'hash' => $this->security->get_csrf_hash()
     );
-    $this->load->view("supervisor", $clean_player);
+    $this->load->view("svmessage", $clean_player);
+  }
+  public function sv_mail()
+  {
+    if (!$this->session->userdata("is_logged_in")) {
+      redirect("manager/login");
+      return;
+    }
+    $id = $this->input->get('id');
+    $this->output->set_header('X-Frame-Options: DENY', false);
+    $this->load->model("model_supports");
+    $message['row_array'] = html_escape($this->model_supports->getmessage($id));
+    $message['csrf'] = array(
+      'name' => $this->security->get_csrf_token_name(),
+      'hash' => $this->security->get_csrf_hash()
+    );
+    $this->load->view("svmail", $message);
   }
 }

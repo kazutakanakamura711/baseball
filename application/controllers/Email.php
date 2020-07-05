@@ -10,13 +10,31 @@ class Email extends CI_Controller
 	public function index()
 	{
 		header("Content-type: application/json; charset=UTF-8");
-		$to = $_POST['battle_mail'];
-		$bcc =	$_POST['mail'];
-		$subject =	$_POST['team'] . "様との試合申し込み";
-		$body =	$_POST['message'];
-		$this->load->library('mailclass');
-		$this->mailclass->php_mailer($to, $bcc, $subject, $body);
-		exit(json_encode(['mailsend' => 'メール送信完了']));
+		$this->load->library("form_validation");
+		$config = [
+			[
+				"field" => "message",
+				"label" => "メッセージ",
+				"rules" => 'trim|required',
+				"errors" => ["required" => "メール本文は入力必須です。"]
+			]
+		];
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run()) {
+			$to = $_POST['battle_mail'];
+			$bcc =	$_POST['mail'];
+			$subject =	$_POST['team'] . "様との試合申し込み";
+			$body =	$_POST['message'];
+			$this->load->library('mailclass');
+			$this->mailclass->php_mailer($to, $bcc, $subject, $body);
+			$array = ['success' => true];
+		} else {
+			$array = [
+				'error' => true,
+				'message_error' => form_error('message')
+			];
+		}
+		exit(json_encode($array));
 	}
 	//チーム仮登録
 	public function signup_validation()
@@ -59,18 +77,6 @@ class Email extends CI_Controller
 		}
 		exit(json_encode($array));
 	}
-	public function contact()
-	{
-		header("Content-type: application/json; charset=UTF-8");
-		//メールの設定読込
-		$config = parse_ini_file('config.ini', true);
-		$to = $config['contact']['Username'];
-		$subject =	$_POST['name'] . "様からの問い合わせ";
-		$body =	$_POST['message'];
-		$this->load->library('mailclass');
-		$this->mailclass->php_mailer($to, NULL, $subject, $body);
-		exit(json_encode(['mailsend' => 'メール送信完了']));
-	}
 	//メール仮登録
 	public function mail_validation()
 	{
@@ -99,7 +105,7 @@ class Email extends CI_Controller
 			$this->mailclass->php_mailer($to, NULL, $subject, $body);
 			$team['id'] = $this->input->post("id");
 			$this->load->model("model_temporary");
-			if ($this->model_temporary->add_mail($key,$team)) {
+			if ($this->model_temporary->add_mail($key, $team)) {
 				//$this->output->set_status_header(200);
 				$array = ['success' => true];
 			} else {
@@ -142,7 +148,7 @@ class Email extends CI_Controller
 			$this->load->model("model_team");
 			$team['id'] = $this->model_team->getteamid();
 			$this->load->model("model_temporary");
-			if ($this->model_temporary->add_mail($key,$team)) {
+			if ($this->model_temporary->add_mail($key, $team)) {
 				//$this->output->set_status_header(200);
 				$array = ['success' => true];
 			} else {

@@ -23,7 +23,6 @@ class Score extends CI_Controller
         $this->load->model("model_scores");
         if ($atbat >= $hit) {
             $this->model_scores->add_scores($atbat, $hit);
-            //redirect("main/players");
             exit(json_encode(['score' => 'スコア登録完了']));
         } else {
             echo "スコアが不正である為、登録できませんでした。";

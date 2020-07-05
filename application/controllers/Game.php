@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Game extends CI_Controller
 {
-  public function game_result()
+    public function game_result()
     {
         if (!$this->session->userdata("is_logged_in")) {
             redirect("main/login");
@@ -48,7 +48,7 @@ class Game extends CI_Controller
         } else {
             $array = [
                 'error' => true,
-                'battleteam' => form_error('battleteam')
+                'battleteam_error' => form_error('battleteam')
             ];
         }
         exit(json_encode($array));
@@ -97,13 +97,17 @@ class Game extends CI_Controller
             $this->load->model("model_games");
             if ($this->model_games->update_game($score, $loss, $battle)) {
                 //redirect("main/players");
-                exit(json_encode(['game' => '更新完了']));
+                $array = ['success' => true];
             } else {
                 echo "試合結果登録できませんでした。";
             }
         } else {
-            echo "登録出来ませんでした、入力内容確認して下さい。";
+            $array = [
+                'error' => true,
+                'battleteam_error' => form_error('battle_team')
+            ];
         }
+        exit(json_encode($array));
     }
     //試合結果削除
     public function delete_game()

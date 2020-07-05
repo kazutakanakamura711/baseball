@@ -34,17 +34,17 @@
                   </thead>
                   <tbody>
                     <?php foreach ($team_array as $values) {
-                      if ($values['withdrawal'] === "0") { ?>
+                      if ($values['withdrawal'] === "1") { ?>
                         <tr>
                           <td><?= $values['team'] ?></td>
                           <td><?= $values['skipper'] ?></td>
                           <td><?= $values['tel'] ?></td>
                           <td><?= $values['mail'] ?></td>
                           <td>
-                            <button onclick="location.href='/manager/players?id=<?= $values['id'] ?>'" type="submit" class="btn-primary">選手一覧 <i class="fas fa-users"></i></button>
+                          <button name="return_team" data-id="<?= $values['id'] ?>" data-name="<?= $values['team'] ?>" type="submit" class="btn-primary">利用再開 <i class="far fa-trash-alt"></i></button>
                           </td>
                           <td>
-                            <button name="delete_team" data-id="<?= $values['id'] ?>" data-name="<?= $values['team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                            <button name="delete_team" data-id="<?= $values['id'] ?>" data-name="<?= $values['team'] ?>" type="submit" class="btn-danger">データ削除 <i class="far fa-trash-alt"></i></button>
                           </td>
                         </tr>
                       <?php  } ?>

@@ -19,4 +19,5 @@ class Model_team extends CI_Model
     $teamid = $this->db->get('team');
     return $teamid->first_row()->id;  //特定チームid   
   }
+  
 }

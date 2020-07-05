@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>試合結果入力</title>
+  <title>運営返信フォーム</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,51 +23,49 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     $(function() {
-      $("#update").on('click', function(event) {
+      $("#response").on('click', function(event) {
         event.preventDefault();
         $(this).prop('disabled', true);
         var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
         var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
         var postdata = {
           'id': $('[name="id"]').val(),
-          'team_id': $('[name="team_id"]').val(),
-          'battle_team': $('[name="battle_team"]').val(),
-          'score': $('[name="score"]').val(),
-          'loss': $('[name="loss"]').val(),
-          'consideration': $('[name="consideration"]').val()
+          'name': $('[name="name"]').val(),
+          'mail': $('[name="mail"]').val(),
+          'message': $('[name="message"]').val()
         };
         postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
-          url: "/game/update_game",
+          url: "/support/response",
           data: postdata,
           crossDomain: false,
           dataType: "json",
           scriptCharset: 'utf-8',
           success: function(data) {
             if (data.error) {
-              if (data.battleteam_error != '') {
-                $('#battleteam_error').html(data.battleteam_error);
+              if (data.message_error != '') {
+                $('#message_error').html(data.message_error);
               } else {
-                $('#battleteam_error').html('');
+                $('#message_error').html('');
               }
               Swal.fire({
                 icon: 'error',
-                title: '試合結果更新出来ませんでした。',
+                title: 'メール送信出来ませんでした。',
                 text: '入力内容をご確認下さい。',
               }).then((result) => {
-                $("#update").prop('disabled', false);
+                $("#response").prop('disabled', false);
               });
             }
             if (data.success) {
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: '試合結果更新しました。',
+                title: 'メール送信しました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
-                window.location.href = "/main/players";
+                window.location.href = "/manager/contacts";
               });
             }
           }
@@ -81,64 +79,38 @@
 <body class="hold-transition register-page">
   <div class="register-box">
     <div class="register-logo">
-      <h1>試合結果編集</h1>
+      <h1>運営から返信</h1>
     </div>
     <div class="card">
       <div class="card-body register-card-body">
-        <p class="login-box-msg">入力し変更してください</p>
+        <p class="login-box-msg">下記に入力し、返信してください。</p>
+        <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
+        <p class="text-group mb-3">氏名　 <span class="fas fa-user"></span> : <strong><?= $row_array['name'] ?></strong></p>
+        <p class="text-group mb-3">メール <span class="fas fa-envelope"></span> : <strong><?= $row_array['mail'] ?></strong></p>
         <div class="input-group mb-3">
-          <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
           <input type="hidden" class="form-control" name="id" value="<?= $row_array['id'] ?>">
-          <input type="hidden" class="form-control" name="team_id" value="<?= $row_array['team_id'] ?>">
+          <input type="hidden" class="form-control" name="name" value="<?= $row_array['name'] ?>">
+          <input type="hidden" class="form-control" name="mail" value="<?= $row_array['mail'] ?>">
         </div>
         <div class="error">
-          <strong><span id="battleteam_error" class="text-danger"></span></strong>
+          <strong><span id="message_error" class="text-danger"></span></strong>
         </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="battle_team" placeholder="対戦相手" value="<?= $row_array['battle_team'] ?>">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="form-group">
-              <label for="score">得点</label>
-              <select name="score" class="form-control" style="width: 100%;">
-                <option><?= $row_array['score'] ?></option>
-                <?php for ($i = 0; $i < 20; $i++) { ?>
-                  <option><?= $i; ?></option>
-                <?php } ?>
-              </select>
-            </div><!-- /.form-group -->
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label for="loss">失点</label>
-              <select name="loss" class="form-control" style="width: 100%;">
-                <option><?= $row_array['loss'] ?></option>
-                <?php for ($i = 0; $i < 20; $i++) { ?>
-                  <option><?= $i; ?></option>
-                <?php } ?>
-              </select>
-            </div><!-- /.form-group -->
-          </div>
+        <div class="error">
+          <strong><span id="message_error" class="text-danger"></span></strong>
         </div>
         <div class="form-group mb-3">
-          <label for="consideration">試合考察</label>
-          <textarea name="consideration" id="consideration" cols="42" rows="10"><?= $row_array['consideration'] ?></textarea>
+          <textarea name="message" id="message" cols="42" rows="10" placeholder="※ここに内容を入力してください"></textarea>
         </div>
         <div class="row">
-          <button id="update" type="submit" class="btn btn-primary btn-block">変更</button>
+          <button id="response" type="submit" class="btn btn-primary btn-block">送信する</button>
         </div>
         <br>
-        <p><?= anchor('main/players', '一覧に戻る　>>'); ?></p>
+        <p><?= anchor('manager/teams', '一覧に戻る　>>'); ?></p>
       </div>
-    </div><!-- /.form-box -->
-  </div><!-- /.card -->
-  </div><!-- /.register-box -->
+      <!-- /.form-box -->
+    </div><!-- /.card -->
+  </div>
+  <!-- /.register-box -->
 
   <!-- jQuery -->
   <script src="<?= base_url() ?>plugins/jquery/jquery.min.js"></script>

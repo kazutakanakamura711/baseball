@@ -44,25 +44,34 @@
           data: postdata,
           crossDomain: false,
           dataType: "json",
-          scriptCharset: 'utf-8'
-        }).done(function(data) {
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: 'メール送信しました。',
-            showConfirmButton: false,
-            timer: 1500
-          }).then((result) => {
-            window.location.href = "/main/teams";
-          });
-        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-          Swal.fire({
-            icon: 'error',
-            title: 'メール送信出来ませんでした。',
-            text: '入力内容をご確認下さい。',
-          }).then((result) => {
-            $("#game").prop('disabled', false);
-          });
+          scriptCharset: 'utf-8',
+          success: function(data) {
+            if (data.error) {
+              if (data.message_error != '') {
+                $('#message_error').html(data.message_error);
+              } else {
+                $('#message_error').html('');
+              }
+              Swal.fire({
+                icon: 'error',
+                title: 'メール送信出来ませんでした。',
+                text: '入力内容をご確認下さい。',
+              }).then((result) => {
+                $("#game").prop('disabled', false);
+              });
+            }
+            if (data.success) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'メール送信しました。',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/main/teams";
+              });
+            }
+          }
         });
         return false;
       });
@@ -92,6 +101,9 @@
         </div>
         <div class="input-group">
           <input type="hidden" class="form-control" name="mail" placeholder="店番" value="<?= $_SESSION['mail'] ?>">
+        </div>
+        <div class="error">
+          <strong><span id="message_error" class="text-danger"></span></strong>
         </div>
         <div class="form-group mb-3">
           <textarea name="message" id="message" cols="42" rows="10"><?= $_SESSION['team'] ?>の<?= $_SESSION['skipper'] ?>さんより試合申し込みがありました。

@@ -97,7 +97,7 @@
             <div class="form-group">
               <label>打数</label>
               <select name="atbat" class="form-control select2" style="width: 100%;">
-                <?php for ($i = 1; $i < 10; $i++) { ?>
+                <?php for ($i = 1; $i < 15; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -107,7 +107,7 @@
             <div class="form-group">
               <label>安打</label>
               <select name="hit" class="form-control select2" style="width: 100%;">
-                <?php for ($i = 0; $i < 10; $i++) { ?>
+                <?php for ($i = 0; $i < 15; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -147,7 +147,7 @@
             <div class="form-group">
               <label>四死球</label>
               <select name="walk" class="form-control select2" style="width: 100%;">
-                <?php for ($i = 0; $i < 10; $i++) { ?>
+                <?php for ($i = 0; $i < 15; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -188,7 +188,7 @@
               <label>被安打</label>
               <select name="h_hit" class="form-control select2" style="width: 100%;">
                 <option></option>
-                <?php for ($i = 0; $i < 20; $i++) { ?>
+                <?php for ($i = 0; $i < 30; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -199,7 +199,7 @@
               <label>奪三振</label>
               <select name="strikeout" class="form-control select2" style="width: 100%;">
                 <option></option>
-                <?php for ($i = 0; $i < 20; $i++) { ?>
+                <?php for ($i = 0; $i < 28; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -210,7 +210,7 @@
               <label>被本塁打</label>
               <select name="h_homerun" class="form-control select2" style="width: 100%;">
                 <option></option>
-                <?php for ($i = 0; $i < 10; $i++) { ?>
+                <?php for ($i = 0; $i < 20; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -221,7 +221,7 @@
               <label>自責点</label>
               <select name="er" class="form-control select2" style="width: 100%;">
                 <option></option>
-                <?php for ($i = 0; $i < 20; $i++) { ?>
+                <?php for ($i = 0; $i < 30; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>

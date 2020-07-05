@@ -59,29 +59,49 @@
                 postdata[csrf_name] = csrf_hash;
                 $.ajax({
                     type: "POST",
-                    url: "/email/contact",
+                    url: "/support/contact",
                     data: postdata,
                     crossDomain: false,
                     dataType: "json",
-                    scriptCharset: 'utf-8'
-                }).done(function(data) {
-                    Swal.fire({
-                        position: 'top-center',
-                        icon: 'success',
-                        title: 'お問い合わせ受け付けました。!',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then((result) => {
-                        window.location.href = "/main/index";
-                    });
-                }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'お問い合わせ受け付け出来ませんでした。',
-                        text: '入力内容をご確認下さい。',
-                    }).then((result) => {
-                        $("#contact").prop('disabled', false);
-                    });
+                    scriptCharset: 'utf-8',
+                    success: function(data) {
+                        if (data.error) {
+                            if (data.name_error != '') {
+                                $('#name_error').html(data.name_error);
+                            } else {
+                                $('#name_error').html('');
+                            }
+                            if (data.mail_error != '') {
+                                $('#mail_error').html(data.mail_error);
+                            } else {
+                                $('#mail_error').html('');
+                            }
+                            if (data.message_error != '') {
+                                $('#message_error').html(data.message_error);
+                            } else {
+                                $('#message_error').html('');
+                            }
+                            Swal.fire({
+                                icon: 'error',
+                                title: '問い合わせ出来ませんでした。',
+                                text: '入力内容をご確認下さい。',
+                            }).then((result) => {
+                                $("#register").prop('disabled', false);
+                            });
+                        }
+                        if (data.success) {
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'success',
+                                title: '問い合わせありがとうございます。',
+                                text: '返信までしばらくお待ち下さい。',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then((result) => {
+                                window.location.href = "/main/index";
+                            });
+                        }
+                    }
                 });
                 return false;
             });
@@ -227,7 +247,7 @@
                                 </div>
                                 <div class="overflow-hidden">
                                     <p class="mt-3" data-zanim='{"delay":0.1}'>
-                                    他チームとの試合マッチングやグラウンド検索機能により、気軽に試合をセッティングすることが可能です。</p>
+                                        他チームとの試合マッチングやグラウンド検索機能により、気軽に試合をセッティングすることが可能です。</p>
                                 </div>
                             </div>
                         </div>
@@ -247,7 +267,7 @@
                                 </div>
                                 <div class="overflow-hidden">
                                     <p class="mt-3" data-zanim='{"delay":0.1}'>
-                                    選手名鑑を作成し成績を登録するとチーム・個人成績管理がすぐにできます。それぞれチームに応じた成績管理が可能です。</p>
+                                        選手名鑑を作成し成績を登録するとチーム・個人成績管理がすぐにできます。それぞれチームに応じた成績管理が可能です。</p>
                                 </div>
                             </div>
                         </div>
@@ -548,17 +568,26 @@
                     <h3>氏名・メールアドレス・お問い合わせ内容を入力の上、「送信」ボタンを押してください。</h3>
                     <div class="row">
                         <div class="col-md-6">
+                            <div class="error">
+                                <strong><span id="name_error" class="text-danger"></span></strong>
+                            </div>
                             <div class="form-group">
                                 <input type="text" id="name" class="form-control" placeholder="氏名">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="error">
+                                <strong><span id="email_error" class="text-danger"></span></strong>
+                            </div>
                             <div class="form-group">
                                 <input type="email" id="email" class="form-control" placeholder="メールアドレス">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
+                    </div>
+                    <div class="error">
+                        <strong><span id="message_error" class="text-danger"></span></strong>
                     </div>
                     <div class="form-group">
                         <textarea name="message" id="message" class="form-control" rows="4" placeholder="お問い合わせ内容"></textarea>

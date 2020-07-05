@@ -37,22 +37,15 @@
               </a>
             </li>
             <li class="nav-item has-treeview">
-              <a href="<?= base_url() ?>manager/teams" class="nav-link">
+              <a href="<?= base_url() ?>dust/stop_teams" class="nav-link">
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>削除チーム一覧</p>
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url() ?>match/rules" class="nav-link">
-                <i class="nav-icon far fa-circle text-success"></i>
-                <p>仮登録一覧</p>
-                <i class="right fas fa-angle-right"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?= base_url() ?>match/rules" class="nav-link">
-                <i class="nav-icon far fa-circle text-success"></i>
+              <a href="<?= base_url() ?>manager/contacts" class="nav-link">
+                <i class="nav-icon far fa-circle text-info"></i>
                 <p>問い合わせ一覧</p>
                 <i class="right fas fa-angle-right"></i>
               </a>

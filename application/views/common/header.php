@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>野球管理システム</title>
+  <title>MBC</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -304,7 +304,7 @@
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
-                window.location.href = "/main/players";
+                window.location.href = "/dust/deletes";
               });
             }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
               Swal.fire({

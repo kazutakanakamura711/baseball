@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>野球管理システム</title>
+  <title>MBC運営</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -66,7 +66,7 @@
             postdata[csrf_name] = csrf_hash;
             $.ajax({
               type: "POST",
-              url: "/change/delete_bms",
+              url: "/dust/delete_team",
               data: postdata,
               crossDomain: false,
               dataType: "json",
@@ -75,82 +75,29 @@
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: '選手削除しました。',
+                title: 'チーム削除しました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
-                window.location.href = "/main/players";
+                window.location.href = "/manager/teams";
               });
             }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
               Swal.fire({
                 icon: 'error',
-                title: '選手削除出来ませんでした。',
+                title: 'チーム削除出来ませんでした。',
               }).then((result) => {
-                $('[name="delete_player"]').prop('disabled', false);
+                $('[name="delete_team"]').prop('disabled', false);
               });
             });
           } else {
-            $('[name="delete_player"]').prop('disabled', false);
+            $('[name="delete_team"]').prop('disabled', false);
           }
         });
         return false;
       });
     });
     $(function() {
-      $('[name="delete_score"]').on('click', function(event) {
-        event.preventDefault();
-        $(this).prop('disabled', true);
-        Swal.fire({
-          title: '本当に削除してもいいですか?',
-          text: $(this).data('name'),
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'はい!',
-          cancelButtonText: 'いいえ！',
-        }).then((result) => {
-          if (result.value) { //はい！の場合
-            var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
-            var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
-            var postdata = {
-              'delete_id': $(this).data('id')
-            };
-            postdata[csrf_name] = csrf_hash;
-            $.ajax({
-              type: "POST",
-              url: "/score/delete_score",
-              data: postdata,
-              crossDomain: false,
-              dataType: "json",
-              scriptCharset: 'utf-8'
-            }).done(function(data) {
-              Swal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: 'スコア削除しました。',
-                showConfirmButton: false,
-                timer: 1500
-              }).then((result) => {
-                window.location.href = "/score/scores";
-              });
-            }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-              Swal.fire({
-                icon: 'error',
-                title: 'スコア削除出来ませんでした。',
-              }).then((result) => {
-                $('[name="delete_score"]').prop('disabled', false);
-              });
-            });
-          } else {
-            $('[name="delete_score"]').prop('disabled', false);
-          }
-        });
-        return false;
-      });
-    });
-    $(function() {
-      $('[name="delete_game"]').on('click', function(event) {
+      $('[name="delete_contact"]').on('click', function(event) {
         event.preventDefault();
         $(this).prop('disabled', true);
         Swal.fire({
@@ -203,7 +150,7 @@
       });
     });
     $(function() {
-      $('[name="return"]').on('click', function(event) {
+      $('[name="return_team"]').on('click', function(event) {
         event.preventDefault();
         $(this).prop('disabled', true);
         Swal.fire({
@@ -225,7 +172,7 @@
             postdata[csrf_name] = csrf_hash;
             $.ajax({
               type: "POST",
-              url: "/change/player_return",
+              url: "/dust/team_return",
               data: postdata,
               crossDomain: false,
               dataType: "json",
@@ -234,16 +181,16 @@
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: '削除選手復帰しました。',
+                title: '削除チーム復帰しました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
-                window.location.href = "/main/players";
+                window.location.href = "/dust/stop_teams";
               });
             }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
               Swal.fire({
                 icon: 'error',
-                title: '削除選手復帰出来ませんでした。',
+                title: '削除チーム復帰出来ませんでした。',
               }).then((result) => {
                 $('[name="return"]').prop('disabled', false);
               });

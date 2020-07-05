@@ -98,7 +98,7 @@
               <label>打席</label>
               <select name="atbat" class="form-control select2" style="width: 100%;">
                 <option><?= $row_array['atbat'] ?></option>
-                <?php for ($i = 1; $i < 10; $i++) { ?>
+                <?php for ($i = 1; $i < 15; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -109,7 +109,7 @@
               <label>安打</label>
               <select name="hit" class="form-control select2" style="width: 100%;">
                 <option><?= $row_array['hit'] ?></option>
-                <?php for ($i = 0; $i < 10; $i++) { ?>
+                <?php for ($i = 0; $i < 15; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -131,7 +131,7 @@
               <label>打点</label>
               <select name="rbi" class="form-control select2" style="width: 100%;">
                 <option><?= $row_array['rbi'] ?></option>
-                <?php for ($i = 0; $i < 10; $i++) { ?>
+                <?php for ($i = 0; $i < 20; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -153,7 +153,7 @@
               <label>四死球</label>
               <select name="walk" class="form-control select2" style="width: 100%;">
                 <option><?= $row_array['walk'] ?></option>
-                <?php for ($i = 0; $i < 10; $i++) { ?>
+                <?php for ($i = 0; $i < 15; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -195,7 +195,7 @@
               <label>被安打</label>
               <select name="h_hit" class="form-control select2" style="width: 100%;">
                 <option><?= $row_array['h_hit'] ?></option>
-                <?php for ($i = 0; $i < 20; $i++) { ?>
+                <?php for ($i = 0; $i < 30; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -206,7 +206,7 @@
               <label>奪三振</label>
               <select name="strikeout" class="form-control select2" style="width: 100%;">
                 <option><?= $row_array['strikeout'] ?></option>
-                <?php for ($i = 0; $i < 20; $i++) { ?>
+                <?php for ($i = 0; $i < 28; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>
@@ -228,7 +228,7 @@
               <label>自責点</label>
               <select name="er" class="form-control select2" style="width: 100%;">
                 <option><?= $row_array['er'] ?></option>
-                <?php for ($i = 0; $i < 20; $i++) { ?>
+                <?php for ($i = 0; $i < 30; $i++) { ?>
                   <option><?= $i; ?></option>
                 <?php } ?>
               </select>

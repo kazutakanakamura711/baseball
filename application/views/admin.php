@@ -10,7 +10,7 @@
             <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
           </div><!-- /.col -->
           <div class="col-6">
-            <button type="submit" onclick="location.href='/dust/delete?id=<?= $_SESSION['id'] ?>'" class="float-right btn-danger">削除選手一覧</button>
+            <button type="submit" onclick="location.href='/dust/deletes?id=<?= $_SESSION['id'] ?>'" class="float-right btn-danger">削除選手一覧</button>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

@@ -102,7 +102,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url() ?>match/rules" class="nav-link">
+              <a href="<?= base_url() ?>support/supports" class="nav-link">
                 <i class="nav-icon far fa-circle text-success"></i>
                 <p>お問い合わせ</p>
                 <i class="right fas fa-angle-right"></i>

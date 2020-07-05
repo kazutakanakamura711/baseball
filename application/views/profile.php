@@ -195,9 +195,11 @@
               <label for="practice">練習頻度</label>
               <select name="practice" class="form-control" style="width: 100%;">
                 <option><?= $team_array['practice'] ?></option>
-                <?php for ($i = 1; $i < 8; $i++) { ?>
-                  <option>週<?= $i; ?>日</option>
-                <?php } ?>
+                <option>週2以上</option>
+                <option>週1回</option>
+                <option>月2回</option>
+                <option>月1回</option>
+                <option>月1以下</option>
               </select>
             </div>
           </div>
