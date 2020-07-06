@@ -53,7 +53,6 @@ class Model_supports extends CI_Model
   }
   public function update_message($day)
   {
-    //フラグを立てて画面非表示にする
     $date = [
       "delete_message" => 1,
       "update_time" => $day
@@ -61,14 +60,18 @@ class Model_supports extends CI_Model
     return $this->db->where('id', $this->input->post("id"))
       ->update('support', $date);
   }
-  public function delete_message($day)
+  public function end_message($day)
   {
-    //フラグを立てて画面非表示にする
     $date = [
       "delete_message" => 2,
       "update_time" => $day
     ];
-    return $this->db->where('id', $this->input->post("id"))
+    return $this->db->where('id', $this->input->post("end_id"))
       ->update('support', $date);
+  }
+  public function delete_message()
+  {
+    return $this->db->where('id', $this->input->post("delete_id"))
+      ->delete('support');
   }
 }

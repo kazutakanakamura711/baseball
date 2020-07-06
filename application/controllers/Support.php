@@ -125,13 +125,9 @@ class support extends CI_Controller
     $this->form_validation->set_rules($config);
     if ($this->form_validation->run()) {
       $name = $this->input->post("name");
-      $mail = $this->input->post("mail");
-      $message = $this->input->post("message");
-      //メールの設定読込
-      $config = parse_ini_file('config.ini', true);
-      $to = $mail;
+      $to = $this->input->post("mail");
+      $body = $this->input->post("message");
       $subject =  $name . "様、問い合わせありがとうございます。";
-      $body =  $message;
       $this->load->library('mailclass');
       $this->mailclass->php_mailer($to, NULL, $subject, $body);
       $day = date("Y-m-d H:i:s");
@@ -141,7 +137,41 @@ class support extends CI_Controller
 			} else {
 				echo "送信できませんでした。";
 			}
-      $array = ['success' => true];
+    } else {
+      $array = [
+        'error' => true,
+        'message_error' => form_error('message')
+      ];
+    }
+    exit(json_encode($array));
+  }
+  public function end_response()
+  {
+    header("Content-type: application/json; charset=UTF-8");
+    $this->load->library("form_validation");
+    $config = [
+      [
+        "field" => "message",
+        "label" => "問い合わせ内容",
+        "rules" => 'trim|required',
+        "errors" => ["required" => "問い合わせ内容は入力必須です。"]
+      ]
+    ];
+    $this->form_validation->set_rules($config);
+    if ($this->form_validation->run()) {
+      $name = $this->input->post("name");
+      $to = $this->input->post("mail");
+      $body = $this->input->post("message");
+      $subject =  $name . "様、問い合わせありがとうございます。";
+      $this->load->library('mailclass');
+      $this->mailclass->php_mailer($to, NULL, $subject, $body);
+      $day = date("Y-m-d H:i:s");
+      $this->load->model("model_supports");
+			if ($this->model_supports->end_message($day)) {
+				$array = ['success' => true];
+			} else {
+				echo "送信できませんでした。";
+			}
     } else {
       $array = [
         'error' => true,

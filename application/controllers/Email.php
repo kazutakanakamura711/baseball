@@ -1,9 +1,4 @@
 <?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
 defined('BASEPATH') or exit('No direct script access allowed');
 class Email extends CI_Controller
 {

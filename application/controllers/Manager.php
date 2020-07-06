@@ -92,4 +92,69 @@ class Manager extends CI_Controller
     );
     $this->load->view("svmail", $message);
   }
+  public function sv_remail()
+  {
+    if (!$this->session->userdata("is_logged_in")) {
+      redirect("manager/login");
+      return;
+    }
+    $id = $this->input->get('id');
+    $this->output->set_header('X-Frame-Options: DENY', false);
+    $this->load->model("model_supports");
+    $message['row_array'] = html_escape($this->model_supports->getmessage($id));
+    $message['csrf'] = array(
+      'name' => $this->security->get_csrf_token_name(),
+      'hash' => $this->security->get_csrf_hash()
+    );
+    $this->load->view("svremail", $message);
+  }
+  public function notice()
+  {
+    if (!$this->session->userdata("is_logged_in")) {
+      redirect("manager/login");
+      return;
+    }
+    $this->output->set_header('X-Frame-Options: DENY');
+    $data['csrf'] = array(
+      'name' => $this->security->get_csrf_token_name(),
+      'hash' => $this->security->get_csrf_hash()
+    );
+    $this->load->view("notice", $data);
+  }
+  public function news()
+  {
+    header("Content-type: application/json; charset=UTF-8");
+    $this->load->library("form_validation");
+    $rule = [
+      [
+        "field" => "title",
+        "label" => "問い合わせ内容",
+        "rules" => 'trim|required',
+        "errors" => ["required" => "件名は入力必須です。"]
+      ],
+      [
+        "field" => "message",
+        "label" => "問い合わせ内容",
+        "rules" => 'trim|required',
+        "errors" => ["required" => "問い合わせ内容は入力必須です。"]
+      ]
+    ];
+    $this->form_validation->set_rules($rule);
+    if ($this->form_validation->run()) {
+      $this->load->model("model_manager");
+      $to = $this->model_manager->getmail();
+      $subject = $this->input->post("title");
+      $body = $this->input->post("message");
+      $this->load->library('mailclass');
+      $this->mailclass->php_mailer($to, NULL, $subject, $body);
+      $array = ['success' => true];
+    } else {
+      $array = [
+        'error' => true,
+        'title_error' => form_error('title'),
+        'message_error' => form_error('message')
+      ];
+    }
+    exit(json_encode($array));
+  }
 }

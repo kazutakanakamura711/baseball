@@ -37,7 +37,7 @@
         postdata[csrf_name] = csrf_hash;
         $.ajax({
           type: "POST",
-          url: "/support/response",
+          url: "/support/end_response",
           data: postdata,
           crossDomain: false,
           dataType: "json",
@@ -83,7 +83,7 @@
     </div>
     <div class="card">
       <div class="card-body register-card-body">
-        <p class="login-box-msg">下記に入力し、送信してください。</p>
+        <p class="login-box-msg">下記に入力し、返信してください。</p>
         <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         <p class="text-group mb-3">氏名　 <span class="fas fa-user"></span> : <strong><?= $row_array['name'] ?></strong></p>
         <p class="text-group mb-3">メール <span class="fas fa-envelope"></span> : <strong><?= $row_array['mail'] ?></strong></p>

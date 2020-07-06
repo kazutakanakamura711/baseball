@@ -44,12 +44,12 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     $(function() {
-      $('[name="delete_team"]').on('click', function(event) {
+      $('[name="stop_team"]').on('click', function(event) {
         event.preventDefault();
         $(this).prop('disabled', true);
         Swal.fire({
-          title: '本当に削除してもいいですか?',
-          text: '削除選手：' + $(this).data('name'),
+          title: '本当に利用停止してもいいですか?',
+          text: '利用停止チーム：' + $(this).data('name'),
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -61,12 +61,12 @@
             var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
             var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
             var postdata = {
-              'delete_id': $(this).data('id')
+              'stop_id': $(this).data('id')
             };
             postdata[csrf_name] = csrf_hash;
             $.ajax({
               type: "POST",
-              url: "/dust/delete_team",
+              url: "/dust/stop_team",
               data: postdata,
               crossDomain: false,
               dataType: "json",
@@ -75,7 +75,7 @@
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: 'チーム削除しました。',
+                title: 'チーム利用停止しました。',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
@@ -84,66 +84,13 @@
             }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
               Swal.fire({
                 icon: 'error',
-                title: 'チーム削除出来ませんでした。',
+                title: 'チーム利用停止出来ませんでした。',
               }).then((result) => {
-                $('[name="delete_team"]').prop('disabled', false);
+                $('[name="stop_team"]').prop('disabled', false);
               });
             });
           } else {
-            $('[name="delete_team"]').prop('disabled', false);
-          }
-        });
-        return false;
-      });
-    });
-    $(function() {
-      $('[name="delete_contact"]').on('click', function(event) {
-        event.preventDefault();
-        $(this).prop('disabled', true);
-        Swal.fire({
-          title: '本当に削除してもいいですか?',
-          text: $(this).data('name'),
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'はい!',
-          cancelButtonText: 'いいえ！',
-        }).then((result) => {
-          if (result.value) { //はい！の場合
-            var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
-            var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
-            var postdata = {
-              'delete_id': $(this).data('id')
-            };
-            postdata[csrf_name] = csrf_hash;
-            $.ajax({
-              type: "POST",
-              url: "/match/delete_game",
-              data: postdata,
-              crossDomain: false,
-              dataType: "json",
-              scriptCharset: 'utf-8'
-            }).done(function(data) {
-              Swal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: '試合削除しました。',
-                showConfirmButton: false,
-                timer: 1500
-              }).then((result) => {
-                window.location.href = "/score/scores";
-              });
-            }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-              Swal.fire({
-                icon: 'error',
-                title: '試合削除出来ませんでした。',
-              }).then((result) => {
-                $('[name="delete_game"]').prop('disabled', false);
-              });
-            });
-          } else {
-            $('[name="delete_game"]').prop('disabled', false);
+            $('[name="stop_team"]').prop('disabled', false);
           }
         });
         return false;
@@ -192,22 +139,22 @@
                 icon: 'error',
                 title: '削除チーム復帰出来ませんでした。',
               }).then((result) => {
-                $('[name="return"]').prop('disabled', false);
+                $('[name="return_team"]').prop('disabled', false);
               });
             });
           } else {
-            $('[name="return"]').prop('disabled', false);
+            $('[name="return_team"]').prop('disabled', false);
           }
         });
         return false;
       });
     });
     $(function() {
-      $('[name="real_delete"]').on('click', function(event) {
+      $('[name="delete_team"]').on('click', function(event) {
         event.preventDefault();
         $(this).prop('disabled', true);
         Swal.fire({
-          title: '本当にデータ削除してもいいですか?',
+          title: '本当にデータから削除してもいいですか?',
           text: $(this).data('name') + 'は復帰出来なくなります',
           icon: 'warning',
           showCancelButton: true,
@@ -225,7 +172,7 @@
             postdata[csrf_name] = csrf_hash;
             $.ajax({
               type: "POST",
-              url: "/change/delete_real",
+              url: "/dust/delete_team",
               data: postdata,
               crossDomain: false,
               dataType: "json",
@@ -234,22 +181,182 @@
               Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: '選手削除OK!',
+                title: 'チーム削除OK!',
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
-                window.location.href = "/main/delete";
+                window.location.href = "/dust/stop_teams";
               });
             }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
               Swal.fire({
                 icon: 'error',
-                title: '削除出来ませんでした!',
+                title: 'チーム削除出来ませんでした!',
               }).then((result) => {
-                $('[name="real_delete"]').prop('disabled', false);
+                $('[name="delete_team"]').prop('disabled', false);
               });
             });
           } else {
-            $('[name="real_delete"]').prop('disabled', false);
+            $('[name="delete_team"]').prop('disabled', false);
+          }
+        });
+        return false;
+      });
+    });
+    $(function() {
+      $('[name="end_message"]').on('click', function(event) {
+        event.preventDefault();
+        $(this).prop('disabled', true);
+        Swal.fire({
+          title: '本当に対応済ですか?',
+          text: '一度処理すると戻れません。',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'はい!',
+          cancelButtonText: 'いいえ！',
+        }).then((result) => {
+          if (result.value) { //はい！の場合
+            var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+            var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+            var postdata = {
+              'end_id': $(this).data('id')
+            };
+            postdata[csrf_name] = csrf_hash;
+            $.ajax({
+              type: "POST",
+              url: "/dust/end_message",
+              data: postdata,
+              crossDomain: false,
+              dataType: "json",
+              scriptCharset: 'utf-8'
+            }).done(function(data) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: '対応済にしました。',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/manager/contacts";
+              });
+            }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+              Swal.fire({
+                icon: 'error',
+                title: '対応済に出来ませんでした。',
+              }).then((result) => {
+                $('[name="end_message"]').prop('disabled', false);
+              });
+            });
+          } else {
+            $('[name="end_message"]').prop('disabled', false);
+          }
+        });
+        return false;
+      });
+    });
+    $(function() {
+      $('[name="delete_message"]').on('click', function(event) {
+        event.preventDefault();
+        $(this).prop('disabled', true);
+        Swal.fire({
+          title: '本当に削除してもいいですか?',
+          text: 'データ消去するので処理すると二度と表示出来ません。',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'はい!',
+          cancelButtonText: 'いいえ！',
+        }).then((result) => {
+          if (result.value) { //はい！の場合
+            var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+            var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+            var postdata = {
+              'delete_id': $(this).data('id')
+            };
+            postdata[csrf_name] = csrf_hash;
+            $.ajax({
+              type: "POST",
+              url: "/dust/delete_message",
+              data: postdata,
+              crossDomain: false,
+              dataType: "json",
+              scriptCharset: 'utf-8'
+            }).done(function(data) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: '削除しました。',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/manager/contacts";
+              });
+            }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+              Swal.fire({
+                icon: 'error',
+                title: '削除出来ませんでした。',
+              }).then((result) => {
+                $('[name="end_message"]').prop('disabled', false);
+              });
+            });
+          } else {
+            $('[name="end_message"]').prop('disabled', false);
+          }
+        });
+        return false;
+      });
+    });
+    $(function() {
+      $("#news").on('click', function(event) {
+        event.preventDefault();
+        $(this).prop('disabled', true);
+        var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+        var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+        var postdata = {
+          'title': $('[name="title"]').val(),
+          'message': $('[name="message"]').val()
+        };
+        postdata[csrf_name] = csrf_hash;
+        $.ajax({
+          type: "POST",
+          url: "/manager/news",
+          data: postdata,
+          crossDomain: false,
+          dataType: "json",
+          scriptCharset: 'utf-8',
+          success: function(data) {
+            if (data.error) {
+              if (data.title_error != '') {
+                $('#title_error').html(data.title_error);
+              } else {
+                $('#title_error').html('');
+              }
+              if (data.message_error != '') {
+                $('#message_error').html(data.message_error);
+              } else {
+                $('#message_error').html('');
+              }
+              Swal.fire({
+                icon: 'error',
+                title: 'メール送信出来ませんでした。',
+                text: '入力内容をご確認下さい。',
+              }).then((result) => {
+                $("#response").prop('disabled', false);
+              });
+            }
+            if (data.success) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'メール送信しました。',
+                showConfirmButton: false,
+                timer: 1500
+              }).then((result) => {
+                window.location.href = "/manager/teams";
+              });
+            }
           }
         });
         return false;

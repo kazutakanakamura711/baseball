@@ -63,13 +63,13 @@ class Dust extends CI_Controller
         $this->model_scores->score_delete($day);
         exit(json_encode(['score' => '削除完了']));
     }
-    //チーム削除
-    public function delete_team()
+    //チーム利用停止
+    public function stop_team()
     {
         header("Content-type: application/json; charset=UTF-8");
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_manager");
-        $this->model_manager->delete_team($day);
+        $this->model_manager->stop_team($day);
         exit(json_encode(['team' => '削除完了']));
     }
     public function team_return()
@@ -78,6 +78,28 @@ class Dust extends CI_Controller
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_manager");
         $this->model_manager->return_team($day);
-        exit(json_encode(['player' => '削除完了']));
+        exit(json_encode(['team' => '復帰完了']));
+    }
+    public function delete_team()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $this->load->model("model_manager");
+        $this->model_manager->delete_team();
+        exit(json_encode(['team' => '削除完了']));
+    }
+    public function end_message()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $day = date("Y-m-d H:i:s");
+        $this->load->model("model_supports");
+        $this->model_supports->end_message($day);
+        exit(json_encode(['messasge' => '削除完了']));
+    }
+    public function delete_message()
+    {
+        header("Content-type: application/json; charset=UTF-8");
+        $this->load->model("model_supports");
+        $this->model_supports->delete_message();
+        exit(json_encode(['messasge' => '削除完了']));
     }
 }

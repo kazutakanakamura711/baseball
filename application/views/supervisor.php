@@ -44,7 +44,7 @@
                             <button onclick="location.href='/manager/players?id=<?= $values['id'] ?>'" type="submit" class="btn-primary">選手一覧 <i class="fas fa-users"></i></button>
                           </td>
                           <td>
-                            <button name="delete_team" data-id="<?= $values['id'] ?>" data-name="<?= $values['team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                            <button name="stop_team" data-id="<?= $values['id'] ?>" data-name="<?= $values['team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
                           </td>
                         </tr>
                       <?php  } ?>

@@ -1,11 +1,13 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 class Mailclass
 {
-  public function php_mailer($to,$bcc,$subject,$body)
+  public function php_mailer($to, $bcc, $subject, $body)
   {
     //メールの設定読込
     $config = parse_ini_file('config.ini', true);
@@ -33,12 +35,52 @@ class Mailclass
     $mail->CharSet = 'utf-8';
     $mail->setFrom('noreply@yakyu.com', mb_encode_mimeheader('MBC User'));
     $mail->addAddress($to);
-    if(isset($bcc)){
+    if (isset($bcc)) {
       $mail->addBcc($bcc);
     }
     $mail->Subject = mb_encode_mimeheader($subject);
-    $mail->Body = sprintf($body); 
+    $mail->Body = sprintf($body);
     // 送信
     $mail->send();
+  }
+  public function php_mailers($to, $bcc, $subject, $body)
+  {
+    //メールの設定読込
+    $config = parse_ini_file('config.ini', true);
+    // PHPMailerオブジェクト生成
+    $mail = new PHPMailer(true);
+    // 送信設定
+    $mail->SMTPDebug = 0; // 0：デバッグOFF 1：デバッグON
+    $mail->isSMTP();
+    $mail->SMTPAuth = true; // SMTP認証を利用するか
+    $mail->Host = $config['mail']['Host'];
+    $mail->Username = $config['mail']['Username'];
+    $mail->Password = $config['mail']['Password'];
+    $mail->SMTPSecure = $config['mail']['Secure']; // sslの場合はssl
+    $mail->Port = $config['mail']['Port']; // sslの場合は465(普通は)
+    // ここからがポイント
+    $mail->SMTPOptions = array(
+      'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        // 'allow_self_signed' => true
+      )
+    );
+    // ここまで
+    // 送信内容設定
+    foreach ($to as $address) {
+      $mail->CharSet = 'utf-8';
+      $mail->setFrom('noreply@yakyu.com', mb_encode_mimeheader('MBC User'));
+      $mail->addAddress($address);
+      if (isset($bcc)) {
+        $mail->addBcc($bcc);
+      }
+      $mail->Subject = mb_encode_mimeheader($subject);
+      $mail->Body = sprintf($body);
+      // 送信
+      $result = $mail->send();
+      $mail->clearAddress();
+      if ($result === false) {break;}
+    }
   }
 }

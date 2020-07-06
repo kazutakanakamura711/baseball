@@ -85,10 +85,10 @@
                           <td><?= $values['title'] ?></td>
                           <td><?= $values['message'] ?></td>
                           <td>
-                            <button onclick="location.href='/manager/sv_mail?id=<?= $values['id'] ?>'" type="submit" class="btn-primary">返信 <i class="fas fa-users"></i></button>
+                            <button onclick="location.href='/manager/sv_remail?id=<?= $values['id'] ?>'" type="submit" class="btn-primary">返信 <i class="fas fa-users"></i></button>
                           </td>
                           <td>
-                            <button name="delete_team" data-id="<?= $values['id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                            <button name="end_message" data-id="<?= $values['id'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
                           </td>
                         </tr>
                       <?php  } ?>
@@ -132,7 +132,7 @@
                           <td><?= $values['title'] ?></td>
                           <td><?= $values['message'] ?></td>
                           <td>
-                            <button name="delete_team" data-id="<?= $values['id'] ?>" data-name="<?= $values['name'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                            <button name="delete_message" data-id="<?= $values['id'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
                           </td>
                         </tr>
                       <?php  } ?>
