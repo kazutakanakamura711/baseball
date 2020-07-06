@@ -69,6 +69,7 @@ class Mailclass
     // ここまで
     // 送信内容設定
     foreach ($to as $address) {
+      $mail->clearAddress();
       $mail->CharSet = 'utf-8';
       $mail->setFrom('noreply@yakyu.com', mb_encode_mimeheader('MBC User'));
       $mail->addAddress($address);
@@ -79,7 +80,6 @@ class Mailclass
       $mail->Body = sprintf($body);
       // 送信
       $result = $mail->send();
-      $mail->clearAddress();
       if ($result === false) {break;}
     }
   }

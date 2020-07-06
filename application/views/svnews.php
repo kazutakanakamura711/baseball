@@ -1,4 +1,4 @@
-  <?php $this->load->view('common/header'); ?>
+  <?php $this->load->view('common/svheader'); ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

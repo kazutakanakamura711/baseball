@@ -33,7 +33,7 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>年間試合数</th>
+                      <th>日時</th>
                       <th>チーム名</th>
                       <th>監督</th>
                       <th colspan="3">チーム成績(攻)</th>

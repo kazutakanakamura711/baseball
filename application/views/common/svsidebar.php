@@ -51,16 +51,16 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url() ?>manager/contacts" class="nav-link">
+              <a href="<?= base_url() ?>manager/notice" class="nav-link">
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>ユーザーお知らせ</p>
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url() ?>manager/contacts" class="nav-link">
+              <a href="<?= base_url() ?>manager/newstopix" class="nav-link">
                 <i class="nav-icon far fa-circle text-info"></i>
-                <p>メンテナンス表示</p>
+                <p>お知らせ一覧</p>
                 <i class="right fas fa-angle-right"></i>
               </a>
             </li>

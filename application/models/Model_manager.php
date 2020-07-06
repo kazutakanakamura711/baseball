@@ -31,6 +31,6 @@ class Model_manager extends CI_Model
   {
     $this->db->select('mail');
     $mail = $this->db->get('team');
-    return $mail->result();  //メールアドレス全部   
+    return $mail->result_array();  //メールアドレス全部   
   }
 }

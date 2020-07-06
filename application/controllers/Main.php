@@ -107,4 +107,20 @@ class Main extends CI_Controller
         $clean_team = html_escape($team);
         $this->load->view("matching", $clean_team);
     }
+    public function notice()
+    {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
+        $this->output->set_header('X-Frame-Options: DENY', false);
+        $this->load->model("model_news");
+        $news['news_array'] = $this->model_news->get_news();
+        $clean_news = html_escape($news);
+        $clean_news['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view("notice", $clean_news);
+    }
 }

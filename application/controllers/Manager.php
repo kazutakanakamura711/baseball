@@ -119,13 +119,13 @@ class Manager extends CI_Controller
       'name' => $this->security->get_csrf_token_name(),
       'hash' => $this->security->get_csrf_hash()
     );
-    $this->load->view("notice", $data);
+    $this->load->view("svnotice", $data);
   }
   public function news()
   {
     header("Content-type: application/json; charset=UTF-8");
     $this->load->library("form_validation");
-    $rule = [
+    $config = [
       [
         "field" => "title",
         "label" => "問い合わせ内容",
@@ -139,14 +139,21 @@ class Manager extends CI_Controller
         "errors" => ["required" => "問い合わせ内容は入力必須です。"]
       ]
     ];
-    $this->form_validation->set_rules($rule);
+    $this->form_validation->set_rules($config);
     if ($this->form_validation->run()) {
-      $this->load->model("model_manager");
-      $to = $this->model_manager->getmail();
+      //$this->load->model("model_add_news");
+      // $mails['mail'] = $this->model_manager->getmail();
+      // foreach ($mails as $mail) {
+      //   foreach ($mail as $value) {
+      //     $to[] = $value['mail'];
+      //   }
+      // }
       $subject = $this->input->post("title");
       $body = $this->input->post("message");
-      $this->load->library('mailclass');
-      $this->mailclass->php_mailer($to, NULL, $subject, $body);
+      // $this->load->library('mailclass');
+      // $this->mailclass->php_mailers($to, NULL, $subject, $body);
+      $this->load->model("model_news");
+      $this->model_news->add_news($subject,$body);
       $array = ['success' => true];
     } else {
       $array = [
@@ -157,4 +164,20 @@ class Manager extends CI_Controller
     }
     exit(json_encode($array));
   }
+  public function newstopix()
+    {
+        if (!$this->session->userdata("is_logged_in")) {
+            redirect("main/login");
+            return;
+        }
+        $this->output->set_header('X-Frame-Options: DENY', false);
+        $this->load->model("model_news");
+        $news['news_array'] = $this->model_news->get_news();
+        $clean_news = html_escape($news);
+        $clean_news['csrf'] = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $this->load->view("svnews", $clean_news);
+    }
 }
