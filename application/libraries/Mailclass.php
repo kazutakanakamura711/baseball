@@ -68,19 +68,16 @@ class Mailclass
     );
     // ここまで
     // 送信内容設定
-    foreach ($to as $address) {
-      $mail->clearAddress();
-      $mail->CharSet = 'utf-8';
-      $mail->setFrom('noreply@yakyu.com', mb_encode_mimeheader('MBC User'));
-      $mail->addAddress($address);
-      if (isset($bcc)) {
-        $mail->addBcc($bcc);
-      }
-      $mail->Subject = mb_encode_mimeheader($subject);
-      $mail->Body = sprintf($body);
-      // 送信
-      $result = $mail->send();
-      if ($result === false) {break;}
+    $mail->CharSet = 'utf-8';
+    $mail->setFrom('noreply@yakyu.com', mb_encode_mimeheader('MBC User'));
+    //$mail->clearAddress();
+    $mail->addAddress($to);
+    foreach ($bcc as $address) {
+      $mail->addBcc($address);
     }
+    $mail->Subject = mb_encode_mimeheader($subject);
+    $mail->Body = sprintf($body);
+    // 送信
+    $mail->send();
   }
 }
