@@ -169,7 +169,7 @@ class Manager extends CI_Controller
   public function newstopix()
   {
     if (!$this->session->userdata("is_logged_in")) {
-      redirect("main/login");
+      redirect("manager/login");
       return;
     }
     $this->output->set_header('X-Frame-Options: DENY', false);

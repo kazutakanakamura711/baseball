@@ -27,7 +27,7 @@
                 <strong><span id="message_error" class="text-danger"></span></strong>
               </div>
               <div class="form-group mb-3">
-                <textarea name="message" id="message" cols="140" rows="20" placeholder="※ここに内容を入力してください"></textarea>
+                <textarea name="message" id="message" cols="137" rows="20" placeholder="※ここに内容を入力してください"></textarea>
               </div>
               <div class="row">
                 <button id="news" type="submit" class="btn btn-primary btn-block">送信する</button>

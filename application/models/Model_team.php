@@ -19,4 +19,11 @@ class Model_team extends CI_Model
     $teamid = $this->db->get('team');
     return $teamid->first_row()->id;  //特定チームid   
   }
+  public function get_flag($id)
+  {
+    $this->db->select('withdrawal');
+    $this->db->where("id", $id);
+    $flag = $this->db->get('team');
+    return $flag->first_row()->withdrawal;  //特定チームフラグ   
+  }
 }

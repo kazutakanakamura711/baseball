@@ -13,7 +13,15 @@ class Main extends CI_Controller
     public function login()
     {
         if ($this->session->userdata("is_logged_in")) {
-            redirect("main/players");
+            $id = $_SESSION["id"];
+            $this->load->model("model_team");
+            $row = $this->model_team->get_flag($id);
+            if ($row == 0) {
+                redirect("main/players");
+            } else {
+                $this->session->sess_destroy();        //セッションデータの削除
+                redirect("main/index");
+            }
         } else {
             $data['csrf'] = array(
                 'name' => $this->security->get_csrf_token_name(),
@@ -21,7 +29,6 @@ class Main extends CI_Controller
             );
             $this->load->view('login', $data);
         }
-        //$this->session->sess_destroy();
     }
     public function logout()
     {
@@ -51,24 +58,26 @@ class Main extends CI_Controller
         if ($this->form_validation->run()) {
             $this->load->model("model_team");
             $rows = $this->model_team->login();
-            if (password_verify($this->input->post("pass", true), $rows[0]["password"]) == true) {
-                $data = [
-                    "id" => $rows[0]["id"],
-                    "team" => $rows[0]["team"],
-                    "skipper" => $rows[0]["skipper"],
-                    "tel" => $rows[0]["tel"],
-                    "mail" => $this->input->post("mail"),
-                    "is_logged_in" => 1
-                ];
-                $this->session->set_userdata($data);
-                exit(json_encode($data));
-            } else {
-                $data["error"] = "メールアドレスかパスワードが不正です。";
-                $this->load->view("login", $data);
+            if ($rows[0]["withdrawal"] == 0) {
+                if (password_verify($this->input->post("pass", true), $rows[0]["password"]) == true) {
+                    $data = [
+                        "id" => $rows[0]["id"],
+                        "team" => $rows[0]["team"],
+                        "skipper" => $rows[0]["skipper"],
+                        "tel" => $rows[0]["tel"],
+                        "mail" => $this->input->post("mail"),
+                        "withdrawal" => $rows[0]["withdrawal"],
+                        "is_logged_in" => 1
+                    ];
+                    $this->session->set_userdata($data);
+                    exit(json_encode($data));
+                } else {
+                    $data["error"] = "メールアドレスかパスワードが不正です。";
+                    $this->load->view("login", $data);
+                }
             }
-        } else {
-            $this->load->view("login");
         }
+        $this->load->view("login");
     }
     //チーム内登録選手全て
     public function players()
