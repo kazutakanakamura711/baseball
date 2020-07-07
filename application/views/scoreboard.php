@@ -20,6 +20,7 @@
             <thead class="table-primary">
               <tr>
                 <th>試合数</th>
+                <th>選手数</th>
                 <th>打率</th>
                 <th>本塁打</th>
                 <th>得点</th>
@@ -35,7 +36,8 @@
                 if ($_SESSION['id'] === $value['team_id']) {
                   if ($value['delete_player'] === "0") { ?>
                     <tr>
-                      <td><?= $game ?></td>
+                      <td><?= $value['gamecount'] ?></td>
+                      <td><?= $value['playercount'] ?></td>
                       <td><?= number_format(round($value['sum(hit)'] / $value['sum(atbat)'], 3), 3) ?></td>
                       <td><?= $value['sum(homerun)'] ?></td>
                       <td><?= $value['sum(rbi)'] ?></td>

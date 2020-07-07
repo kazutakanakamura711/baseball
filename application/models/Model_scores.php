@@ -59,7 +59,7 @@ class Model_scores extends CI_Model
   }
   public function getteamscore($id)
   {
-    $this->db->select('pid,team_id,delete_player,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk),delete_score');
+    $this->db->select('pid,team_id,(SELECT count(*) FROM game where game.team_id = player.team_id) AS gamecount,(SELECT count(*) FROM player where team_id) AS playercount,delete_player,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk),delete_score');
     $this->db->from('score');
     $this->db->join('player', 'player.pid = score.player_id');
     $this->db->where('team_id', $id);

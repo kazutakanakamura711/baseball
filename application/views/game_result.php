@@ -66,7 +66,7 @@
                 showConfirmButton: false,
                 timer: 1500
               }).then((result) => {
-                window.location.href = "/main/players";
+                window.location.href = "/score/scores";
               });
             }
           }

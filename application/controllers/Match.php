@@ -42,6 +42,24 @@ class Match extends CI_Controller
         );
         $this->load->view('contact', $player);
     }
+    public function team_details()
+    {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
+            redirect("main/login");
+            return;
+        }
+        $this->output->set_header('X-Frame-Options: DENY', false);
+        $id = $this->input->get('id');
+        $this->load->model("model_team");
+        $team['name'] = $this->model_team->get_name($id);
+        $this->load->model("model_scores");
+        $team['teamscore_array'] = $this->model_scores->getteamscore($id);
+        $clean_team = html_escape($team);
+        $this->load->view("team_details", $clean_team);
+    }
     public function ground()
     {
         $id = $_SESSION['id'];

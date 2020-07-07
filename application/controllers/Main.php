@@ -116,11 +116,10 @@ class Main extends CI_Controller
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $this->load->model("model_scores");
-        $team['teamscore_array'] = $this->model_scores->getallteamscore();
+        $this->load->model("model_teams");
+        $team['team_array'] = $this->model_teams->getteams();
         $clean_team = html_escape($team);
         $this->load->view("matching", $clean_team);
-        print_r($team);
     }
     public function notice()
     {
