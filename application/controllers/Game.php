@@ -4,7 +4,10 @@ class Game extends CI_Controller
 {
     public function game_result()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }
@@ -56,14 +59,17 @@ class Game extends CI_Controller
     //試合結果変更へ
     public function game_update()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $id = $this->input->get('id');
+        $gameid = $this->input->get('id');
         $this->load->model("model_games");
-        $game['row_array'] = html_escape($this->model_games->get_game($id));
+        $game['row_array'] = html_escape($this->model_games->get_game($gameid));
         $game['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

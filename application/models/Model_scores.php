@@ -48,9 +48,9 @@ class Model_scores extends CI_Model
   public function getallteamscore()
   {
     $this->db->select('team,(SELECT count(*) FROM game where game.team_id = team.id) AS count,skipper,team_id,withdrawal,sum(atbat),sum(hit),sum(homerun),sum(rbi),sum(steal),sum(walk),sum(sacrifice),sum(inning),sum(h_hit),sum(h_homerun),sum(er),sum(strikeout),sum(h_walk)');
-    $this->db->from('score');
-    $this->db->join('player', 'player.pid = score.player_id');
-    $this->db->join('team', 'player.team_id = team.id');
+    $this->db->from('team');
+    $this->db->join('player', 'player.team_id = team.id');
+    $this->db->join('score', 'score.player_id = player.pid');
     $this->db->where('delete_player', 0);
     $this->db->where('delete_score', 0);
     $this->db->group_by("team_id");
@@ -68,18 +68,18 @@ class Model_scores extends CI_Model
     $score = $this->db->get();
     return $score->result_array();  //ログインチーム登録選手スコア全て表示   
   }
-  public function getscore($id)
+  public function getscore($playerid)
   {
     $this->db->from('score');
     $this->db->join('player', 'player.pid = score.player_id');
-    $this->db->where('player_id', $id);
+    $this->db->where('player_id', $playerid);
     $this->db->where('delete_score', 0);
     $score = $this->db->get();
     return $score->result_array();  //ログインチーム登録選手スコア全て表示   
   }
-  public function get_score($id)
+  public function get_score($scoreid)
   {
-    $this->db->where('score_id', $id);
+    $this->db->where('score_id', $scoreid);
     $player = $this->db->get('score');
     return $player->row_array();  //特定選手を表示   
   }

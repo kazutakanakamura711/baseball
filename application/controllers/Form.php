@@ -14,14 +14,17 @@ class Form extends CI_Controller
     //選手情報変更へ
     public function update_player()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $id = $this->input->get('id');
+        $playerid = $this->input->get('id');
         $this->load->model("model_players");
-        $player['row_array'] = html_escape($this->model_players->getplayer($id));
+        $player['row_array'] = html_escape($this->model_players->getplayer($playerid));
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -30,14 +33,17 @@ class Form extends CI_Controller
     }
     public function profile()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $id = $this->input->get('id');
+        $teamid = $this->input->get('id');
         $this->load->model("model_teams");
-        $team['team_array'] = html_escape($this->model_teams->getteam($id));
+        $team['team_array'] = html_escape($this->model_teams->getteam($teamid));
         $team['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -46,10 +52,17 @@ class Form extends CI_Controller
     }
     public function mail()
     {
-        $id = $this->input->get('id');
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
+            redirect("main/login");
+            return;
+        }
+        $teamid = $this->input->get('id');
         $this->output->set_header('X-Frame-Options: DENY', false);
         $this->load->model("model_teams");
-        $team['team_array'] = html_escape($this->model_teams->getteam($id));
+        $team['team_array'] = html_escape($this->model_teams->getteam($teamid));
         $team['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

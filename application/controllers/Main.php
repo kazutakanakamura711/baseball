@@ -82,12 +82,14 @@ class Main extends CI_Controller
     //チーム内登録選手全て
     public function players()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY');
-        $id = $_SESSION['id'];
         $this->load->model("model_teams");
         $player['team_array'] = $this->model_teams->getteam($id);
         $this->load->model("model_players");
@@ -106,7 +108,10 @@ class Main extends CI_Controller
     //登録チーム全て
     public function teams()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }
@@ -115,10 +120,14 @@ class Main extends CI_Controller
         $team['teamscore_array'] = $this->model_scores->getallteamscore();
         $clean_team = html_escape($team);
         $this->load->view("matching", $clean_team);
+        print_r($team);
     }
     public function notice()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }

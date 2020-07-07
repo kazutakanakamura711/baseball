@@ -5,14 +5,17 @@ class Match extends CI_Controller
     //試合申し込みへ
     public function game()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $id = $this->input->get('id');
+        $teamid = $this->input->get('id');
         $this->load->model("model_teams");
-        $player['row_array'] = html_escape($this->model_teams->getteam($id));
+        $player['row_array'] = html_escape($this->model_teams->getteam($teamid));
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -22,14 +25,17 @@ class Match extends CI_Controller
     //連絡フォームへ
     public function contact()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $id = $this->input->get('id');
+        $teamid = $this->input->get('id');
         $this->load->model("model_teams");
-        $player['row_array'] = html_escape($this->model_teams->getteam($id));
+        $player['row_array'] = html_escape($this->model_teams->getteam($teamid));
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -38,7 +44,10 @@ class Match extends CI_Controller
     }
     public function ground()
     {
-        if (!$this->session->userdata("is_logged_in")) {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
             redirect("main/login");
             return;
         }
@@ -63,6 +72,13 @@ class Match extends CI_Controller
     }
     public function rules()
     {
+        $id = $_SESSION['id'];
+        $this->load->model("model_team");
+        $row = $this->model_team->get_flag($id);
+        if (!$this->session->userdata("is_logged_in") || $row != 0) {
+            redirect("main/login");
+            return;
+        }
         $this->output->set_header('X-Frame-Options: DENY');
         $this->load->view('rules');
     }

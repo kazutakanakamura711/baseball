@@ -60,7 +60,10 @@ class support extends CI_Controller
   }
   public function supports()
   {
-    if (!$this->session->userdata("is_logged_in")) {
+    $id = $_SESSION['id'];
+    $this->load->model("model_team");
+    $row = $this->model_team->get_flag($id);
+    if (!$this->session->userdata("is_logged_in") || $row != 0) {
       redirect("main/login");
       return;
     }
@@ -132,11 +135,11 @@ class support extends CI_Controller
       $this->mailclass->php_mailer($to, NULL, $subject, $body);
       $day = date("Y-m-d H:i:s");
       $this->load->model("model_supports");
-			if ($this->model_supports->update_message($day)) {
-				$array = ['success' => true];
-			} else {
-				echo "送信できませんでした。";
-			}
+      if ($this->model_supports->update_message($day)) {
+        $array = ['success' => true];
+      } else {
+        echo "送信できませんでした。";
+      }
     } else {
       $array = [
         'error' => true,
@@ -167,11 +170,11 @@ class support extends CI_Controller
       $this->mailclass->php_mailer($to, NULL, $subject, $body);
       $day = date("Y-m-d H:i:s");
       $this->load->model("model_supports");
-			if ($this->model_supports->end_message($day)) {
-				$array = ['success' => true];
-			} else {
-				echo "送信できませんでした。";
-			}
+      if ($this->model_supports->end_message($day)) {
+        $array = ['success' => true];
+      } else {
+        echo "送信できませんでした。";
+      }
     } else {
       $array = [
         'error' => true,
