@@ -160,10 +160,8 @@
             <caption><strong>【試合結果】</strong></caption>
           </div>
           <div class="col-sm-3">
-            <?= form_open("#"); ?>
-            <a href="<?= base_url() ?>match/game_result" class="float-sm-right nav-link">試合結果登録へ　
+            <a href="<?= base_url() ?>game/game_result" class="float-sm-right nav-link">試合結果登録へ　
               <span class="fa fa-chevron-right"></span><span class="fa fa-chevron-right"></span></a>
-            <?= form_close(); ?>
           </div>
           <table class="table table-bordered table-hover text-nowrap">
             <thead class="table-primary">
@@ -182,7 +180,7 @@
                     <td><?= $games['battle_team'] ?></td>
                     <td><?= $games['score'] ?> － <?= $games['loss'] ?></td>
                     <td><?= $games['battle'] ?></td>
-                    <td class="text-truncate" style="max-width: 500px;"><?= $games['consideration'] ?></td>
+                    <td title="<?= $games['consideration'] ?>" class="text-truncate" style="max-width: 500px;"><?= $games['consideration'] ?></td>
                     <td>
                       <button onclick="location.href='/game/game_update?id=<?= $games['id'] ?>'" id="button1" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
                     </td>

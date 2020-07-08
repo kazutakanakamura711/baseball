@@ -289,11 +289,17 @@
                                     <p class="mt-3" data-zanim='{"delay":0.1}'>
                                         他チームとの交流の機会が増えることで、新たな球友との思い出を記録だけでなく記憶にも沢山残すことが可能です。</p>
                                 </div>
-                                <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                    <a class="btn btn-primary mr-3 mt-3" href="#">詳しく見る
-                                        <span class="fa fa-chevron-right ml-2"></span>
-                                    </a>
-                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 py-0 mt-4 mt-lg-0" style="text-align: center">
+                    <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                        <div class="overflow-hidden">
+                            <div class="zopacity" data-zanim='{"delay":0.2}'>
+                                <a class="btn btn-primary mr-3 mt-3" href="#">詳しく見る
+                                    <span class="fa fa-chevron-right ml-2"></span>
+                                </a>
                             </div>
                         </div>
                     </div>

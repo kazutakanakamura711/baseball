@@ -42,7 +42,7 @@
                         <tr>
                           <td><?= $notice['insert_time'] ?></td>
                           <td><?= $notice['title'] ?></td>
-                          <td class="text-truncate" style="max-width: 500px;"><?= $notice['message'] ?></td>
+                          <td title="<?= $notice['message'] ?>" class="text-truncate" style="max-width: 500px;"><?= $notice['message'] ?></td>
                         </tr>
                       <?php  } ?>
                     <?php  } ?>

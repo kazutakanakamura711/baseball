@@ -132,7 +132,7 @@ class Bms extends CI_Controller
         ];
         $this->form_validation->set_rules($config);
         $days = date("Y-m-d H:i:s");
-        if ($this->form_validation->run()) {
+        if ($this->form_validation->run()) {          
             $this->load->model("model_teams");
             if ($this->model_teams->add_teams($days)) {
                 $array = ['success' => true];

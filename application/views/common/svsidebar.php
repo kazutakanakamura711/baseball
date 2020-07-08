@@ -9,7 +9,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="<?= base_url() ?>main/login" class="nav-link text-primary">ホーム<i class="fas fa-home"></i></a>
+          <a href="<?= base_url() ?>manager/teams" class="nav-link text-primary">ホーム<i class="fas fa-home"></i></a>
         <li class="nav-item d-none d-sm-inline-block">
         <a id="logout" href="<?= base_url() ?>main/logout" class="nav-link text-danger">ログアウト<i class="fas fa-sign-out-alt"></i></a>
         </li>

@@ -10,8 +10,9 @@
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="<?= base_url() ?>main/login" class="nav-link text-primary">ホーム<i class="fas fa-home"></i></a>
+        </li>
         <li class="nav-item d-none d-sm-inline-block">
-        <a id="logout" href="<?= base_url() ?>main/logout" class="nav-link text-danger">ログアウト<i class="fas fa-sign-out-alt"></i></a>
+          <a id="logout" href="<?= base_url() ?>main/logout" class="nav-link text-danger">ログアウト<i class="fas fa-sign-out-alt"></i></a>
         </li>
       </ul>
     </nav>
@@ -20,7 +21,7 @@
     <aside class="main-sidebar sidebar-light-primary elevation-4">
       <!-- Brand Logo -->
       <div class="float-center">　　<img src="<?= base_url() ?>assets/images/logo2.png" alt="MBC"></div>
-      
+
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar Menu -->
@@ -119,3 +120,4 @@
         </nav><!-- /.sidebar-menu -->
       </div><!-- /.sidebar -->
     </aside>
+  </div>
