@@ -323,7 +323,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-lg-4">
                         <div class="background-white pb-4 h-100 radius-secondary">
-                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/images/portrait-1.jpg" alt="Profile Picture" />
+                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/images/noimg.png" alt="Profile Picture" />
                             <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
                                     <h5 data-zanim='{"delay":0}'>チーム名：帝人BS</h5>
@@ -345,7 +345,7 @@
                     </div>
                     <div class="col-sm-6 col-lg-4 mt-4 mt-sm-0">
                         <div class="background-white pb-4 h-100 radius-secondary">
-                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/images/portrait-3.jpg" alt="Profile Picture" />
+                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/images/noimg.png" alt="Profile Picture" />
                             <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
                                     <h5 data-zanim='{"delay":0}'>チーム名：松山BC</h5>
@@ -367,7 +367,7 @@
                     </div>
                     <div class="col-sm-6 col-lg-4 mt-4 mt-lg-0">
                         <div class="background-white pb-4 h-100 radius-secondary">
-                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/images/portrait-4.jpg" alt="Profile Picture" />
+                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/images/noimg.png" alt="Profile Picture" />
                             <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
                                     <h5 data-zanim='{"delay":0}'>チーム名：チーム暁</h5>

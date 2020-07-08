@@ -22,9 +22,9 @@ class Form extends CI_Controller
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $playerid = $this->input->get('id');
+        $id = $this->input->get('id');
         $this->load->model("model_players");
-        $player['row_array'] = html_escape($this->model_players->getplayer($playerid));
+        $player['row_array'] = html_escape($this->model_players->getplayer($id));
         $player['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -41,9 +41,9 @@ class Form extends CI_Controller
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $teamid = $this->input->get('id');
+        $id = $this->input->get('id');
         $this->load->model("model_teams");
-        $team['team_array'] = html_escape($this->model_teams->getteam($teamid));
+        $team['team_array'] = html_escape($this->model_teams->getteam($id));
         $team['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -59,10 +59,10 @@ class Form extends CI_Controller
             redirect("main/login");
             return;
         }
-        $teamid = $this->input->get('id');
+        $id = $this->input->get('id');
         $this->output->set_header('X-Frame-Options: DENY', false);
         $this->load->model("model_teams");
-        $team['team_array'] = html_escape($this->model_teams->getteam($teamid));
+        $team['team_array'] = html_escape($this->model_teams->getteam($id));
         $team['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

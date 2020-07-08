@@ -26,9 +26,9 @@ class Model_teams extends CI_Model
     $team = $this->db->get('team');
     return $team->result_array();  //登録チーム全て表示   
   }
-  public function getteam($teamid)
+  public function getteam($id)
   {
-    $this->db->where('id', $teamid);
+    $this->db->where('id', $id);
     $team = $this->db->get('team');
     return $team->row_array();  //特定チームを表示   
   }

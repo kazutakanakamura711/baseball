@@ -67,9 +67,9 @@ class Game extends CI_Controller
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $gameid = $this->input->get('id');
+        $id = $this->input->get('id');
         $this->load->model("model_games");
-        $game['row_array'] = html_escape($this->model_games->get_game($gameid));
+        $game['row_array'] = html_escape($this->model_games->get_game($id));
         $game['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()

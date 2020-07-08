@@ -68,18 +68,18 @@ class Model_scores extends CI_Model
     $score = $this->db->get();
     return $score->result_array();  //ログインチーム登録選手スコア全て表示   
   }
-  public function getscore($playerid)
+  public function getscore($id)
   {
     $this->db->from('score');
     $this->db->join('player', 'player.pid = score.player_id');
-    $this->db->where('player_id', $playerid);
+    $this->db->where('player_id', $id);
     $this->db->where('delete_score', 0);
     $score = $this->db->get();
     return $score->result_array();  //ログインチーム登録選手スコア全て表示   
   }
-  public function get_score($scoreid)
+  public function get_score($id)
   {
-    $this->db->where('score_id', $scoreid);
+    $this->db->where('score_id', $id);
     $player = $this->db->get('score');
     return $player->row_array();  //特定選手を表示   
   }

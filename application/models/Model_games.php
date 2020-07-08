@@ -41,9 +41,9 @@ class Model_games extends CI_Model
     $game = $this->db->count_all_results('game');
     return $game;  //試合数   
   }
-  public function get_game($gameid)
+  public function get_game($id)
   {
-    $this->db->where('id', $gameid);
+    $this->db->where('id', $id);
     $player = $this->db->get('game');
     return $player->row_array();  //特定選手を表示   
   }

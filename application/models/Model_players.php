@@ -49,9 +49,9 @@ class Model_players extends CI_Model
     $count = $this->db->count_all_results('player');
     return $count;  
   }
-  public function getplayer($playerid)
+  public function getplayer($id)
   {
-    $this->db->where('pid', $playerid);
+    $this->db->where('pid', $id);
     $player = $this->db->get('player');
     return $player->row_array();  //特定選手を表示   
   }

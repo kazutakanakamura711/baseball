@@ -80,9 +80,9 @@ class Score extends CI_Controller
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $playerid = $this->input->get('id');
+        $id = $this->input->get('id');
         $this->load->model("model_scores");
-        $scores['score_array'] = html_escape($this->model_scores->getscore($playerid));
+        $scores['score_array'] = html_escape($this->model_scores->getscore($id));
         $scores['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
@@ -100,9 +100,9 @@ class Score extends CI_Controller
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $scoreid = $this->input->get('id');
+        $id = $this->input->get('id');
         $this->load->model("model_scores");
-        $score['row_array'] = html_escape($this->model_scores->get_score($scoreid));
+        $score['row_array'] = html_escape($this->model_scores->get_score($id));
         $score['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
