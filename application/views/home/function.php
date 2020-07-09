@@ -149,7 +149,7 @@
                                 <a class="btn btn-outline-primary btn-capsule btn-sm border-2x fw-700" href="#question">よくある質問</a>
                             </li>
                             <li>
-                                <a class="btn btn-outline-primary btn-capsule btn-sm border-2x fw-700" href="#member">開発メンバー</a>
+                                <a class="btn btn-outline-primary btn-capsule btn-sm border-2x fw-700" href="#news">お知らせ</a>
                             </li>
                             <li>
                                 <a class="btn btn-outline-primary btn-capsule btn-sm border-2x fw-700" href="#contact">お問い合わせ</a>
@@ -308,7 +308,7 @@
                     <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                         <div class="overflow-hidden">
                             <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                <a class="btn btn-primary mr-3 mt-3" href="#team">READ MORE
+                                <a class="btn btn-primary mr-3 mt-3" href="#news">READ MORE
                                     <span class="fa fa-chevron-down ml-2"></span>
                                 </a>
                             </div>
@@ -409,7 +409,7 @@
             </div>
             <!--/.container-->
         </section>
-        <section id="question" class="background-white  text-center" style="position: relative; padding-top: 6rem;">
+        <section id="question" class="background-white  text-center" style="position: relative; ">
             <div class="container">
                 <div class="row mb-6">
                     <div class="col">
@@ -423,13 +423,13 @@
                     <div class="onebox">
                         <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
                         <div class="fukiArea">
-                            <div class="fukidasi">選手もログイン可能ですか？</div>
+                            <div class="fukidasi">試合マッチングはどういう流れで行われますか？</div>
                         </div>
                     </div>
                     <div class="onebox">
                         <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
                         <div class="fukiArea">
-                            <div class="fukidasi">可能です。監督だけでなく選手の方もログインし閲覧や連絡機能など利用出来ます。</div>
+                            <div class="fukidasi">対戦チーム一覧から選んで試合を申し込む形になります。各チームの成績も確認出来ますので、選考の参考にして下さい。</div>
                         </div>
                     </div>
                 </div>
@@ -444,7 +444,7 @@
                     <div class="onebox">
                         <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
                         <div class="fukiArea">
-                            <div class="fukidasi">ダイジョーブです。公開・非公開設定を選択できます。非公開設定にするとメンバー登録またはファン登録しているユーザーのみ閲覧が可能になります</div>
+                            <div class="fukidasi">ダイジョーブです。公開・非公開設定を選択できます。非公開設定にするとトップ画面には掲載しませんので安心してご利用頂けます。</div>
                         </div>
                     </div>
                 </div>
@@ -452,13 +452,13 @@
                     <div class="onebox">
                         <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
                         <div class="fukiArea">
-                            <div class="fukidasi">複数人で管理をすることは可能ですか？</div>
+                            <div class="fukidasi">スコア管理は充実してますか？</div>
                         </div>
                     </div>
                     <div class="onebox">
                         <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
                         <div class="fukiArea">
-                            <div class="fukidasi">はい。副管理人を設定することで複数人でのチーム管理が可能になります。また、副管理人には複数人のメンバーを指定することができます。</div>
+                            <div class="fukidasi">個人成績については通算で管理してますが、各試合ごとの成績も確認出来ます。また、チーム単位の通算成績も管理されてます。</div>
                         </div>
                     </div>
                 </div>
@@ -480,7 +480,7 @@
                     <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                         <div class="overflow-hidden">
                             <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                <a class="btn btn-primary mr-3 mt-3" href="#member">READ MORE
+                                <a class="btn btn-primary mr-3 mt-3" href="#news">READ MORE
                                     <span class="fa fa-chevron-down ml-2"></span>
                                 </a>
                             </div>
@@ -489,78 +489,65 @@
                 </div>
             </div>
         </section>
-        <section id="member" class="background-11  text-center">
-            <div class="container">
+        <section id="news" class="background-11  text-center">
+            <div class="container-fluid">
                 <div class="row mb-6">
                     <div class="col">
-                        <h3 class="fs-2 fs-md-3"> 開発メンバー</h3>
+                        <h3 class="fs-2 fs-md-3">お知らせ</h3>
                         <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll">
                     </div>
                 </div>
+                <!-- SELECT2 EXAMPLE -->
                 <div class="row">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="background-white pb-4 h-100 radius-secondary">
-                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="assets/images/portrait-3.jpg" alt="Profile Picture" />
-                            <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden">
-                                    <h5 data-zanim='{"delay":0}'>名前：櫻井</h5>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>担当：データ(リーダー)</h6>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>紹介文</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mt-4 mt-sm-0">
-                        <div class="background-white pb-4 h-100 radius-secondary">
-                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="assets/images/portrait-4.jpg" alt="Profile Picture" />
-                            <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden">
-                                    <h5 data-zanim='{"delay":0}'>名前：河崎</h5>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>担当：サーバー</h6>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>紹介文</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mt-4">
-                        <div class="background-white pb-4 h-100 radius-secondary">
-                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="assets/images/portrait-1.jpg" alt="Profile Picture" />
-                            <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden">
-                                    <h5 data-zanim='{"delay":0}'>名前：和泉</h5>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>担当：フロント</h6>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>紹介文</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="col-12">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        <!-- <input type="text" name="table_search" class="form-control float-right" placeholder="Search"> -->
+                                        <div class="input-group-append">
+                                            <!-- <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button> -->
+                                        </div><!-- /.input-group-append -->
+                                    </div><!-- /.input-group input-group-sm -->
+                                </div><!-- /.card-tools -->
+                            </div><!-- /.card-header -->
+                            <div class="card-body table-responsive p-0" style="height: 300px;">
+                                <table class="table table-bordered table-hover text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>日時</th>
+                                            <th>項目</th>
+                                            <th>内容</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($news_array as $notice) {
+                                            if ($notice['delete_message'] === "0") { ?>
+                                                <tr>
+                                                    <td><?= $notice['insert_time'] ?></td>
+                                                    <td><?= $notice['title'] ?></td>
+                                                    <td title="<?= $notice['message'] ?>" class="text-truncate" style="max-width: 500px;"><?= $notice['message'] ?></td>
+                                                </tr>
+                                            <?php  } ?>
+                                        <?php  } ?>
+                                    </tbody>
+                                </table>
+                            </div><!-- /.card-body -->
+                        </div><!-- /.card -->
+                    </div><!-- /.col -->
                     <div class="col-md-12 col-lg-12 py-0 mt-4 mt-lg-0" style="text-align: center">
                         <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                             <div class="overflow-hidden">
                                 <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                    <a class="btn btn-primary mr-3 mt-3" href="#contact">READ MORE
+                                    <a class="btn btn-primary mr-3 mt-3" href="#question">READ MORE
                                         <span class="fa fa-chevron-down ml-2"></span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--/.row-->
-            </div>
-            <!--/.container-->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </section>
         <section id="form" style="background-color: white;">
             <div class="container">

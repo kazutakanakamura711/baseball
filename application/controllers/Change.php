@@ -138,7 +138,6 @@ class Change extends CI_Controller
         } else {
             $array = [
                 'error' => true,
-                'mail_error' => form_error('mail'),
                 'pass_error' => form_error('pass'),
                 'chkpass_error' => form_error('chkpass')
             ];
@@ -156,7 +155,7 @@ class Change extends CI_Controller
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
             );
-            $this->load->view("mail_update", $data);
+            $this->load->view("signup/mail_update", $data);
         } else {
             echo "URLが間違っているか、アクセス期限が過ぎています。";
         }
@@ -169,10 +168,7 @@ class Change extends CI_Controller
         if ($this->model_teams->mail_update($id)) {
             $array = ['success' => true];
         } else {
-            $array = [
-                'error' => true,
-                'pass_error' => form_error('pass')
-            ];
+            $array = ['error' => true];
         }
         exit(json_encode($array));
     }
@@ -187,7 +183,7 @@ class Change extends CI_Controller
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
             );
-            $this->load->view("pass_update", $data);
+            $this->load->view("signup/pass_update", $data);
         } else {
             echo "URLが間違っているか、アクセス期限が過ぎています。";
         }

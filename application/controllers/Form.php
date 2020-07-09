@@ -2,6 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Form extends CI_Controller
 {
+    //仮登録
     public function signup()
     {
         $this->output->set_header('X-Frame-Options: DENY', false);
@@ -9,7 +10,7 @@ class Form extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("signup", $data);
+        $this->load->view("signup/signup", $data);
     }
     //選手情報変更へ
     public function update_player()
@@ -29,7 +30,7 @@ class Form extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("update", $player);
+        $this->load->view("home/update", $player);
     }
     public function profile()
     {
@@ -48,7 +49,7 @@ class Form extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('profile', $team);
+        $this->load->view('home/profile', $team);
     }
     public function mail()
     {
@@ -67,7 +68,7 @@ class Form extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("mail_send", $team);
+        $this->load->view("signup/mail_send", $team);
     }
     public function password()
     {
@@ -76,6 +77,6 @@ class Form extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("password", $team);
+        $this->load->view("signup/password", $team);
     }
 }

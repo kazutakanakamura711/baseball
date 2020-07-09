@@ -26,7 +26,7 @@ class support extends CI_Controller
         "field" => "message",
         "label" => "問い合わせ内容",
         "rules" => 'trim|required',
-        "errors" => ["required" => "問い合わせ内容は入力必須です。"]
+        "errors" => ["required" => "お問い合わせ内容は入力必須です。"]
       ]
     ];
     $this->form_validation->set_rules($config);
@@ -72,7 +72,7 @@ class support extends CI_Controller
       'name' => $this->security->get_csrf_token_name(),
       'hash' => $this->security->get_csrf_hash()
     );
-    $this->load->view('support', $data);
+    $this->load->view('information/support', $data);
   }
   public function contacts()
   {

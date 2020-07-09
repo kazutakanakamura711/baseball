@@ -20,7 +20,7 @@ class Match extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('game', $player);
+        $this->load->view('game/game', $player);
     }
     //連絡フォームへ
     public function contact()
@@ -40,7 +40,7 @@ class Match extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('contact', $player);
+        $this->load->view('game/contact', $player);
     }
     public function team_details()
     {
@@ -58,7 +58,7 @@ class Match extends CI_Controller
         $this->load->model("model_scores");
         $team['teamscore_array'] = $this->model_scores->getteamscore($id);
         $clean_team = html_escape($team);
-        $this->load->view("team_details", $clean_team);
+        $this->load->view("game/team_details", $clean_team);
     }
     public function ground()
     {
@@ -70,7 +70,7 @@ class Match extends CI_Controller
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY', false);
-        $this->load->view('ground');
+        $this->load->view('game/ground');
     }
     public function schedule()
     {
@@ -98,6 +98,6 @@ class Match extends CI_Controller
             return;
         }
         $this->output->set_header('X-Frame-Options: DENY');
-        $this->load->view('rules');
+        $this->load->view('information/rules');
     }
 }

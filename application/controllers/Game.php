@@ -16,7 +16,7 @@ class Game extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('game_result', $data);
+        $this->load->view('game/game_result', $data);
     }
     public function game_register()
     {
@@ -74,7 +74,7 @@ class Game extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("game_update", $game);
+        $this->load->view("game/game_update", $game);
     }
     //試合結果変更処理
     public function update_game()

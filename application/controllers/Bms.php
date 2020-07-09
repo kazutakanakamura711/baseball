@@ -66,7 +66,7 @@ class Bms extends CI_Controller
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
             );
-            $this->load->view("master", $data);
+            $this->load->view("signup/master", $data);
         } else {
             echo "URLが間違っているか、アクセス期限が過ぎています。";
         }

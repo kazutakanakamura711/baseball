@@ -12,7 +12,7 @@ class Score extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("score", $player);
+        $this->load->view("score/score", $player);
     }
     //スコア入力処理
     public function score_register()
@@ -20,9 +20,11 @@ class Score extends CI_Controller
         header("Content-type: application/json; charset=UTF-8");
         $atbat = $this->input->post("atbat");
         $hit = $this->input->post("hit");
+        $inning = $this->input->post("inning");
+        $strikeout = $this->input->post("strikeout");
         $this->load->model("model_scores");
-        if ($atbat >= $hit) {
-            $this->model_scores->add_scores($atbat, $hit);
+        if ($atbat >= $hit || $inning >= $strikeout) {
+            $this->model_scores->add_scores($atbat, $hit, $inning, $strikeout);
             exit(json_encode(['score' => 'スコア登録完了']));
         } else {
             echo "スコアが不正である為、登録できませんでした。";
@@ -44,21 +46,21 @@ class Score extends CI_Controller
         $limit = 5;
         $offset = $this->input->get('per_page');
         $this->load->model("model_scores");
-        $score['score_array'] = $this->model_scores->getscores($id,$limit,$offset);
+        $score['score_array'] = $this->model_scores->getscores($id, $limit, $offset);
         $score['teamscore_array'] = $this->model_scores->getteamscore($id);
         $this->load->model("model_games");
-        $score['game_array'] = $this->model_games->getgames($id,$limit,$offset);
+        $score['game_array'] = $this->model_games->getgames($id, $limit, $offset);
         $score['game'] = $this->model_games->getgamecount($id);
         $clean_score = html_escape($score);
         $clean_score['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $clean_score['score_pagination'] = $this->setPage($limit,$score_num);
-        $clean_score['game_pagination'] = $this->setPage($limit,$score['game']);
-        $this->load->view("scoreboard", $clean_score);
+        $clean_score['score_pagination'] = $this->setPage($limit, $score_num);
+        $clean_score['game_pagination'] = $this->setPage($limit, $score['game']);
+        $this->load->view("score/scoreboard", $clean_score);
     }
-    public function setPage($limit,$num)
+    public function setPage($limit, $num)
     {
         $this->load->library('pagination');
         $config['base_url'] = 'http://yakyu.com/index.php/score/scores/';
@@ -87,7 +89,7 @@ class Score extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("score_details", $scores);
+        $this->load->view("score/score_details", $scores);
     }
     //選手スコア変更へ
     public function score_update()
@@ -107,15 +109,22 @@ class Score extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("score_update", $score);
+        $this->load->view("score/score_update", $score);
     }
     //選手スコア変更処理
     public function update_score()
     {
         header("Content-type: application/json; charset=UTF-8");
-        $day = date("Y-m-d H:i:s");
+        $atbat = $this->input->post("atbat");
+        $hit = $this->input->post("hit");
+        $inning = $this->input->post("inning");
+        $strikeout = $this->input->post("strikeout");
         $this->load->model("model_scores");
-        $this->model_scores->update_score($day);
-        exit(json_encode(['score' => '更新完了']));
+        if ($atbat >= $hit || $inning >= $strikeout) {
+            $this->model_scores->update_score($atbat, $hit, $inning, $strikeout);
+            exit(json_encode(['score' => '更新完了']));
+        } else {
+            echo "スコアが不正である為、変更できませんでした。";
+        }
     }
 }

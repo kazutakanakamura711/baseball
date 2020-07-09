@@ -12,7 +12,7 @@ class Dust extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("delete_player", $player);
+        $this->load->view("home/delete_player", $player);
     }
     public function stop_teams()
     {
@@ -28,7 +28,7 @@ class Dust extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("delete_team", $clean_team);
+        $this->load->view("supervisor/delete_team", $clean_team);
     }
     public function player_return()
     {

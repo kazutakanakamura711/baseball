@@ -185,7 +185,7 @@
               <p class="float-left"><?= anchor('main/login/', 'ログインへ　>>'); ?></p>
             </div><!-- /.col -->
             <div class="col-6">
-              <p class="float-right"><?= anchor('bms/signup', '仮登録へ　>>'); ?></p>
+              <p class="float-right"><?= anchor('form/signup', '仮登録へ　>>'); ?></p>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div>

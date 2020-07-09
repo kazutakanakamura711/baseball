@@ -11,7 +11,7 @@ class Manager extends CI_Controller
         'name' => $this->security->get_csrf_token_name(),
         'hash' => $this->security->get_csrf_hash()
       );
-      $this->load->view('svlogin', $data);
+      $this->load->view('supervisor/svlogin', $data);
     }
     $this->session->sess_destroy();
   }
@@ -58,7 +58,7 @@ class Manager extends CI_Controller
       'name' => $this->security->get_csrf_token_name(),
       'hash' => $this->security->get_csrf_hash()
     );
-    $this->load->view("supervisor", $clean_team);
+    $this->load->view("supervisor/supervisor", $clean_team);
   }
   public function contacts()
   {
@@ -74,7 +74,7 @@ class Manager extends CI_Controller
       'name' => $this->security->get_csrf_token_name(),
       'hash' => $this->security->get_csrf_hash()
     );
-    $this->load->view("svmessage", $clean_player);
+    $this->load->view("supervisor/svmessage", $clean_player);
   }
   public function sv_mail()
   {
@@ -90,7 +90,7 @@ class Manager extends CI_Controller
       'name' => $this->security->get_csrf_token_name(),
       'hash' => $this->security->get_csrf_hash()
     );
-    $this->load->view("svmail", $message);
+    $this->load->view("supervisor/svmail", $message);
   }
   public function sv_remail()
   {
@@ -106,7 +106,7 @@ class Manager extends CI_Controller
       'name' => $this->security->get_csrf_token_name(),
       'hash' => $this->security->get_csrf_hash()
     );
-    $this->load->view("svremail", $message);
+    $this->load->view("supervisor/svremail", $message);
   }
   public function notice()
   {
@@ -119,7 +119,7 @@ class Manager extends CI_Controller
       'name' => $this->security->get_csrf_token_name(),
       'hash' => $this->security->get_csrf_hash()
     );
-    $this->load->view("svnotice", $data);
+    $this->load->view("supervisor/svnotice", $data);
   }
   public function news()
   {
@@ -180,6 +180,6 @@ class Manager extends CI_Controller
       'name' => $this->security->get_csrf_token_name(),
       'hash' => $this->security->get_csrf_hash()
     );
-    $this->load->view("svnews", $clean_news);
+    $this->load->view("supervisor/svnews", $clean_news);
   }
 }

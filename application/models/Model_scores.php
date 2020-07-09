@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Model_scores extends CI_Model
 {
-  public function add_scores($atbat,$hit)
+  public function add_scores($atbat, $hit,$inning,$strikeout)
   {
     //add_playersのモデルの実行時に、以下のデータを取得して、$dataと紐づける
     $data = [
@@ -14,11 +14,11 @@ class Model_scores extends CI_Model
       "steal" => $this->input->post("steal"),
       "walk" => $this->input->post("walk"),
       "sacrifice" => $this->input->post("sacrifice"),
-      "inning" => $this->input->post("inning"),
+      "inning" => $inning,
       "h_hit" => $this->input->post("h_hit"),
       "h_homerun" => $this->input->post("h_homerun"),
       "er" => $this->input->post("er"),
-      "strikeout" => $this->input->post("strikeout"),
+      "strikeout" => $strikeout,
       "h_walk" => $this->input->post("h_walk"),
       "insert_time" => date("Y-m-d H:i:s")
     ];
@@ -83,24 +83,24 @@ class Model_scores extends CI_Model
     $player = $this->db->get('score');
     return $player->row_array();  //特定選手を表示   
   }
-  public function update_score($day)
+  public function update_score($atbat, $hit, $inning, $strikeout)
   {
     //update_playerのモデルの実行時、以下のデータを取得して、$dateと紐づける
     $date = [
-      "atbat" => $this->input->post("atbat"),
-      "hit" => $this->input->post("hit"),
+      "atbat" => $atbat,
+      "hit" => $hit,
       "homerun" => $this->input->post("homerun"),
       "rbi" => $this->input->post("rbi"),
       "steal" => $this->input->post("steal"),
       "walk" => $this->input->post("walk"),
       "sacrifice" => $this->input->post("sacrifice"),
-      "inning" => $this->input->post("inning"),
+      "inning" => $inning,
       "h_hit" => $this->input->post("h_hit"),
       "h_homerun" => $this->input->post("h_homerun"),
       "er" => $this->input->post("er"),
-      "strikeout" => $this->input->post("strikeout"),
+      "strikeout" => $strikeout,
       "h_walk" => $this->input->post("h_walk"),
-      "insert_time" => $day
+      "insert_time" => date("Y-m-d H:i:s")
     ];
     //$dateをDB内の特定playerに挿入(更新)する
     return $this->db->where('score_id', $this->input->post("id"))

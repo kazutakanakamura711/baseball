@@ -4,11 +4,14 @@ class Main extends CI_Controller
 {
     public function index()
     {
-        $data['csrf'] = array(
+        $this->load->model("model_news");
+        $news['news_array'] = $this->model_news->get_news();
+        $clean_news = html_escape($news);
+        $clean_news['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('function', $data);
+        $this->load->view('home/function', $clean_news);
     }
     public function login()
     {
@@ -27,7 +30,7 @@ class Main extends CI_Controller
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash()
             );
-            $this->load->view('login', $data);
+            $this->load->view('signup/login', $data);
         }
     }
     public function logout()
@@ -103,7 +106,7 @@ class Main extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("admin", $clean_player);
+        $this->load->view("home/admin", $clean_player);
     }
     //登録チーム全て
     public function teams()
@@ -119,9 +122,9 @@ class Main extends CI_Controller
         $this->load->model("model_teams");
         $team['team_array'] = $this->model_teams->getteams();
         $clean_team = html_escape($team);
-        $this->load->view("matching", $clean_team);
+        $this->load->view("game/matching", $clean_team);
     }
-    public function notice()
+    public function notices()
     {
         $id = $_SESSION['id'];
         $this->load->model("model_team");
@@ -138,6 +141,6 @@ class Main extends CI_Controller
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view("notice", $clean_news);
+        $this->load->view("information/notice", $clean_news);
     }
 }

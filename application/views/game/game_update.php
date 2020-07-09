@@ -134,7 +134,7 @@
           <button id="update" type="submit" class="btn btn-primary btn-block">変更</button>
         </div>
         <br>
-        <p><?= anchor('main/players', '一覧に戻る　>>'); ?></p>
+        <p><?= anchor('score/scores', '一覧に戻る　>>'); ?></p>
       </div>
     </div><!-- /.form-box -->
   </div><!-- /.card -->
