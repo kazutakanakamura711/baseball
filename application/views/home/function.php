@@ -278,8 +278,12 @@
                                             <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>監督名：<?= $value['skipper'] ?></h6>
                                         </div>
                                         <div class="overflow-hidden">
-                                            <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>
-                                            <?= $value['pr'] ?></p>
+                                            <p class="py-3 mb-0 text-truncate" data-zanim='{"delay":0.2}'>結成:
+                                                <?= $value['year'] ?>年</p>
+                                            <p class="py-3 mb-0 text-truncate" data-zanim='{"delay":0.2}'>選手層:
+                                                <?= $value['job'] ?></p>
+                                            <p class="py-3 mb-0 text-truncate" title="<?= $value['pr'] ?>" data-zanim='{"delay":0.2}'>PR:
+                                                <?= $value['pr'] ?></p>
                                         </div>
                                     </div>
                                 </div>
