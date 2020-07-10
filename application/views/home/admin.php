@@ -43,7 +43,6 @@
               </div><!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-                
                   <p><strong>平均年齢：</strong><?php if ( $count!= 0) { ?>約<?= date("Y") - (round($age['sum(birth)'] / $count, 0)) ?>歳<?php  } ?></p>
                   <p><strong>野球経験者：</strong><?= $team_array['experience'] ?></p>
                   <p><strong>活動方針：</strong><?= $team_array['policy'] ?></p>
@@ -249,6 +248,7 @@
             </div><!-- /.row -->
           </div><!-- /.card-footer -->
         </div><!-- /.card -->
+        <img src="<?= base_url() ?>assets/<?= $team_array['img'] ?>" alt="チーム画像">
       </div><!-- /.container-fluid -->
     </section><!-- /.content -->
   </div><!-- /.content-wrapper -->

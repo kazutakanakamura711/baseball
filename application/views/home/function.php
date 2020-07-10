@@ -41,72 +41,10 @@
     <!-- Main stylesheet and color file-->
     <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/css/custom.css" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script>
-        $(function() {
-            $("#contact").on('click', function(event) {
-                event.preventDefault();
-                $(this).prop('disabled', true);
-                var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
-                var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
-                var postdata = {
-                    'name': $('#name').val(),
-                    'email': $('#email').val(),
-                    'message': $('#message').val()
-                };
-                postdata[csrf_name] = csrf_hash;
-                $.ajax({
-                    type: "POST",
-                    url: "/support/contact",
-                    data: postdata,
-                    crossDomain: false,
-                    dataType: "json",
-                    scriptCharset: 'utf-8',
-                    success: function(data) {
-                        if (data.error) {
-                            if (data.name_error != '') {
-                                $('#name_error').html(data.name_error);
-                            } else {
-                                $('#name_error').html('');
-                            }
-                            if (data.mail_error != '') {
-                                $('#mail_error').html(data.mail_error);
-                            } else {
-                                $('#mail_error').html('');
-                            }
-                            if (data.message_error != '') {
-                                $('#message_error').html(data.message_error);
-                            } else {
-                                $('#message_error').html('');
-                            }
-                            Swal.fire({
-                                icon: 'error',
-                                title: '問い合わせ出来ませんでした。',
-                                text: '入力内容をご確認下さい。',
-                            }).then((result) => {
-                                $("#register").prop('disabled', false);
-                            });
-                        }
-                        if (data.success) {
-                            Swal.fire({
-                                position: 'top-center',
-                                icon: 'success',
-                                title: '問い合わせありがとうございます。',
-                                text: '返信までしばらくお待ち下さい。',
-                                showConfirmButton: false,
-                                timer: 1500
-                            }).then((result) => {
-                                window.location.href = "/main/index";
-                            });
-                        }
-                    }
-                });
-                return false;
-            });
-        });
-    </script>
 </head>
 
 <body data-spy="scroll" data-target=".inner-link" data-offset="60">
@@ -327,85 +265,41 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="background-white pb-4 h-100 radius-secondary">
-                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/images/noimg.png" alt="Profile Picture" />
-                            <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden">
-                                    <h5 data-zanim='{"delay":0}'>チーム名：帝人BS</h5>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>監督名：和泉</h6>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>
-                                        チーム内コミュニケーションが取れており、皆仲が良いです。専用グラウンド完備してます。</p>
-                                </div>
-                                <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                    <a class="btn btn-primary mr-3 mt-3" href="#">詳しく見る
-                                        <span class="fa fa-chevron-right ml-2"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mt-4 mt-sm-0">
-                        <div class="background-white pb-4 h-100 radius-secondary">
-                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/images/noimg.png" alt="Profile Picture" />
-                            <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden">
-                                    <h5 data-zanim='{"delay":0}'>チーム名：松山BC</h5>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>監督名：渡辺</h6>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>
-                                        チームメンバー個々の能力が高く、特に投手陣が自慢です。専用トレーニングジム完備されてます。</p>
-                                </div>
-                                <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                    <a class="btn btn-primary mr-3 mt-3" href="#">詳しく見る
-                                        <span class="fa fa-chevron-right ml-2"></span>
-                                    </a>
+                    <?php foreach ($team_array as $value) {
+                        if ($value['withdrawal'] === "0" && $value['open_to'] === "公開") { ?>
+                            <div class="col-sm-6 col-lg-4 mt-4 mt-sm-0">
+                                <div class="background-white pb-4 h-100 radius-secondary">
+                                    <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/<?= $value['img'] ?>" alt="Profile Picture" />
+                                    <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                        <div class="overflow-hidden">
+                                            <h5 data-zanim='{"delay":0}'>チーム名：<?= $value['team'] ?></h5>
+                                        </div>
+                                        <div class="overflow-hidden">
+                                            <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>監督名：<?= $value['skipper'] ?></h6>
+                                        </div>
+                                        <div class="overflow-hidden">
+                                            <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>
+                                            <?= $value['pr'] ?></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mt-4 mt-lg-0">
-                        <div class="background-white pb-4 h-100 radius-secondary">
-                            <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/images/noimg.png" alt="Profile Picture" />
-                            <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden">
-                                    <h5 data-zanim='{"delay":0}'>チーム名：チーム暁</h5>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>監督名：落合</h6>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>
-                                        選手個々の意識高く能力高めです。元プロ野球選手によるコーチング練習もあります。</p>
-                                </div>
-                                <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                    <a class="btn btn-primary mr-3 mt-3" href="#">詳しく見る
-                                        <span class="fa fa-chevron-right ml-2"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-12 py-0 mt-4 mt-lg-0" style="text-align: center">
-                        <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <div class="overflow-hidden">
-                                <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                    <a class="btn btn-primary mr-3 mt-3" href="#question">READ MORE
-                                        <span class="fa fa-chevron-down ml-2"></span>
-                                    </a>
-                                </div>
+                        <?php  } ?>
+                    <?php  } ?>
+                </div>
+                <div class="col-md-12 col-lg-12 py-0 mt-4 mt-lg-0" style="text-align: center">
+                    <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                        <div class="overflow-hidden">
+                            <div class="zopacity" data-zanim='{"delay":0.2}'>
+                                <a class="btn btn-primary mr-3 mt-3" href="#question">READ MORE
+                                    <span class="fa fa-chevron-down ml-2"></span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--/.row-->
+            </div>
+            <!--/.row-->
             </div>
             <!--/.container-->
         </section>
@@ -622,6 +516,69 @@
     <script src="<?= base_url() ?>assets/lib/flexslider/jquery.flexslider-min.js"></script>
     <script src="<?= base_url() ?>assets/js/core.js"></script>
     <script src="<?= base_url() ?>assets/js/main.js"></script>
+    <script>
+        $(function() {
+            $("#contact").on('click', function(event) {
+                event.preventDefault();
+                $(this).prop('disabled', true);
+                var csrf_name = $("#token").attr('name'); // viewに生成されたトークンのname取得
+                var csrf_hash = $("#token").val(); // viewに生成されたトークンのハッシュ取得
+                var postdata = {
+                    'name': $('#name').val(),
+                    'email': $('#email').val(),
+                    'message': $('#message').val()
+                };
+                postdata[csrf_name] = csrf_hash;
+                $.ajax({
+                    type: "POST",
+                    url: "/support/contact",
+                    data: postdata,
+                    crossDomain: false,
+                    dataType: "json",
+                    scriptCharset: 'utf-8',
+                    success: function(data) {
+                        if (data.error) {
+                            if (data.name_error != '') {
+                                $('#name_error').html(data.name_error);
+                            } else {
+                                $('#name_error').html('');
+                            }
+                            if (data.mail_error != '') {
+                                $('#mail_error').html(data.mail_error);
+                            } else {
+                                $('#mail_error').html('');
+                            }
+                            if (data.message_error != '') {
+                                $('#message_error').html(data.message_error);
+                            } else {
+                                $('#message_error').html('');
+                            }
+                            Swal.fire({
+                                icon: 'error',
+                                title: '問い合わせ出来ませんでした。',
+                                text: '入力内容をご確認下さい。',
+                            }).then((result) => {
+                                $("#register").prop('disabled', false);
+                            });
+                        }
+                        if (data.success) {
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'success',
+                                title: '問い合わせありがとうございます。',
+                                text: '返信までしばらくお待ち下さい。',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then((result) => {
+                                window.location.href = "/main/index";
+                            });
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
 </body>
 
 </html>

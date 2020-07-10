@@ -4,14 +4,16 @@ class Main extends CI_Controller
 {
     public function index()
     {
+        $this->load->model("model_teams");
+        $data['team_array'] = $this->model_teams->getteams();
         $this->load->model("model_news");
-        $news['news_array'] = $this->model_news->get_news();
-        $clean_news = html_escape($news);
-        $clean_news['csrf'] = array(
+        $data['news_array'] = $this->model_news->get_news();
+        $clean_data = html_escape($data);
+        $clean_data['csrf'] = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash()
         );
-        $this->load->view('home/function', $clean_news);
+        $this->load->view('home/function', $clean_data);
     }
     public function login()
     {

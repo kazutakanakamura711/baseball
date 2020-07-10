@@ -32,6 +32,14 @@
             </tr>
           </thead>
           <tbody>
+            <script>
+              $(".can_edit").on("click", function(e) {
+                  var target = $(e.target);
+                  var type = target.data("type");
+                  var value = target.text;
+                  var id = target.parent().data("id");
+              });
+            </script>
             <?php foreach ($score_array as $values) { ?>
               <tr>
                 <td><?= $values['atbat'] ?></td>

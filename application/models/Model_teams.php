@@ -11,6 +11,7 @@ class Model_teams extends CI_Model
       "tel" => $this->input->post("tel"),
       "mail" => $this->input->post("mail"),
       "password" => password_hash($this->input->post("pass"), PASSWORD_DEFAULT),
+      "img" => "images/noimg.png",
       "insert_time" => $days
     ];
     //$dataをDB内のteamに挿入後に、$queryと紐づける
