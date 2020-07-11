@@ -101,7 +101,7 @@
           <strong><span id="pass_error" class="text-danger"></span></strong>
         </div>
         <div class="input-group mb-3">
-          <input type="pass" class="form-control" name="pass" placeholder="※パスワード" required>
+          <input type="password" class="form-control" name="pass" placeholder="※パスワード" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -112,7 +112,7 @@
           <strong><span id="chkpass_error" class="text-danger"></span></strong>
         </div>
         <div class="input-group mb-3">
-          <input type="pass" class="form-control" name="chkpass" placeholder="※パスワード確認" required>
+          <input type="password" class="form-control" name="chkpass" placeholder="※パスワード確認" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="pass" name="pass" class="form-control" placeholder="※パスワード" required>
+          <input type="password" name="pass" class="form-control" placeholder="※パスワード" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

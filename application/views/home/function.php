@@ -41,7 +41,7 @@
     <!-- Main stylesheet and color file-->
     <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets/css/custom.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -265,31 +265,43 @@
                     </div>
                 </div>
                 <div class="row">
-                    <?php foreach ($team_array as $value) {
-                        if ($value['withdrawal'] === "0" && $value['open_to'] === "公開") { ?>
-                            <div class="col-sm-6 col-lg-4 mt-4 mt-sm-0">
-                                <div class="background-white pb-4 h-100 radius-secondary">
-                                    <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/<?= $value['img'] ?>" alt="Profile Picture" />
-                                    <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                        <div class="overflow-hidden">
-                                            <h5 data-zanim='{"delay":0}'>チーム名：<?= $value['team'] ?></h5>
-                                        </div>
-                                        <div class="overflow-hidden">
-                                            <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>監督名：<?= $value['skipper'] ?></h6>
-                                        </div>
-                                        <div class="overflow-hidden">
-                                            <p class="py-3 mb-0 text-truncate" data-zanim='{"delay":0.2}'>結成:
-                                                <?= $value['year'] ?>年</p>
-                                            <p class="py-3 mb-0 text-truncate" data-zanim='{"delay":0.2}'>選手層:
-                                                <?= $value['job'] ?></p>
-                                            <p class="py-3 mb-0 text-truncate" title="<?= $value['pr'] ?>" data-zanim='{"delay":0.2}'>PR:
-                                                <?= $value['pr'] ?></p>
+                    <div class="swiper-container">
+                        <!-- Swiper START -->
+                        <div class="swiper-wrapper">
+                            <!-- メイン表示部分 -->
+                            <?php foreach ($team_array as $value) {
+                                if ($value['withdrawal'] === "0" && $value['open_to'] === "公開") { ?>
+                                    <div class="swiper-slide">
+                                        <!-- 各スライド -->
+                                        <div class="col-12 mt-4 mt-sm-0">
+                                            <div class="background-white pb-4 h-100 radius-secondary">
+                                                <img class="mb-4 radius-tr-secondary radius-tl-secondary" src="<?= base_url() ?>assets/<?= $value['img'] ?>" alt="Profile Picture" />
+                                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                                    <div class="overflow-hidden">
+                                                        <h5 data-zanim='{"delay":0}'>チーム名：<?= $value['team'] ?></h5>
+                                                    </div>
+                                                    <div class="overflow-hidden">
+                                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>監督名：<?= $value['skipper'] ?></h6>
+                                                    </div>
+                                                    <div class="overflow-hidden">
+                                                        <p class="py-3 mb-0 text-truncate" data-zanim='{"delay":0.2}'>結成:
+                                                            <?= $value['year'] ?>年</p>
+                                                        <p class="py-3 mb-0 text-truncate" data-zanim='{"delay":0.2}'>選手層:
+                                                            <?= $value['job'] ?></p>
+                                                        <p class="py-3 mb-0 text-truncate" title="<?= $value['pr'] ?>" data-zanim='{"delay":0.2}'>PR:
+                                                            <?= $value['pr'] ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        <?php  } ?>
-                    <?php  } ?>
+                                <?php  } ?>
+                            <?php  } ?>
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-pagination"></div>
+                    </div><!-- Swiper END -->
                 </div>
                 <div class="col-md-12 col-lg-12 py-0 mt-4 mt-lg-0" style="text-align: center">
                     <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
@@ -302,8 +314,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--/.row-->
+                <!--/.row-->
             </div>
             <!--/.container-->
         </section>
@@ -520,7 +531,25 @@
     <script src="<?= base_url() ?>assets/lib/flexslider/jquery.flexslider-min.js"></script>
     <script src="<?= base_url() ?>assets/js/core.js"></script>
     <script src="<?= base_url() ?>assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
     <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: {
+                delay: 3000,
+                stopOnLastSlide: false,
+                disableOnInteraction: false,
+                reverseDirection: false
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+                clickable: true
+            }
+        });
         $(function() {
             $("#contact").on('click', function(event) {
                 event.preventDefault();
