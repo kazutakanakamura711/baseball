@@ -100,4 +100,8 @@ class Match extends CI_Controller
         $this->output->set_header('X-Frame-Options: DENY');
         $this->load->view('information/rules');
     }
+    public function userguide()
+    {
+        $this->load->view('information/user_guide');
+    }
 }

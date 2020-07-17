@@ -235,7 +235,7 @@
                     <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                         <div class="overflow-hidden">
                             <div class="zopacity" data-zanim='{"delay":0.2}'>
-                                <a class="btn btn-primary mr-3 mt-3" href="#">詳しく見る
+                                <a class="btn btn-primary mr-3 mt-3" href="<?= base_url() ?>Match/userguide">ユーザーガイドへ
                                     <span class="fa fa-chevron-right ml-2"></span>
                                 </a>
                             </div>
