@@ -329,58 +329,58 @@
             </div>
             <div class="section">
                 <div class="oneArea">
-                    <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
-                        <div class="fukiArea">
-                            <div class="fukidasi">試合マッチングはどういう流れで行われますか？</div>
+                    <div class="row onebox">
+                        <div class="col-3 col-md-2 imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
+                        <div class="col-8 col-md-8 fukiArea">
+                            <div class="col-8 col-md-8 fukidasi">試合マッチングはどういう流れで行われますか？</div>
                         </div>
                     </div>
-                    <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
-                        <div class="fukiArea">
+                    <div class="row onebox">
+                        <div class="col-3 col-md-2 imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
+                        <div class="col-8 col-md-8 fukiArea">
                             <div class="fukidasi">対戦チーム一覧から選んで試合を申し込む形になります。各チームの成績も確認出来ますので、選考の参考にして下さい。</div>
                         </div>
                     </div>
                 </div>
                 <div class="oneArea">
-                    <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
-                        <div class="fukiArea">
+                    <div class="row onebox">
+                        <div class="col-3 col-md-2 imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
+                        <div class="col-8 col-md-8 fukiArea">
                             <div class="fukidasi">チームHPを外部に非公開にできますか？
                             </div>
                         </div>
                     </div>
-                    <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
-                        <div class="fukiArea">
+                    <div class="row onebox">
+                        <div class="col-3 col-md-2 imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
+                        <div class="col-8 col-md-8 fukiArea">
                             <div class="fukidasi">ダイジョーブです。公開・非公開設定を選択できます。非公開設定にするとトップ画面には掲載しませんので安心してご利用頂けます。</div>
                         </div>
                     </div>
                 </div>
                 <div class="oneArea">
-                    <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
-                        <div class="fukiArea">
+                    <div class="row onebox">
+                        <div class="col-3 col-md-2 imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
+                        <div class="col-8 col-md-8 fukiArea">
                             <div class="fukidasi">スコア管理は充実してますか？</div>
                         </div>
                     </div>
-                    <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
-                        <div class="fukiArea">
+                    <div class="row onebox">
+                        <div class="col-3 col-md-2 imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
+                        <div class="col-8 col-md-8 fukiArea">
                             <div class="fukidasi">個人成績については通算で管理してますが、各試合ごとの成績も確認出来ます。また、チーム単位の通算成績も管理されてます。</div>
                         </div>
                     </div>
                 </div>
                 <div class="oneArea">
-                    <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
-                        <div class="fukiArea">
+                    <div class="row onebox">
+                        <div class="col-3 col-md-2 imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
+                        <div class="col-8 col-md-8 fukiArea">
                             <div class="fukidasi">スマホからでも操作可能ですか？</div>
                         </div>
                     </div>
-                    <div class="onebox">
-                        <div class="imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
-                        <div class="fukiArea">
+                    <div class="row onebox">
+                        <div class="col-3 col-md-2 imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/skipper1.png" alt="skipper"></div>
+                        <div class="col-8 col-md-8 fukiArea">
                             <div class="fukidasi">はい。PC・スマホどちらにも対応しており操作可能です。</div>
                         </div>
                     </div>
