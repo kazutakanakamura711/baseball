@@ -37,7 +37,7 @@
                   <p><strong>電話番号：</strong><?= $team_array['tel'] ?></p>
                   <p><strong>メールアドレス：</strong><?= $team_array['mail'] ?></p>
                   <p><strong>チームスローガン：</strong><?= $team_array['slogan'] ?></p>
-                  <p><strong>チーム結成：</strong><?= $team_array['year'] ?></p>
+                  <p><strong>チーム結成：</strong><?= $team_array['year'] ?>年</p>
                   <p><strong>選手層：</strong><?= $team_array['job'] ?></p>
                 </div><!-- /.form-group -->
               </div><!-- /.col -->
@@ -248,7 +248,6 @@
             </div><!-- /.row -->
           </div><!-- /.card-footer -->
         </div><!-- /.card -->
-        <img src="<?= base_url() ?>assets/<?= $team_array['img'] ?>" alt="チーム画像">
       </div><!-- /.container-fluid -->
     </section><!-- /.content -->
   </div><!-- /.content-wrapper -->

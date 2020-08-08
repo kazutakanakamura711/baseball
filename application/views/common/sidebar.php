@@ -18,8 +18,12 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <div class="float-center">　　<img src="<?= base_url() ?>assets/images/logo2.png" alt="MBC"></div>
-
+    <div class="form-inline">　　
+      <img src="<?= base_url() ?>assets/images/logo2.png" alt="MBC">　　　　
+      <div class="d-block d-lg-none">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </div>
+    </div>
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar Menu -->

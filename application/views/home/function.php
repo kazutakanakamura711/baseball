@@ -118,7 +118,7 @@
                                     <div class="col-sm-12 col-lg-12 px-5 px-sm-3">
                                         <div class="overflow-hidden">
                                             <h1 class="fs-4 fs-md-5 zopacity" data-zanim='{"delay":0}'>
-                                                やきゅうしようよ！</h1>
+                                                やきゅう<br class="d-inline d-sm-none">しようよ！</h1>
                                         </div>
                                         <div class="overflow-hidden">
                                             <div class="readmore" data-zanim='{"delay":0.2}'>

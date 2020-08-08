@@ -29,7 +29,7 @@
                     <th>監督</th>
                     <th>電話番号</th>
                     <th>メールアドレス</th>
-                    <th colspan="2">更新</th>
+                    <th>更新</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -40,9 +40,6 @@
                           <td><?= $values['skipper'] ?></td>
                           <td><?= $values['tel'] ?></td>
                           <td><?= $values['mail'] ?></td>
-                          <td>
-                            <button onclick="location.href='/manager/players?id=<?= $values['id'] ?>'" type="submit" class="btn-primary">選手一覧 <i class="fas fa-users"></i></button>
-                          </td>
                           <td>
                             <button name="stop_team" data-id="<?= $values['id'] ?>" data-name="<?= $values['team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
                           </td>

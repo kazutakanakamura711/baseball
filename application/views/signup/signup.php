@@ -81,7 +81,6 @@
     <div class="card">
       <div class="card-body register-card-body">
         <p class="login-box-msg">下記に入力後、送信してください。</p>
-        <?= form_open("email/signup_validation")?>
         <input type="hidden" id="token" name="<?= $csrf['name'] ?>" value="<?= $csrf['hash'] ?>" />
         <div class="error">
           <strong><span id="mail_error" class="text-danger"></span></strong>
@@ -99,7 +98,6 @@
             <button id="signup" type="submit" class="btn btn-primary btn-block">送信</button>
           </div>
           <br>
-          <?= form_close()?>
           <p><?= anchor('main/login/', 'ログインへ　>>'); ?></p>
         </div>
       </div>
