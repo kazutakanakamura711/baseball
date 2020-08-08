@@ -174,51 +174,53 @@
                 <?= $score_pagination ?>
               </div>
             </div>
-          </div><!-- /.row -->
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-info">
-                <div class="card-header">
-                  <h3 class="card-title"><i class="fas fa-baseball-ball"></i>【試合結果】</h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                  </div>
-                </div><!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
-                  <table class="table table-bordered table-hover text-nowrap">
-                    <thead class="table-primary">
-                      <tr>
-                        <th>相手チーム</th>
-                        <th>最終スコア</th>
-                        <th>勝敗</th>
-                        <th>考察</th>
-                        <th colspan="2">更新</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php foreach ($game_array as $games) {
-                        if ($games['delete_game'] === "0") { ?>
-                          <tr>
-                            <td><?= $games['battle_team'] ?></td>
-                            <td><?= $games['score'] ?> － <?= $games['loss'] ?></td>
-                            <td><?= $games['battle'] ?></td>
-                            <td title="<?= $games['consideration'] ?>" class="text-truncate" style="max-width: 500px;"><?= $games['consideration'] ?></td>
-                            <td>
-                              <button onclick="location.href='/game/game_update?id=<?= $games['id'] ?>'" id="button1" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
-                            </td>
-                            <td>
-                              <button name="delete_game" data-id="<?= $games['id'] ?>" data-name="<?= $games['battle_team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
-                            </td>
-                          </tr>
-                        <?php  } ?>
-                      <?php  } ?>
-                    </tbody>
-                  </table>
-                  <?= $game_pagination ?>
+          </div>
+        </div><!-- /.row -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-baseball-ball"></i>【試合結果】</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
+              </div><!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-bordered table-hover text-nowrap">
+                  <thead class="table-primary">
+                    <tr>
+                      <th>相手チーム</th>
+                      <th>最終スコア</th>
+                      <th>勝敗</th>
+                      <th>考察</th>
+                      <th colspan="2">更新</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($game_array as $games) {
+                      if ($games['delete_game'] === "0") { ?>
+                        <tr>
+                          <td><?= $games['battle_team'] ?></td>
+                          <td><?= $games['score'] ?> － <?= $games['loss'] ?></td>
+                          <td><?= $games['battle'] ?></td>
+                          <td title="<?= $games['consideration'] ?>" class="text-truncate" style="max-width: 500px;"><?= $games['consideration'] ?></td>
+                          <td>
+                            <button onclick="location.href='/game/game_update?id=<?= $games['id'] ?>'" id="button1" type="submit" class="btn-success">編集 <i class="fas fa-pencil-alt"></i></button>
+                          </td>
+                          <td>
+                            <button name="delete_game" data-id="<?= $games['id'] ?>" data-name="<?= $games['battle_team'] ?>" type="submit" class="btn-danger">削除 <i class="far fa-trash-alt"></i></button>
+                          </td>
+                        </tr>
+                      <?php  } ?>
+                    <?php  } ?>
+                  </tbody>
+                </table>
+                <?= $game_pagination ?>
               </div>
-            </div><!-- /.row -->
-          </div><!-- /.container-fluid -->
+            </div>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section><!-- /.content -->
   </div><!-- /.content-wrapper -->
   <?php $this->load->view('common/footer'); ?>
