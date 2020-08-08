@@ -34,7 +34,7 @@
             <tbody>
               <?php foreach ($teamscore_array as $value) {
                 if ($_SESSION['id'] === $value['team_id']) {
-                  if ($value['delete_player'] === "0") { ?>
+                  if ($value['delete_player'] === "0" &&$value['sum(inning)'] != "0") { ?>
                     <tr>
                       <td><?= $value['gamecount'] ?></td>
                       <td><?= $value['playercount'] ?></td>

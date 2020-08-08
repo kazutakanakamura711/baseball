@@ -63,7 +63,8 @@ class Score extends CI_Controller
     public function setPage($limit, $num)
     {
         $this->load->library('pagination');
-        $config['base_url'] = 'http://yakyu.com/index.php/score/scores/';
+        // $config['base_url'] = 'http://yakyu.com/index.php/score/scores/';
+        $config['base_url'] = 'https://mbc-teams.com/index.php/score/scores/';
         $config['total_rows'] = $num;
         $config['per_page'] = $limit;
         $config['reuse_query_string'] = TRUE;

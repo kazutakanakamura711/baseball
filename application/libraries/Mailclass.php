@@ -33,7 +33,7 @@ class Mailclass
     // ここまで
     // 送信内容設定
     $mail->CharSet = 'utf-8';
-    $mail->setFrom('noreply@yakyu.com', mb_encode_mimeheader('MBC User'));
+    $mail->setFrom($config['mail']['Setfrom'], mb_encode_mimeheader('MBC User'));
     $mail->addAddress($to);
     if (isset($bcc)) {
       $mail->addBcc($bcc);
@@ -69,7 +69,7 @@ class Mailclass
     // ここまで
     // 送信内容設定
     $mail->CharSet = 'utf-8';
-    $mail->setFrom('noreply@yakyu.com', mb_encode_mimeheader('MBC User'));
+    $mail->setFrom($config['mail']['Setfrom'], mb_encode_mimeheader('MBC User'));
     //$mail->clearAddress();
     $mail->addAddress($to);
     foreach ($bcc as $address) {

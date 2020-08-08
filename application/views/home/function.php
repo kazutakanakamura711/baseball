@@ -332,7 +332,7 @@
                     <div class="row onebox">
                         <div class="col-3 col-md-2 imgArea"><img class="direct-chat-img" src="<?= base_url() ?>assets/images/player1.png" alt="player"></div>
                         <div class="col-8 col-md-8 fukiArea">
-                            <div class="col-8 col-md-8 fukidasi">試合マッチングはどういう流れで行われますか？</div>
+                            <div class="fukidasi">試合マッチングはどういう流れで行われますか？</div>
                         </div>
                     </div>
                     <div class="row onebox">
@@ -480,7 +480,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="error">
-                                <strong><span id="email_error" class="text-danger"></span></strong>
+                                <strong><span id="mail_error" class="text-danger"></span></strong>
                             </div>
                             <div class="form-group">
                                 <input type="email" id="email" class="form-control" placeholder="メールアドレス">
@@ -591,7 +591,7 @@
                                 title: '問い合わせ出来ませんでした。',
                                 text: '入力内容をご確認下さい。',
                             }).then((result) => {
-                                $("#register").prop('disabled', false);
+                                $("#contact").prop('disabled', false);
                             });
                         }
                         if (data.success) {

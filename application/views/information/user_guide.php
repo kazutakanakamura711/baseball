@@ -45,9 +45,9 @@
                     <!-- タブ01 -->
                     <a class="nav-item nav-link active" id="tab-menu01" data-toggle="tab" href="#panel-menu01" role="tab" aria-controls="panel-menu01" aria-selected="true">新規登録とログイン</a>
           <!-- タブ02 -->
-          <a class="nav-item nav-link" id="tab-menu02" data-toggle="tab" href="#panel-menu02" role="tab" aria-controls="panel-menu02" aria-selected="false">スコア入力</a>
+          <a class="nav-item nav-link" id="tab-menu02" data-toggle="tab" href="#panel-menu02" role="tab" aria-controls="panel-menu02" aria-selected="false">選手登録</a>
           <!-- タブ03 -->
-          <a class="nav-item nav-link" id="tab-menu03" data-toggle="tab" href="#panel-menu03" role="tab" aria-controls="panel-menu03" aria-selected="false">選手登録</a>
+          <a class="nav-item nav-link" id="tab-menu03" data-toggle="tab" href="#panel-menu03" role="tab" aria-controls="panel-menu03" aria-selected="false">スコア入力</a>
           <!-- タブ04 -->
           <a class="nav-item nav-link" id="tab-menu04" data-toggle="tab" href="#panel-menu04" role="tab" aria-controls="panel-menu04" aria-selected="false">試合マッチング</a>
           <!-- タブ05 -->
@@ -67,7 +67,7 @@
                 <div class="col-md-8 order-md-2">
               </div><!-- /.col -->
               <div class="col-md-12">
-                <img src="<?= base_url() ?>assets/images/team_entry1.png" alt="新規チーム登録" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/sign_up.png" alt="新規チーム登録" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <img src="<?= base_url() ?>assets/images/team_entry.png" alt="チーム本登録" class="img-fluid">
@@ -82,45 +82,45 @@
           <!-- パネル02 -->
           <div class="tab-pane fade border border-top-0" id="panel-menu02" role="tabpanel" aria-labelledby="tab-menu02">
               <div class="row p-3">
-                <h3>【選手スコア登録について】</h3>
-              <div class="col-md-8 order-md-2">
-                </div><!-- /.col -->
-              <div class="col-md-12">
-                <img src="<?= base_url() ?>assets/images/first_page.png" alt="チーム情報ページ" class="img-fluid">
+                <h3>【選手登録について】</h3>
+                <div class="col-md-8 order-md-2">
+                    </div><!-- /.col -->
+                    <div class="col-md-12">
+                        <img src="<?= base_url() ?>assets/images/player_register_first.png" alt="ホームページ画面" class="img-fluid">
+                        <div class="w-100"></div>
+                        <br>
+                        <img src="<?= base_url() ?>assets/images/player_register_second.png" alt="選手登録" class="img-fluid">
+                        <div class="w-100"></div>
+                <br>
+                <img src="<?= base_url() ?>assets/images/player_register_infomation.png" alt="試合結果(結果・削除)" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/batter_score.png" alt="打者スコア入力" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/delete_player.png" alt="選手削除" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/pitcher_score.png" alt="投手スコア入力" class="img-fluid">
-                <div class="w-100"></div>
-                <br>
-                <img src="<?= base_url() ?>assets/images/scoreboard2.png" alt="スコアボード画面" class="img-fluid">
-                <div class="w-100"></div>
-                <br>
-              </div><!-- /.col -->
+            </div><!-- /.col -->
             </div><!-- /.row -->
           </div><!-- /.tab-pane fade show active border border-top-0 -->
           <!-- パネル03 -->
           <div class="tab-pane fade border border-top-0" id="panel-menu03" role="tabpanel" aria-labelledby="tab-menu03">
               <div class="row p-3">
-                <h3>【選手登録について】</h3>
-                <div class="col-md-8 order-md-2">
-                    </div><!-- /.col -->
-                    <div class="col-md-12">
-                        <img src="<?= base_url() ?>assets/images/home_page.png" alt="ホームページ画面" class="img-fluid">
-                        <div class="w-100"></div>
-                        <br>
-                        <img src="<?= base_url() ?>assets/images/player_register(2).png" alt="選手登録" class="img-fluid">
-                        <div class="w-100"></div>
-                <br>
-                <img src="<?= base_url() ?>assets/images/team_infomation.png" alt="試合結果(結果・削除)" class="img-fluid">
+                <h3>【選手スコア登録について】</h3>
+              <div class="col-md-8 order-md-2">
+                </div><!-- /.col -->
+              <div class="col-md-12">
+                <img src="<?= base_url() ?>assets/images/score_firstpage.png" alt="チーム情報ページ" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/delete_players (2).png" alt="選手削除" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/score_batter.png" alt="打者スコア入力" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-            </div><!-- /.col -->
+                <img src="<?= base_url() ?>assets/images/pitcher_score.png" alt="投手スコア入力" class="img-fluid">
+                <div class="w-100"></div>
+                <br>
+                <img src="<?= base_url() ?>assets/images/score_first.png" alt="スコアボード画面" class="img-fluid">
+                <div class="w-100"></div>
+                <br>
+              </div><!-- /.col -->
             </div><!-- /.row -->
           </div><!-- /.tab-pane fade show active border border-top-0 -->
           <!-- パネル04 -->
@@ -130,21 +130,21 @@
                 <div class="col-md-8 order-md-2">
                     </div><!-- /.row -->
                     <div class="col-md-12">
-                        <img src="<?= base_url() ?>assets/images/game_matching.png" alt="試合マッチング" class="img-fluid">
+                        <img src="<?= base_url() ?>assets/images/game_matching_first.png" alt="試合マッチング" class="img-fluid">
                         <div class="w-100"></div>
                         <br>
                         <img src="<?= base_url() ?>assets/images/game_matiching_message.png" alt="試合申し込み" class="img-fluid">
                         <div class="w-100"></div>
                         <br>
-                <img src="<?= base_url() ?>assets/images/game_matching_mail.png" alt="試合申し込みメール" class="img-fluid">
-                <div class="w-100"></div>
-                <br>
-                <img src="<?= base_url() ?>assets/images/contact_form.png" alt="連絡フォーム" class="img-fluid">
-                <div class="w-100"></div>
-                <br>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.tab-pane fade show active border border-top-0 -->
+                        <img src="<?= base_url() ?>assets/images/game_matching_mail1.png" alt="試合申し込みメール" class="img-fluid">
+                        <div class="w-100"></div>
+                        <br>
+                        <img src="<?= base_url() ?>assets/images/game_matching_form.png" alt="連絡フォーム" class="img-fluid">
+                        <div class="w-100"></div>
+                        <br>
+                    </div><!-- /.col -->
+              </div><!-- /.row -->
+          </div><!-- /.tab-pane fade show active border border-top-0 -->
           <!-- パネル05 -->
           <div class="tab-pane fade border border-top-0" id="panel-menu05" role="tabpanel" aria-labelledby="tab-menu05">
               <div class="row p-3">
@@ -152,16 +152,16 @@
               <div class="col-md-8 order-md-2">
                   </div><!-- /.col -->
                   <div class="col-md-12">
-                      <img src="<?= base_url() ?>assets/images/home_page_game.png" alt="ウェルピア" class="img-fluid">
+                      <img src="<?= base_url() ?>assets/images/game_result1.png" alt="試合結果登録1" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/game_result(2).png" alt="ウェルピア" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/game_result(2).png" alt="試合結果登録2" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/game_result_display.png" alt="ウェルピア" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/game_result_second.png" alt="試合結果登録3" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/game_delete_message.png" alt="ウェルピア" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/game_result_deleat.png" alt="試合結果登録4" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
               </div><!-- /.col -->
@@ -174,16 +174,16 @@
                 <div class="col-md-8 order-md-2">
               </div><!-- /.col -->
               <div class="col-md-12">
-                <img src="<?= base_url() ?>assets/images/mail_forget (2).png" alt="メールアドレス変更" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/mail_change_first.png" alt="メールアドレス変更" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/mail_change (2).png" alt="変更先メールアドレス登録" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/mail_change_second.png" alt="変更先メールアドレス登録" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/mail_subregister (2).png" alt="メールアドレス仮登録" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/mail_change_mail.png" alt="メールアドレス仮登録" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/mail_change_submit (2).png" alt="メールアドレス変更完了" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/mail_change_final.png" alt="メールアドレス変更完了" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
             </div><!-- /.col -->
@@ -201,7 +201,7 @@
                 <img src="<?= base_url() ?>assets/images/password_change (2).png" alt="パスワード変更2" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
-                <img src="<?= base_url() ?>assets/images/password_subregister (2).png" alt="パスワード変更3" class="img-fluid">
+                <img src="<?= base_url() ?>assets/images/password_change_mail.png" alt="パスワード変更3" class="img-fluid">
                 <div class="w-100"></div>
                 <br>
                 <img src="<?= base_url() ?>assets/images/password_change1 (2).png" alt="パスワード変更4" class="img-fluid">

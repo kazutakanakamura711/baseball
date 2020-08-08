@@ -106,7 +106,7 @@
           <strong><span id="message_error" class="text-danger"></span></strong>
         </div>
         <div class="form-group mb-3">
-          <textarea name="message" id="message" cols="42" rows="10"><?= $_SESSION['team'] ?>の<?= $_SESSION['skipper'] ?>さんより試合申し込みがありました。
+          <textarea name="message" id="message" cols="40" rows="15"><?= $_SESSION['team'] ?>の<?= $_SESSION['skipper'] ?>さんより試合申し込みがありました。
 「連絡する」ボタンから返信をお願いします。
           </textarea>
         </div>

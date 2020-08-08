@@ -33,7 +33,7 @@ class Manager extends CI_Controller
       //管理者パスワードの設定読込
       $config = parse_ini_file('config.ini', true);
       if ($this->input->post("pass") == $config['login']['password']) {
-        $data = ["is_logged_in" => 1];
+        $data = ["is_logged_in" => 100];
         $this->session->set_userdata($data);
         exit(json_encode($data));
       } else {

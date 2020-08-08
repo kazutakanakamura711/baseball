@@ -128,7 +128,7 @@
         </div>
         <div class="form-group mb-3">
           <label for="consideration">試合考察</label>
-          <textarea name="consideration" id="consideration" cols="42" rows="10"><?= $row_array['consideration'] ?></textarea>
+          <textarea name="consideration" id="consideration" cols="40" rows="10"><?= $row_array['consideration'] ?></textarea>
         </div>
         <div class="row">
           <button id="update" type="submit" class="btn btn-primary btn-block">変更</button>
