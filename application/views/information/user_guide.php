@@ -18,7 +18,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ?>dist/css/adminlte.min.css">
   <!-- header style -->
-  <link href="<?= base_url() ?>dist/css/user-header.css" rel="stylesheet" >
+  <link href="<?= base_url() ?>dist/css/user_header.css" rel="stylesheet" >
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>

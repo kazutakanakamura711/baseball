@@ -160,7 +160,7 @@
             <div class="form-group">
               <label for="year">チーム結成</label>
               <select name="year" class="form-control" style="width: 100%;">
-                <option><?= $team_array['year'] ?>年</option>
+                <option><?= $team_array['year'] ?></option>
                 <?php for ($i = 1950; $i <= date("Y"); $i++) { ?>
                   <option><?= $i; ?>年</option>
                 <?php } ?>
