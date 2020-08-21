@@ -8,7 +8,8 @@
     <!--  -->
     <!--    Document Title-->
     <!-- =============================================-->
-    <title>MBC</title>
+    <title>【MBC】愛媛初!野球管理システム</title>
+    <meta name="description" content="試合マッチングやスコア成績一括管理が可能。他チームとのコミュニティーをサポートします。">
     <!--  -->
     <!--    Favicons-->
     <!--    =============================================-->
@@ -522,6 +523,7 @@
     <script src="<?= base_url() ?>assets/lib/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="<?= base_url() ?>assets/lib/gsap/src/minified/TweenMax.min.js"></script>
     <script src="<?= base_url() ?>assets/lib/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
+    
     <script src="<?= base_url() ?>assets/lib/CustomEase.min.js"></script>
     <script src="<?= base_url() ?>assets/js/config.js"></script>
     <script src="<?= base_url() ?>assets/js/zanimation.js"></script>
@@ -532,6 +534,7 @@
     <script src="<?= base_url() ?>assets/js/core.js"></script>
     <script src="<?= base_url() ?>assets/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script> -->
     <script>
         var mySwiper = new Swiper('.swiper-container', {
             autoplay: {
