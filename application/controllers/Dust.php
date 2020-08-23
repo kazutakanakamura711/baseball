@@ -35,15 +35,21 @@ class Dust extends CI_Controller
         header("Content-type: application/json; charset=UTF-8");
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_players");
-        $this->model_players->return_player($day);
-        exit(json_encode(['player' => '削除完了']));
+        if($this->model_players->return_player($day)){
+            exit(json_encode(['player' => '復帰完了']));
+        }else{
+            echo "選手復帰できませんでした。";
+        }  
     }
     public function delete_real()
     {
         header("Content-type: application/json; charset=UTF-8");
         $this->load->model("model_players");
-        $this->model_players->real_delete();
-        exit(json_encode(['player' => '削除完了']));
+        if($this->model_players->real_delete()){
+            exit(json_encode(['player' => '削除完了']));
+        }else{
+            echo "選手削除できませんでした。"; 
+        } 
     }
     //選手削除
     public function delete_player()
@@ -51,8 +57,11 @@ class Dust extends CI_Controller
         header("Content-type: application/json; charset=UTF-8");
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_players");
-        $this->model_players->delete_player($day);
-        exit(json_encode(['player' => '削除完了']));
+        if($this->model_players->delete_player($day)){
+            exit(json_encode(['player' => '削除完了']));
+        }else{
+            echo "選手削除できませんでした。";   
+        }     
     }
     //スコア削除
     public function delete_score()
@@ -60,8 +69,11 @@ class Dust extends CI_Controller
         header("Content-type: application/json; charset=UTF-8");
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_scores");
-        $this->model_scores->score_delete($day);
-        exit(json_encode(['score' => '削除完了']));
+        if($this->model_scores->score_delete($day)){
+            exit(json_encode(['score' => '削除完了']));
+        }else{
+            echo "スコア削除できませんでした。"; 
+        }       
     }
     //チーム利用停止
     public function stop_team()
@@ -69,37 +81,52 @@ class Dust extends CI_Controller
         header("Content-type: application/json; charset=UTF-8");
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_manager");
-        $this->model_manager->stop_team($day);
-        exit(json_encode(['team' => '削除完了']));
+        if($this->model_manager->stop_team($day)){
+            exit(json_encode(['team' => '削除完了']));
+        }else{
+            echo "チーム削除できませんでした。"; 
+        }    
     }
     public function team_return()
     {
         header("Content-type: application/json; charset=UTF-8");
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_manager");
-        $this->model_manager->return_team($day);
-        exit(json_encode(['team' => '復帰完了']));
+        if($this->model_manager->return_team($day)){
+            exit(json_encode(['team' => '復帰完了']));
+        }else{
+            echo "チーム復帰できませんでした。";
+        } 
     }
     public function delete_team()
     {
         header("Content-type: application/json; charset=UTF-8");
         $this->load->model("model_manager");
-        $this->model_manager->delete_team();
-        exit(json_encode(['team' => '削除完了']));
+        if($this->model_manager->delete_team()){
+            exit(json_encode(['team' => '削除完了']));
+        }else{
+            echo "チーム削除できませんでした。";
+        } 
     }
     public function end_message()
     {
         header("Content-type: application/json; charset=UTF-8");
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_supports");
-        $this->model_supports->end_message($day);
-        exit(json_encode(['messasge' => '削除完了']));
+        if($this->model_supports->end_message($day)){
+            exit(json_encode(['messasge' => '削除完了']));
+        }else{
+            echo "問い合わせを削除できませんでした。";
+        }  
     }
     public function delete_message()
     {
         header("Content-type: application/json; charset=UTF-8");
         $this->load->model("model_supports");
-        $this->model_supports->delete_message();
-        exit(json_encode(['messasge' => '削除完了']));
+        if($this->model_supports->delete_message()){
+            exit(json_encode(['messasge' => '削除完了']));
+        }else{
+            echo "問い合わせを削除できませんでした。";
+        }
     }
 }

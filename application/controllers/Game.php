@@ -121,7 +121,10 @@ class Game extends CI_Controller
         header("Content-type: application/json; charset=UTF-8");
         $day = date("Y-m-d H:i:s");
         $this->load->model("model_games");
-        $this->model_games->game_delete($day);
-        exit(json_encode(['game' => '削除完了']));
+        if($this->model_games->game_delete($day)){
+            exit(json_encode(['game' => '削除完了']));
+        }else{
+            echo "試合を削除できませんでした。";
+        }   
     }
 }
