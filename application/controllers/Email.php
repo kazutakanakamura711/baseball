@@ -21,8 +21,11 @@ class Email extends CI_Controller
 			$subject =	$_POST['team'] . "様との試合申し込み";
 			$body =	$_POST['message'];
 			$this->load->library('mailclass');
-			$this->mailclass->php_mailer($to, $bcc, $subject, $body);
-			$array = ['success' => true];
+			if($this->mailclass->php_mailer($to, $bcc, $subject, $body)){
+				$array = ['success' => true];
+			}else{
+				echo "試合申し込みできませんでした。";
+			}	
 		} else {
 			$array = [
 				'error' => true,
@@ -54,7 +57,7 @@ class Email extends CI_Controller
 			$to = $_POST['mail'];
 			$subject = "仮登録完了しました。";
 			$body = "メール登録ありがとうございます。";
-			$body .= "<'" . base_url() . "index.php/bms/check_signup_team/$key'>こちらをクリックして、本登録を完了してください。ただし、こちらのURLは60分を過ぎると無効になりますのでご注意下さい。";
+			$body .= "<'" . base_url() . "index.php/bms/check_signup_team/$key'>こちらをクリックして、本登録を完了してください。ただし、こちらのURLは1時間過ぎると無効になりますのでご注意下さい。";
 			$this->load->library('mailclass');
 			$this->mailclass->php_mailer($to, NULL, $subject, $body);
 			$this->load->model("model_temporary");
@@ -72,7 +75,7 @@ class Email extends CI_Controller
 		}
 		exit(json_encode($array));
 	}
-	//メール変更
+	//メール仮登録
 	public function mail_validation()
 	{
 		header("Content-type: application/json; charset=UTF-8");
@@ -93,9 +96,9 @@ class Email extends CI_Controller
 			//ランダムキーを生成する
 			$key = md5(uniqid());
 			$to = $_POST['mail'];
-			$subject = "メール変更について。";
+			$subject = "メールアドレス仮登録しました。";
 			$body = "メール変更受け付けました。";
-			$body .= "<'" . base_url() . "index.php/change/check_team_mail/$key'>こちらをクリックして、登録を完了してください。ただし、こちらのURLは60分を過ぎると無効になりますのでご注意下さい。";
+			$body .= "<'" . base_url() . "index.php/change/check_team_mail/$key'>こちらをクリックして、登録を完了してください。ただし、こちらのURLは1時間過ぎると無効になりますのでご注意下さい。";
 			$this->load->library('mailclass');
 			$this->mailclass->php_mailer($to, NULL, $subject, $body);
 			$team['id'] = $this->input->post("id");
@@ -114,7 +117,7 @@ class Email extends CI_Controller
 		}
 		exit(json_encode($array));
 	}
-	//password変更
+	//メール仮登録
 	public function email_validation()
 	{
 		header("Content-type: application/json; charset=UTF-8");
@@ -135,9 +138,9 @@ class Email extends CI_Controller
 			//ランダムキーを生成する
 			$key = md5(uniqid());
 			$to = $_POST['mail'];
-			$subject = "パスワード変更について";
-			$body = "パスワード変更受け付けました";
-			$body .= "<'" . base_url() . "index.php/change/check_team_pass/$key'>こちらをクリックして、登録を完了してください。ただし、こちらのURLは60分を過ぎると無効になりますのでご注意下さい。";
+			$subject = "メールアドレス仮登録しました。";
+			$body = "メール変更受け付けました。";
+			$body .= "<'" . base_url() . "index.php/change/check_team_pass/$key'>こちらをクリックして、登録を完了してください。ただし、こちらのURLは1時間過ぎると無効になりますのでご注意下さい。";
 			$this->load->library('mailclass');
 			$this->mailclass->php_mailer($to, NULL, $subject, $body);
 			$this->load->model("model_team");
